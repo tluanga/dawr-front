@@ -1,0 +1,28 @@
+Types of Inventory Report
+1. Multi-Stock Location Report
+A multi-stock location inventory report enables your business to track inventory across all of your stock locations, warehouses, or distribution centers. With it, you can quickly gain visibility into the inventory quantities at each site. This information allows you to create a more efficient production process. If one location is low on inventory, you have the option of deciding if you should order more stock from your suppliers or if transferring inventory from a warehouse in close proximity would be better.
+
+2. Inventory On-Hand Report
+Sometimes knowing how much inventory is in your warehouse is not enough. Your total inventory numbers include goods waiting to be sold and goods already allocated to outgoing customers’ orders. With an inventory on-hand report, you can accurately gauge the disparity between allocated stock and available stock, resulting in fewer stock-outs and more sales opportunities.
+
+3. Inventory Change Report
+When analyzing the inventory outflow, knowing how many products are entering and exiting your warehouses is insufficient. Instead, understanding the “why” is essential to capturing efficiencies. For that, use an inventory change report to track how inventory is being depleted and why. Being selective with assigning reasons when making stock transfers or adjustments will make future analysis easier and allow a better understanding of stock movements and easier understanding of waste.
+
+4. Stock-Reorder Report
+A stock re-order report indicates when a re-order of goods is necessary. Re-order points are typically unique to each product since they are a factor of delivery lead times, sales, and safety stock. Additionally, a product kept at multiple stock locations may have different re-order points depending on the location of warehouse and sales throughput from that location. Using a stock re-order report for each stock location to understand what products to replenish, helps you avoid low-stock and stock outs situations.
+
+5. Purchase Order Report
+Now you’ve taken steps to account for inventory going out of your business and on the shelves. However, it is also critical to track and manage incoming inventory. A purchase order report allows you to track what stock is incoming and when it will be arriving at your warehouse. Using a purchase order report, you can then account for incoming product appropriately, plan ahead on order fulfillment, and prevent over-ordering, helping to streamlining your entire supply chain.
+
+Warehousing And Fulfillment
+
+6. Inventory Pick List Report
+A pick list is a list of items for your operations team to take from inventory. Typically this is for the purpose of fulfilling customers’ orders for the day or for supplying to the production of finished goods. The use of pick lists enables accurate inventory on-hand numbers because it includes consideration of inventory dedicated to orders or production.
+
+7. Inventory Packing List
+An inventory packing list or production report details the total amount of each item required to fulfill each customer’s order. It allows you to take into account each customer’s orders and how the finished goods inventory should get assigned separately for each customer. With it, you can quickly check that each customer order contains the right products in the right quantities.
+
+Sales Analysis
+
+8. Sales Reports
+Ultimately, business success is dependent on revenue which comes from product sales to customers. A sales report helps you to analyze your company’s performance. To have a good sales report, you will need to be able to break your sales down into different time periods, for various products, and customer level. Through these different insights, you can uncover trends to help you identify your top customers, and help you forecast inventory better in the future.

@@ -1,0 +1,11 @@
+.back{
+    display:flex;
+    flex-direction: row; 
+    width:15vw;
+    align-content: center;
+    padding-top: 5px;
+    padding-bottom: 20px;   
+}
+.back__text{
+    font-size: medium;
+}

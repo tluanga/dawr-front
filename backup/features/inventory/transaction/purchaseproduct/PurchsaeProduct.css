@@ -1,0 +1,14 @@
+.block{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100vw;
+}
+
+.block__product{
+    width: 65vw;    
+}
+
+.block__cart{
+    width: 35vw;
+}

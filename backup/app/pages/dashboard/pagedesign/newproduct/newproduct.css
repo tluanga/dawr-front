@@ -1,0 +1,29 @@
+.dialog__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+       
+}
+
+.row1{
+    display: flex;
+    justify-items: center;
+}
+.row2{
+    display: flex;
+    justify-items: center;
+}
+.row3{
+    display: flex;
+    justify-items: center;
+}
+
+
+
+.buttongroup{
+    display: flex;
+    padding-left: 45px;
+    padding-right: 55px;
+    justify-content: space-between;
+    align-items: center;
+}

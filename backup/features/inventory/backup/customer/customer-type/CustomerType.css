@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    background-color: aqua;
+}
+
+.column1{
+    display: flex;
+    background-color: blue;
+}
+
+.column2{
+    display: flex;
+    background-color: blue;
+    
+}

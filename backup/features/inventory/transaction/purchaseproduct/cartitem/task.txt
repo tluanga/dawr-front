@@ -1,0 +1,2 @@
+1. Form cannot be submitted if there is a dupplicate data in the store
+2.

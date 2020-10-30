@@ -1,0 +1,23 @@
+Features of Point of Sale Module
+-Customer Selection
+    - Customer can be existing customer or a new one or blank
+-Product Selection
+    - Selecting Product which are available in Stock
+    - Those which are not available are screen out are not available for selection
+-Data entry- 
+    - Quantity
+    - Discount
+-Buttons-
+    1) Add to Cart - Add the Item Selected to the Cart
+    2) Clear- Clear the data entry
+
+-Cart
+    - Cart will compose of 
+    -Item Table-
+        Columns- Sl.No-Name-Quantity-Rate-gst-discount-Amount
+        Footer-Total Rate, Total Gst, total discount and Total Amount
+        Cart will contain a list of items added to cart
+    - Button -
+        -Print-Print the invoice
+        -Clear -clear the cart
+

@@ -1,0 +1,34 @@
+.cartitem__form{
+    margin: 0;
+    padding: 0;
+    display: flex; 
+    flex-direction: row;       
+}
+
+.form__column{    
+    height: 360px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: aquamarine; */
+}
+
+.form__info{
+    display: flex;
+    height: 65px;
+    width: 210px;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+}
+
+.form__button{
+    height: 141px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* background-color: blueviolet; */
+}
+
