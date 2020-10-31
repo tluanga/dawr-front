@@ -20,9 +20,9 @@ const customStyles = {
       content: { 
         position: 'absolute',
         width:'35vw',
-        height:'90vh',
-        top: '1vh',
-        bottom: '5vh',
+        height:'80vh',
+        top: '10vh',
+        bottom: '10vh',
         left: '32.5vw',
         right: '32.5vw',        
         border: '1px solid #ccc',

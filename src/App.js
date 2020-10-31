@@ -40,7 +40,7 @@ function App() {
             auth={isAuthenticated}
           />       
         </Switch>
-        App
+        
       </div>
     </div>
   );
