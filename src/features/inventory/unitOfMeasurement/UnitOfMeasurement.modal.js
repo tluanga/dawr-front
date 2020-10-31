@@ -7,8 +7,8 @@ import { Button } from '@material-ui/core';
 import Select from 'react-select'
 // -----Redux--------
 import {useDispatch} from 'react-redux'
-import {newGstCode,updateGstCode} from './GstCode.slice'
-import {NEW,EDIT,MODULE_NAME} from './GstCode.constants'
+import {newUnitOfMeasurement,updateUnitOfMeasurement} from './UnitOfMeasurement.slice'
+import {NEW,EDIT,MODULE_NAME} from './UnitOfMeasurement.constants'
 import {AiOutlineClose} from 'react-icons/ai'
 import {MdClearAll} from 'react-icons/md'
 import {CgPushChevronUpO} from 'react-icons/cg'
@@ -27,9 +27,9 @@ const customStyles = {
       content: { 
         position: 'absolute',
         width:'35vw',
-        height:'90vh',
-        top: '5vh',
-        bottom: '5vh',
+        height:'55vh',
+        top: '22.5vh',
+        bottom: '22.5vh',
         left: '32.5vw',
         right: '32.5vw',        
         border: '1px solid #ccc',
@@ -60,7 +60,7 @@ const Control=styled.section`
 
 Modal.setAppElement('#root')
 
-const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) => {
+const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) => {
     const [status,setStatus]=useState()
     const statusOption=[
         {
@@ -79,10 +79,10 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
         formData.active=status
         setOpenModal(false)
         if(modalMode===NEW){
-            dispatch(newGstCode(formData))
+            dispatch(newUnitOfMeasurement(formData))
         }
         else if(modalMode===EDIT){
-            dispatch(updateGstCode({id:modalData.id,data:formData}))
+            dispatch(updateUnitOfMeasurement({id:modalData.id,data:formData}))
             setModalData({})
         }
         
@@ -122,73 +122,35 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                     }
                     <TextField
                         variant='outlined'
-                        name='code'
-                        label='Code'
-                        defaultValue={modalMode===EDIT?modalData.code:''}
-                        placeholder='Code'
+                        name='unit_of_measurement'
+                        label='Unit of Measurement'
+                        defaultValue={modalMode===EDIT?modalData.unit_of_measurement:''}
+                        placeholder='Unit of Measurement'
                         inputRef={register}
                         style={{width:'30vw',paddingBottom:'1.3vh'}}
                         size='small'
                     />
-                   
                     <TextField
                         variant='outlined'
-                        name='cgst'
-                        label='Cgst'
-                        defaultValue={modalMode===NEW?'':modalData.cgst}
-                        placeholder='Cgst'
-                        size='small'
-                        type='number'
+                        name='abbreviation'
+                        label='Abbreviation'
+                        defaultValue={modalMode===NEW?'':modalData.abbreviation}
+                        placeholder='Abbreviation'
                         inputRef={register}
                         style={{width:'30vw',paddingBottom:'1.3vh'}}
                     />
                     <TextField
                         variant='outlined'
-                        name='sgst'
-                        label='Sgst'
-                        defaultValue={modalMode===NEW?'':modalData.sgst}
-                        placeholder='Sgst'
+                        name='type_of_measurement'
+                        label='Type of Measurement'
+                        defaultValue={modalMode===NEW?'':modalData.type_of_measurement}
+                        placeholder='Type of Measurment'
                         size='small'
-                        type='number'
-                        inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
-                    />
-                    <TextField
-                        variant='outlined'
-                        name='totalGst'
-                        label='Total Gst'
-                        defaultValue={modalMode===NEW?'':modalData.totalGst}
-                        placeholder='Total Gst'
-                        size='small'
-                        type='number'
-                        inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
-                    />
-                    <TextField
-                        variant='outlined'
-                        name='description_of_good'
-                        label='Description of Good'
-                        defaultValue={modalMode===NEW?'':modalData.description_of_good}
-                        placeholder='Description of Good'
-                        multiline
-                        rows={4}
-                        size='small'
+                        type='text'
                         inputRef={register}
                         style={{width:'30vw',paddingBottom:'1.3vh'}}
                     />
                     
-                    <TextField
-                        variant='outlined'
-                        name='remarks'
-                        label='Remarks'
-                        defaultValue={modalMode===NEW?'':modalData.remarks}                        
-                        placeholder='Remarks'
-                        multiline
-                        rows={4}
-                        size='small'
-                        inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
-                    />
                     <Select
                         defaultValue={modalData.active===true?statusOption[0]:statusOption[1]}
                         options={statusOption}
@@ -232,4 +194,4 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
     )
 }
 
-export default GstCodeModal
+export default VendorModal

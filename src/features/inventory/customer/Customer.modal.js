@@ -7,8 +7,8 @@ import { Button } from '@material-ui/core';
 import Select from 'react-select'
 // -----Redux--------
 import {useDispatch} from 'react-redux'
-import {newGstCode,updateGstCode} from './GstCode.slice'
-import {NEW,EDIT,MODULE_NAME} from './GstCode.constants'
+import {newCustomer,updateCustomer} from './Customer.slice'
+import {NEW,EDIT,MODULE_NAME} from './Customer.constants'
 import {AiOutlineClose} from 'react-icons/ai'
 import {MdClearAll} from 'react-icons/md'
 import {CgPushChevronUpO} from 'react-icons/cg'
@@ -27,9 +27,9 @@ const customStyles = {
       content: { 
         position: 'absolute',
         width:'35vw',
-        height:'90vh',
-        top: '5vh',
-        bottom: '5vh',
+        height:'85vh',
+        top: '7.5vh',
+        bottom: '7.5vh',
         left: '32.5vw',
         right: '32.5vw',        
         border: '1px solid #ccc',
@@ -60,7 +60,7 @@ const Control=styled.section`
 
 Modal.setAppElement('#root')
 
-const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) => {
+const CustomerModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) => {
     const [status,setStatus]=useState()
     const statusOption=[
         {
@@ -79,10 +79,10 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
         formData.active=status
         setOpenModal(false)
         if(modalMode===NEW){
-            dispatch(newGstCode(formData))
+            dispatch(newCustomer(formData))
         }
         else if(modalMode===EDIT){
-            dispatch(updateGstCode({id:modalData.id,data:formData}))
+            dispatch(updateCustomer({id:modalData.id,data:formData}))
             setModalData({})
         }
         
@@ -93,11 +93,10 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
             reset({
                 name:'',
                 address:'',
-                mobile:null,
+                city:'',
+                contact_no:null,
                 email:'',
-                pincode:null,
                 gst_no:'',
-                remarks:'',
                 active:''
             })
         }        
@@ -122,73 +121,68 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                     }
                     <TextField
                         variant='outlined'
-                        name='code'
-                        label='Code'
-                        defaultValue={modalMode===EDIT?modalData.code:''}
-                        placeholder='Code'
+                        name='name'
+                        label='Name'
+                        defaultValue={modalMode===EDIT?modalData.name:''}
+                        placeholder='Name'
                         inputRef={register}
                         style={{width:'30vw',paddingBottom:'1.3vh'}}
                         size='small'
                     />
-                   
                     <TextField
                         variant='outlined'
-                        name='cgst'
-                        label='Cgst'
-                        defaultValue={modalMode===NEW?'':modalData.cgst}
-                        placeholder='Cgst'
-                        size='small'
-                        type='number'
-                        inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
-                    />
-                    <TextField
-                        variant='outlined'
-                        name='sgst'
-                        label='Sgst'
-                        defaultValue={modalMode===NEW?'':modalData.sgst}
-                        placeholder='Sgst'
-                        size='small'
-                        type='number'
-                        inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
-                    />
-                    <TextField
-                        variant='outlined'
-                        name='totalGst'
-                        label='Total Gst'
-                        defaultValue={modalMode===NEW?'':modalData.totalGst}
-                        placeholder='Total Gst'
-                        size='small'
-                        type='number'
-                        inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
-                    />
-                    <TextField
-                        variant='outlined'
-                        name='description_of_good'
-                        label='Description of Good'
-                        defaultValue={modalMode===NEW?'':modalData.description_of_good}
-                        placeholder='Description of Good'
+                        name='address'
+                        label='Address'
+                        defaultValue={modalMode===NEW?'':modalData.address}
+                        placeholder='Address'
                         multiline
                         rows={4}
+                        inputRef={register}
+                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                    />
+                    <TextField
+                        variant='outlined'
+                        name='city'
+                        label='City'
+                        defaultValue={modalMode===NEW?'':modalData.city}
+                        placeholder='City'
+                        size='small'
+                        inputRef={register}
+                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                    />
+                    <TextField
+                        variant='outlined'
+                        name='contact_no'
+                        label='Contact No'
+                        defaultValue={modalMode===NEW?'':modalData.contact_no}
+                        placeholder='Contact No'
+                        size='small'
+                        type='number'
+                        inputRef={register}
+                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                    />
+                    <TextField
+                        variant='outlined'
+                        name='email'
+                        label='Email'
+                        defaultValue={modalMode===NEW?'':modalData.email}
+                        placeholder='email'
+                        type='email'
+                        size='small'
+                        inputRef={register}
+                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                    />
+                    <TextField
+                        variant='outlined'
+                        name='gst_no'
+                        label='Gst Number'
+                        defaultValue={modalMode===NEW?'':modalData.gst_no}
+                        placeholder='Gst Number'
                         size='small'
                         inputRef={register}
                         style={{width:'30vw',paddingBottom:'1.3vh'}}
                     />
                     
-                    <TextField
-                        variant='outlined'
-                        name='remarks'
-                        label='Remarks'
-                        defaultValue={modalMode===NEW?'':modalData.remarks}                        
-                        placeholder='Remarks'
-                        multiline
-                        rows={4}
-                        size='small'
-                        inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
-                    />
                     <Select
                         defaultValue={modalData.active===true?statusOption[0]:statusOption[1]}
                         options={statusOption}
@@ -232,4 +226,4 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
     )
 }
 
-export default GstCodeModal
+export default CustomerModal

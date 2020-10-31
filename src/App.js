@@ -12,22 +12,22 @@ import {fetchVendorList} from './features/inventory/vendor/Vendor.slice'
 import {fetchCategoryList} from './features/inventory/category/Category.slice'
 import {fetchCustomerTypeList} from './features/inventory/customerType/CustomerType.slice'
 import {fetchGstCodeList} from './features/inventory/gstCode/GstCode.slice'
-
+import {fetchUnitOfMeasurementList} from './features/inventory/unitOfMeasurement/UnitOfMeasurement.slice'
+import {fetchCustomerList} from './features/inventory/customer/Customer.slice'
 
 
 
 function App() {
   const dispatch=useDispatch()
-  // const [isAuthenticated,setIsAuthenticated]=useState(localStorage.getItem('accessToken'))  
   const isAuthenticated=true
   useEffect(()=>{
     dispatch(fetchVendorList())
     dispatch(fetchCategoryList())
     dispatch(fetchCustomerTypeList())
     dispatch(fetchGstCodeList())
-    // setIsAuthenticated(localStorage.getItem('accessToken')
-    // ?true:false)
-    
+    dispatch(fetchUnitOfMeasurementList())
+    dispatch(fetchCustomerList())
+   
     
   },[dispatch])
   return (
