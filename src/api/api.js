@@ -79,7 +79,6 @@ export const searchItem=async params =>{
 // -----Create an Item
 export const create=async({url,data})=>{
     const __url=new URL(url+'/',baseUrl)  
-    console.log('çreating new data---',data)
     try{
         const response=await axios.post(__url,data)
         return response.data

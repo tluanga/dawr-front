@@ -2,6 +2,7 @@ import React from 'react'
 import {TabList,Tabs,Tab, TabPanel} from 'react-tabs'
 import Vendor from './vendor/Vendor.component'
 import Category from './category/Category.component'
+import CustomerType from './customerType/CustomerType.component'
 
 
 
@@ -49,7 +50,7 @@ const Inventory=()=>{
                     <Vendor/>                    
                 </TabPanel>
                 <TabPanel>
-                    <Vendor/>
+                    <CustomerType/>
                 </TabPanel>
          </Tabs>
          

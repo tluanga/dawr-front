@@ -10,6 +10,7 @@ import ProtectedRoute from './ProtectedRoute'
 import {useDispatch} from 'react-redux'
 import {fetchVendorList} from './features/inventory/vendor/Vendor.slice'
 import {fetchCategoryList} from './features/inventory/category/Category.slice'
+import {fetchCustomerTypeList} from './features/inventory/customerType/CustomerType.slice'
 
 
 
@@ -21,6 +22,7 @@ function App() {
   useEffect(()=>{
     dispatch(fetchVendorList())
     dispatch(fetchCategoryList())
+    dispatch(fetchCustomerTypeList())
     // setIsAuthenticated(localStorage.getItem('accessToken')
     // ?true:false)
     

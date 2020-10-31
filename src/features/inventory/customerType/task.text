@@ -1,0 +1,3 @@
+Future improvement
+1) Implementation of Reset button in Edit mode, When clear is pressed in edit mode, 
+the data is taken over the new mode in dialog, this may be due to react hook form
