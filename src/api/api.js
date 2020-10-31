@@ -12,7 +12,8 @@ axios.interceptors.request.use(
     }
 )
 
-export const baseUrl='http://lalfakawma14.pythonanywhere.com/'
+export const baseUrl='http://127.0.0.1:8000/'
+// export const baseUrl='http://lalfakawma14.pythonanywhere.com/'
 
 // export const baseUrl='http://fakawma.pythonanywhere.com/'
 
@@ -94,7 +95,9 @@ export const create=async({url,data})=>{
 //---update api function with params expected, url, data
 // expect url='gst' id=1 data=data
 export const update=async({url,id,data})=>{
-    
+    console.log('id',id)
+    console.log('url',url)
+    console.log('data',data)
     const __url=new URL(url+'/'+id+'/',baseUrl)
     
     try{

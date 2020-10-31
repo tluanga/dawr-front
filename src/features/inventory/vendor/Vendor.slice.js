@@ -32,16 +32,10 @@ export const newVendor=createAsyncThunk('vendor/new',
 )
 
 export const updateVendor=createAsyncThunk('vendor/update',
-    async (id,data)=>{
-        const payload={
-            url,
-            id:id,
-            data:data
-        }
-        
-        const response= await update(payload)
-        console.log(response)
-           
+    async ({id,data})=>{
+        console.log('formdata',data)
+        const response= await update({url,id,data})
+        return response
     }
 )
 
@@ -66,9 +60,16 @@ const vendorSlice=createSlice({
     },
     extraReducers:{
         [fetchVendorList.fulfilled]:vendorEntityAdapter.setAll,
-        [newVendor.fulfilled]:vendorEntityAdapter.addOne
+        [newVendor.fulfilled]:vendorEntityAdapter.addOne,
+        [updateVendor.fulfilled]:(state,action)=>{
+            const {id,...changes}=action.payload
+            vendorEntityAdapter.updateOne(state,{id,changes})
+            
+        }    
     }
 })
+
+
 
 export const {setSelect}=vendorSlice.actions
 export default vendorSlice.reducer
