@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link,Route} from 'react-router-dom'
 import {TabList,Tabs,Tab, TabPanel} from 'react-tabs'
 
 import SalesReport from './SalesReport'

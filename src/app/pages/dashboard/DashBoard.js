@@ -9,10 +9,7 @@ const DashboardContainer=styled.div`
     height:90vh;
     background-color:#F1F1F1;
 `
-const DashboardItem=styled.section`
-    padding-left:20px;
-    padding-top:30px;
-`
+
 
 function DashBoard() {
     return (

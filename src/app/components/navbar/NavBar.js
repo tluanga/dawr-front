@@ -7,7 +7,7 @@ import Login from '../login'
 // Material ui--
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 
 import BarChartIcon from '@material-ui/icons/BarChart';
 import BusinessIcon from '@material-ui/icons/Business';
@@ -16,9 +16,6 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 const BrandText=styled.h4`
     color:white;
 `
-
-
-
 function NavBar() {
     return (
         <div className='navbar'>

@@ -1,9 +1,9 @@
 import React from 'react'
-import {Route,Switch,Link} from 'react-router-dom'
+
 import {TabList,Tabs,Tab, TabPanel} from 'react-tabs'
-import Select from 'react-select';
+
 import ProductSales from './ProductSales'
-import Button from '@material-ui/core/Button'
+
 
 
 const SalesReport=()=>{
