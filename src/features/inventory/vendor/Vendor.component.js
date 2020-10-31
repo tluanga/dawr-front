@@ -7,7 +7,7 @@ const Vendor = () => {
     const [openModal,setOpenModal]=useState(false)
     return (
         <div>
-            <VendorSelect/>
+            <VendorSelect setOpenModal={setOpenModal}/>
             <button onClick={()=>setOpenModal(true)}>Open Modal</button>
             <VendorModal 
                 openModal={openModal}

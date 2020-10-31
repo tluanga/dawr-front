@@ -4,6 +4,9 @@ import Modal from 'react-modal';
 import {useForm} from 'react-hook-form'
 import TextField from '@material-ui/core/TextField'
 import { Button } from '@material-ui/core';
+// -----Redux--------
+import {useDispatch} from 'react-redux'
+import {newVendor} from './Vendor.slice'
 
 const customStyles = {
     overlay: {
@@ -18,7 +21,7 @@ const customStyles = {
         position: 'absolute',
         width:'35vw',
         height:'90vh',
-        top: '5pvh',
+        top: '1vh',
         bottom: '5vh',
         left: '32.5vw',
         right: '32.5vw',        
@@ -32,16 +35,16 @@ const customStyles = {
       }
   };
 
-  const Wrapper=styled.section`
+const Wrapper=styled.section`
     display:flex;
     justify-content:center;
     align-items:center;
   `
-  const Form=styled.form`
+const Form=styled.form`
     display:flex;
     flex-direction:column ;
   `
-  const Control=styled.section`
+const Control=styled.section`
     display:flex;
     flex-direction:row;
     justify-content:space-around;
@@ -49,11 +52,12 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 const VendorModal = ({openModal,setOpenModal}) => {
+    const dispatch=useDispatch()
     const {handleSubmit,register}=useForm()
-
+    
     const onSubmit=data=>{
         setOpenModal(false)
-        console.log(data)
+        dispatch(newVendor(data))
     }
     return(       
         <Modal
@@ -83,7 +87,7 @@ const VendorModal = ({openModal,setOpenModal}) => {
                     />
                     <TextField
                         variant='outlined'
-                        name='mobileNo'
+                        name='mobile'
                         placeholder='Mobile No'
                         size='small'
                         type='number'
@@ -104,14 +108,6 @@ const VendorModal = ({openModal,setOpenModal}) => {
                         name='pincode'
                         placeholder='Pin Code'
                         type='number'
-                        size='small'
-                        inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
-                    />
-                    <TextField
-                        variant='outlined'
-                        name='name'
-                        placeholder='Name'
                         size='small'
                         inputRef={register}
                         style={{width:'30vw',paddingBottom:'1.3vh'}}
