@@ -20,13 +20,25 @@ export const fetchVendorList=createAsyncThunk('vendor/fetct',
 
 const vendorEntityAdapter=createEntityAdapter({})
 
+export const {
+    selectAll:selectVendorList,
+    selectById:selectVendorById
+}=vendorEntityAdapter.getSelectors(state=>state.inventory.vendor)
+
 const vendorSlice=createSlice({
     name:'vendor',
-    initialState:vendorEntityAdapter.getInitialState({}),
-    reducers:{},
+    initialState:vendorEntityAdapter.getInitialState({
+        select:{}
+    }),
+    reducers:{
+        setSelect:(state,action)=>{
+            state.select=action.payload
+        }
+    },
     extraReducers:{
         [fetchVendorList.fulfilled]:vendorEntityAdapter.setAll
     }
 })
 
+export const {setSelect}=vendorSlice.actions
 export default vendorSlice.reducer
