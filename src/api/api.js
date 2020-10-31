@@ -17,20 +17,28 @@ export const baseUrl='http://lalfakawma14.pythonanywhere.com/'
 // export const baseUrl='http://fakawma.pythonanywhere.com/'
 
 
-// export const baseUrl='http://3.17.148.232/'
-export const getList= async (url)=>{
-    const _url= new URL(url,baseUrl)
-    
-    try{
-        const response= await axios.get(_url)
-                        .then(data=>data.data)
-                       
-        return response
-    }
-    catch(err){
-        return err
-    }
+export const getList=url=>{
+    const _url=new URL(url,baseUrl)
+    return axios.get(_url)
+            .then(data=>data.data)
+            .catch(err=>err)
 }
+
+
+// export const baseUrl='http://3.17.148.232/'
+// export const getList= async (url)=>{
+//     const _url= new URL(url,baseUrl)
+    
+//     try{
+//         const response= await axios.get(_url)
+//                         .then(data=>data.data)
+                       
+//         return response
+//     }
+//     catch(err){
+//         return err
+//     }
+// }
 
 // -----get a single Item by its id
 export const getItem=async params =>{
