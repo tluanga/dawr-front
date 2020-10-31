@@ -11,6 +11,7 @@ import {useDispatch} from 'react-redux'
 import {fetchVendorList} from './features/inventory/vendor/Vendor.slice'
 import {fetchCategoryList} from './features/inventory/category/Category.slice'
 import {fetchCustomerTypeList} from './features/inventory/customerType/CustomerType.slice'
+import {fetchGstCodeList} from './features/inventory/gstCode/GstCode.slice'
 
 
 
@@ -23,6 +24,7 @@ function App() {
     dispatch(fetchVendorList())
     dispatch(fetchCategoryList())
     dispatch(fetchCustomerTypeList())
+    dispatch(fetchGstCodeList())
     // setIsAuthenticated(localStorage.getItem('accessToken')
     // ?true:false)
     

@@ -1,13 +1,13 @@
 import React from 'react'
 // -------Redux---------
 import {useSelector,useDispatch} from 'react-redux'
-import {selectVendorList,setSelect} from './Vendor.slice'
+import {selectGstCodeList,setSelect} from './GstCode.slice'
 import Creatable from 'react-select/creatable';
 
 
-const VendorSelect = ({setOpenModal}) => {
+const GstCodeSelect = ({setOpenModal}) => {
     const dispatch=useDispatch()
-    const options=useSelector(selectVendorList)
+    const options=useSelector(selectGstCodeList)
     return (
        <Creatable
             onChange={data=>dispatch(setSelect(data))}
@@ -17,4 +17,4 @@ const VendorSelect = ({setOpenModal}) => {
     )
 }
 
-export default VendorSelect
+export default GstCodeSelect

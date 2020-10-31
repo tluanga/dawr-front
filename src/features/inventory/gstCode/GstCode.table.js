@@ -1,13 +1,13 @@
 import React from 'react'
 // -------redux-------
 import {useSelector} from 'react-redux'
-import {selectVendorList} from './Vendor.slice' 
-import {EDIT} from './Vendor.constants'
+import {selectGstCodeList} from './GstCode.slice' 
+import {EDIT} from './GstCode.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
 import Button from '@material-ui/core/Button'
 
 
-const VendorTable = ({setOpenModal,setModalMode,setModalData}) => {
+const GstCodeTable = ({setOpenModal,setModalMode,setModalData}) => {
     
     const columns = React.useMemo(
         () => [
@@ -16,29 +16,26 @@ const VendorTable = ({setOpenModal,setModalMode,setModalData}) => {
             accessor: 'id', // accessor is the "key" in the data
         },
         {
-            Header: 'name',
-            accessor: 'name', // accessor is the "key" in the data
+            Header: 'Code',
+            accessor: 'code', // accessor is the "key" in the data
         },
         {
-            Header: 'address',
-            accessor: 'address', // accessor is the "key" in the data
+            Header: 'Cgst',
+            accessor: 'cgst', // accessor is the "key" in the data
         },
         {
-            Header: 'Mobile',
-            accessor: 'mobile',
+            Header: 'Sgst',
+            accessor: 'sgst',
         },
         {
-            Header: 'Email',
-            accessor: 'email',
+            Header: 'Total Gst',
+            accessor: 'totalGst',
         },
         {
-            Header: 'Pin Code',
-            accessor: 'pincode',
+            Header: 'Description of Goods',
+            accessor: 'description_of_good',
         },
-        {
-            Header: 'Gst No',
-            accessor: 'gst_no',
-        },
+        
         {
             Header: 'Remarks',
             accessor: 'remarks',
@@ -80,12 +77,12 @@ const VendorTable = ({setOpenModal,setModalMode,setModalData}) => {
         [setModalData,setOpenModal,setModalMode]
       )
       
-    const vendorList=useSelector(selectVendorList)
+    const gstCodeList=useSelector(selectGstCodeList)
     return (
         <div>
-            <ReactTable columns={columns} data={vendorList}/>
+            <ReactTable columns={columns} data={gstCodeList}/>
         </div>
     )
 }
 
-export default VendorTable
+export default GstCodeTable

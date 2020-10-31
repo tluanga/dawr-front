@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import VendorModal from './Vendor.modal'
-import VendorTable from './Vendor.table'
-import {NEW} from './Vendor.constants'
+import GstCodeModal from './GstCode.modal'
+import GstCodeTable from './GstCode.table'
+import {NEW} from './GstCode.constants'
 import Button from '@material-ui/core/Button'
 import {IoIosPeople} from 'react-icons/io'
 import styled from 'styled-components'
@@ -20,14 +20,14 @@ const Control=styled.section`
 
 `
 
-const Vendor = () => {
+const GstCode = () => {
     const [openModal,setOpenModal]=useState(false)
     const [modalMode,setModalMode]=useState(NEW)
     const [modalData,setModalData]=useState({})
     
     return (
         <Wrapper>
-            {/* <VendorSelect setOpenModal={setOpenModal}/> */}
+            {/* <GstCodeSelect setOpenModal={setOpenModal}/> */}
             <Control>
                 <Button
                     variant='contained'
@@ -37,17 +37,17 @@ const Vendor = () => {
                         setOpenModal(true)
                         setModalMode(NEW)
                     }}
-                >New Vendor</Button>
+                >New GstCode</Button>
             </Control>
             
-            <VendorModal 
+            <GstCodeModal 
                 openModal={openModal}
                 modalMode={modalMode}
                 setOpenModal={setOpenModal}
                 modalData={modalData}
                 setModalData={setModalData}
             />
-            <VendorTable 
+            <GstCodeTable 
                 setOpenModal={setOpenModal}
                 setModalMode={setModalMode}
                 setModalData={setModalData}
@@ -56,4 +56,4 @@ const Vendor = () => {
     )
 }
 
-export default Vendor
+export default GstCode

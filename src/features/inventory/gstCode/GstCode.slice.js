@@ -1,9 +1,9 @@
 import {createAsyncThunk,createEntityAdapter,createSlice} from '@reduxjs/toolkit'
 import {getList, create,update} from '../../../api/api'
 
-const url='vendor'
+const url='gstcode'
 
-export const fetchVendorList=createAsyncThunk('vendor/fetct',
+export const fetchGstCodeList=createAsyncThunk('gstCode/fetct',
     async ()=>{
         const response=await getList(url)
         const data=response.map(res=>{
@@ -18,7 +18,7 @@ export const fetchVendorList=createAsyncThunk('vendor/fetct',
     }
 )
 
-export const newVendor=createAsyncThunk('vendor/new',
+export const newGstCode=createAsyncThunk('gstCode/new',
     async data=>{
         const payload={
             url,
@@ -31,25 +31,25 @@ export const newVendor=createAsyncThunk('vendor/new',
     }
 )
 
-export const updateVendor=createAsyncThunk('vendor/update',
+export const updateGstCode=createAsyncThunk('gstCode/update',
     async ({id,data})=>{
         const response= await update({url,id,data})
         return response
     }
 )
 
-const vendorEntityAdapter=createEntityAdapter({})
+const gstCodeEntityAdapter=createEntityAdapter({})
 
 export const {
-    selectAll:selectVendorList,
-    selectById:selectVendorById
-}=vendorEntityAdapter.getSelectors(state=>state.inventory.vendor)
+    selectAll:selectGstCodeList,
+    selectById:selectGstCodeById
+}=gstCodeEntityAdapter.getSelectors(state=>state.inventory.gstCode)
 
 
 
-const vendorSlice=createSlice({
-    name:'vendor',
-    initialState:vendorEntityAdapter.getInitialState({
+const gstCodeSlice=createSlice({
+    name:'gstCode',
+    initialState:gstCodeEntityAdapter.getInitialState({
         select:{}
     }),
     reducers:{
@@ -58,11 +58,11 @@ const vendorSlice=createSlice({
         }
     },
     extraReducers:{
-        [fetchVendorList.fulfilled]:vendorEntityAdapter.setAll,
-        [newVendor.fulfilled]:vendorEntityAdapter.addOne,
-        [updateVendor.fulfilled]:(state,action)=>{
+        [fetchGstCodeList.fulfilled]:gstCodeEntityAdapter.setAll,
+        [newGstCode.fulfilled]:gstCodeEntityAdapter.addOne,
+        [updateGstCode.fulfilled]:(state,action)=>{
             const {id,...changes}=action.payload
-            vendorEntityAdapter.updateOne(state,{id,changes})
+            gstCodeEntityAdapter.updateOne(state,{id,changes})
             
         }    
     }
@@ -70,5 +70,5 @@ const vendorSlice=createSlice({
 
 
 
-export const {setSelect}=vendorSlice.actions
-export default vendorSlice.reducer
+export const {setSelect}=gstCodeSlice.actions
+export default gstCodeSlice.reducer
