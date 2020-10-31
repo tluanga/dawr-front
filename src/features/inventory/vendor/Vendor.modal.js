@@ -8,6 +8,9 @@ import { Button } from '@material-ui/core';
 import {useDispatch} from 'react-redux'
 import {newVendor} from './Vendor.slice'
 import {NEW,EDIT,MODULE_NAME} from './Vendor.constants'
+import {AiOutlineClose} from 'react-icons/ai'
+import {MdClearAll} from 'react-icons/md'
+import {CgPushChevronUpO} from 'react-icons/cg'
 
 
 const customStyles = {
@@ -131,7 +134,7 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData}) => {
                     />
                     <TextField
                         variant='outlined'
-                        name='gstNo'
+                        name='gst_no'
                         label={modalMode===NEW?'':modalData.gstNo}
                         placeholder='Gst Number'
                         size='small'
@@ -154,16 +157,19 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData}) => {
                             variant='contained'
                             color='primary'
                             type='submit'
+                            startIcon={<CgPushChevronUpO/>}
                         >Submit</Button>
                         <Button
                             variant='contained'
                             color='primary'
                             type='button'
+                            startIcon={<MdClearAll/>}
                         >Clear</Button>
                         <Button
                             variant='contained'
                             color='secondary'
-                            type='submit'
+                            type='button'
+                            startIcon={<AiOutlineClose/>}
                             onClick={()=>{
                                 setOpenModal(false)
                             }}

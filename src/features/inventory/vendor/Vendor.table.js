@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button'
 
 
 const VendorTable = ({setOpenModal,setModalMode,setModalData}) => {
+    
     const columns = React.useMemo(
         () => [
         {
@@ -33,6 +34,10 @@ const VendorTable = ({setOpenModal,setModalMode,setModalData}) => {
         {
             Header: 'Pin Code',
             accessor: 'pincode',
+        },
+        {
+            Header: 'Gst No',
+            accessor: 'gst_no',
         },
         {
             Header: 'Remarks',
@@ -72,7 +77,7 @@ const VendorTable = ({setOpenModal,setModalMode,setModalData}) => {
     
             },
         ],
-        []
+        [setModalData,setOpenModal,setModalMode]
       )
       
     const vendorList=useSelector(selectVendorList)

@@ -23,7 +23,7 @@ function App() {
     // ?true:false)
     
     
-  },[])
+  },[dispatch])
   return (
     <div>
       {/* <CssBaseline/>       */}
