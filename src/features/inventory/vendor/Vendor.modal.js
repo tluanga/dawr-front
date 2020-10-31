@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled from 'styled-components'
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form'
 import TextField from '@material-ui/core/TextField'
 import { Button } from '@material-ui/core';
+import Select from 'react-select'
 // -----Redux--------
 import {useDispatch} from 'react-redux'
 import {newVendor,updateVendor} from './Vendor.slice'
@@ -11,6 +12,7 @@ import {NEW,EDIT,MODULE_NAME} from './Vendor.constants'
 import {AiOutlineClose} from 'react-icons/ai'
 import {MdClearAll} from 'react-icons/md'
 import {CgPushChevronUpO} from 'react-icons/cg'
+
 
 
 const customStyles = {
@@ -25,9 +27,9 @@ const customStyles = {
       content: { 
         position: 'absolute',
         width:'35vw',
-        height:'80vh',
-        top: '10vh',
-        bottom: '10vh',
+        height:'95vh',
+        top: '2.5vh',
+        bottom: '2.5vh',
         left: '32.5vw',
         right: '32.5vw',        
         border: '1px solid #ccc',
@@ -36,7 +38,7 @@ const customStyles = {
         WebkitOverflowScrolling: 'touch',
         borderRadius: '4px',
         outline: 'none',
-        padding: '20px'
+        padding: '5px'
       }
   };
 
@@ -53,16 +55,28 @@ const Control=styled.section`
     display:flex;
     flex-direction:row;
     justify-content:space-around;
+    padding-top:5vh;
   `
 
 Modal.setAppElement('#root')
 
 const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) => {
-    
+    const [status,setStatus]=useState()
+    const statusOption=[
+        {
+            label:'Active',
+            value:true
+        },
+        {
+            label:'In Active',
+            value:false
+        }
+    ]
     const dispatch=useDispatch()
     const {handleSubmit,register,reset}=useForm()
     
     const onSubmit=formData=>{
+        formData.active=status
         setOpenModal(false)
         if(modalMode===NEW){
             dispatch(newVendor(formData))
@@ -89,7 +103,9 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) 
         }        
         
     }
+
    
+  
  
 
     return(       
@@ -178,8 +194,11 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) 
                         inputRef={register}
                         style={{width:'30vw',paddingBottom:'1.3vh'}}
                     />
-                    
-
+                    <Select
+                        defaultValue={modalData.active===true?statusOption[0]:statusOption[1]}
+                        options={statusOption}
+                        onChange={data=>setStatus(data.value)}
+                    />
                     <Control>
                         <Button
                             variant='contained'
