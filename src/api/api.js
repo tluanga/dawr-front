@@ -95,9 +95,7 @@ export const create=async({url,data})=>{
 //---update api function with params expected, url, data
 // expect url='gst' id=1 data=data
 export const update=async({url,id,data})=>{
-    console.log('id',id)
-    console.log('url',url)
-    console.log('data',data)
+    
     const __url=new URL(url+'/'+id+'/',baseUrl)
     
     try{

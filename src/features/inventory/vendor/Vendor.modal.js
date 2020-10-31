@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form'
@@ -58,10 +58,7 @@ const Control=styled.section`
 Modal.setAppElement('#root')
 
 const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) => {
-    const [formData,setFormData]=useState({
-        name:'',
-
-    })
+    
     const dispatch=useDispatch()
     const {handleSubmit,register,reset}=useForm()
     

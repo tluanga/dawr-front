@@ -33,7 +33,6 @@ export const newVendor=createAsyncThunk('vendor/new',
 
 export const updateVendor=createAsyncThunk('vendor/update',
     async ({id,data})=>{
-        console.log('formdata',data)
         const response= await update({url,id,data})
         return response
     }
