@@ -7,6 +7,8 @@ import { Button } from '@material-ui/core';
 // -----Redux--------
 import {useDispatch} from 'react-redux'
 import {newVendor} from './Vendor.slice'
+import {NEW,EDIT,MODULE_NAME} from './Vendor.constants'
+
 
 const customStyles = {
     overlay: {
@@ -51,7 +53,8 @@ const Control=styled.section`
   `
 
 Modal.setAppElement('#root')
-const VendorModal = ({openModal,setOpenModal}) => {
+
+const VendorModal = ({openModal,setOpenModal,modalMode,modalData}) => {
     const dispatch=useDispatch()
     const {handleSubmit,register}=useForm()
     
@@ -67,18 +70,23 @@ const VendorModal = ({openModal,setOpenModal}) => {
         >
             <Wrapper>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                    <p>CREATE</p>
+                    {modalMode===NEW?
+                        <p>New {MODULE_NAME} </p>
+                        :<p>Edit {MODULE_NAME}</p>
+                    }
                     <TextField
                         variant='outlined'
                         name='name'
                         placeholder='Name'
                         size='small'
+                        label={modalMode===NEW?'':modalData.name}
                         inputRef={register}
                         style={{width:'30vw',paddingBottom:'1.3vh'}}
                     />
                     <TextField
                         variant='outlined'
                         name='address'
+                        label={modalMode===NEW?'':modalData.address}
                         placeholder='Address'
                         multiline
                         rows={4}
@@ -88,6 +96,7 @@ const VendorModal = ({openModal,setOpenModal}) => {
                     <TextField
                         variant='outlined'
                         name='mobile'
+                        label={modalMode===NEW?'':modalData.mobile}
                         placeholder='Mobile No'
                         size='small'
                         type='number'
@@ -97,6 +106,7 @@ const VendorModal = ({openModal,setOpenModal}) => {
                     <TextField
                         variant='outlined'
                         name='email'
+                        label={modalMode===NEW?'':modalData.email}
                         placeholder='email'
                         type='email'
                         size='small'
@@ -106,6 +116,7 @@ const VendorModal = ({openModal,setOpenModal}) => {
                     <TextField
                         variant='outlined'
                         name='pincode'
+                        label={modalMode===NEW?'':modalData.pincode}
                         placeholder='Pin Code'
                         type='number'
                         size='small'
@@ -115,6 +126,7 @@ const VendorModal = ({openModal,setOpenModal}) => {
                     <TextField
                         variant='outlined'
                         name='gstNo'
+                        label={modalMode===NEW?'':modalData.gstNo}
                         placeholder='Gst Number'
                         size='small'
                         inputRef={register}
@@ -123,6 +135,7 @@ const VendorModal = ({openModal,setOpenModal}) => {
                     <TextField
                         variant='outlined'
                         name='remarks'
+                        label={modalMode===NEW?'':modalData.remarks}
                         placeholder='Remarks'
                         size='small'
                         inputRef={register}

@@ -10,6 +10,7 @@ import {
     useRowSelect
 } from 'react-table'
 import styled from "styled-components";
+import './ReactTable.css'
 
 //----Material Ui for Link
 import Chip from '@material-ui/core/Chip';
@@ -151,7 +152,7 @@ export function ReactTable({ columns, data}) {
     
     // Render the UI for your table
     return (
-        <div>
+        <div className='ReactTableBody'>
             <table {...getTableProps()}>
                 <thead>
                     <tr>

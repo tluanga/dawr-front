@@ -19,7 +19,7 @@ const Inventory=()=>{
                 <Tab>TRANSACTION</Tab>
                 <Tab>CUSTOMER</Tab>
                 <Tab>PRODUCT</Tab>                
-                <Tab>SUPPLIER</Tab>
+                <Tab>VENDOR</Tab>
                 <Tab>CATEGORY</Tab>                
                 <Tab>GST CODE</Tab>
                 <Tab>UNIT OF MEASUREMENT</Tab>
