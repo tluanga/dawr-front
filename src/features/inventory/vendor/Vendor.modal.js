@@ -60,7 +60,13 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData}) => {
     
     const onSubmit=data=>{
         setOpenModal(false)
-        dispatch(newVendor(data))
+        if(modalMode===NEW){
+            dispatch(newVendor(data))
+        }
+        else if(modalMode===EDIT){
+            dispatch()
+        }
+        
     }
     return(       
         <Modal

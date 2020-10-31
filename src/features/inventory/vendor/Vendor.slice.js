@@ -1,5 +1,5 @@
 import {createAsyncThunk,createEntityAdapter,createSlice} from '@reduxjs/toolkit'
-import {getList, create} from '../../../api/api'
+import {getList, create,update} from '../../../api/api'
 
 const url='vendor'
 
@@ -26,6 +26,20 @@ export const newVendor=createAsyncThunk('vendor/new',
         }
         
         const response= await create(payload)
+        return response
+           
+    }
+)
+
+export const updateVendor=createAsyncThunk('vendor/update',
+    async (id,data)=>{
+        const payload={
+            url,
+            id:id,
+            data:data
+        }
+        
+        const response= await update(payload)
         console.log(response)
            
     }
@@ -51,7 +65,8 @@ const vendorSlice=createSlice({
         }
     },
     extraReducers:{
-        [fetchVendorList.fulfilled]:vendorEntityAdapter.setAll
+        [fetchVendorList.fulfilled]:vendorEntityAdapter.setAll,
+        [newVendor.fulfilled]:vendorEntityAdapter.addOne
     }
 })
 
