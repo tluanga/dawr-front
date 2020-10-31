@@ -24,6 +24,7 @@ const Vendor = () => {
     const [openModal,setOpenModal]=useState(false)
     const [modalMode,setModalMode]=useState(NEW)
     const [modalData,setModalData]=useState({})
+    console.log('modal Data',modalData)
     return (
         <Wrapper>
             {/* <VendorSelect setOpenModal={setOpenModal}/> */}
@@ -44,6 +45,7 @@ const Vendor = () => {
                 modalMode={modalMode}
                 setOpenModal={setOpenModal}
                 modalData={modalData}
+                setModalData={setModalData}
             />
             <VendorTable 
                 setOpenModal={setOpenModal}

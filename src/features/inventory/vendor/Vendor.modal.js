@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import styled from 'styled-components'
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form'
@@ -57,9 +57,13 @@ const Control=styled.section`
 
 Modal.setAppElement('#root')
 
-const VendorModal = ({openModal,setOpenModal,modalMode,modalData}) => {
+const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) => {
+    const [formData,setFormData]=useState({
+        name:'',
+
+    })
     const dispatch=useDispatch()
-    const {handleSubmit,register}=useForm()
+    const {handleSubmit,register,reset}=useForm()
     
     const onSubmit=formData=>{
         setOpenModal(false)
@@ -68,9 +72,29 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData}) => {
         }
         else if(modalMode===EDIT){
             dispatch(updateVendor({id:modalData.id,data:formData}))
+            setModalData({})
         }
         
     }
+
+    const onReset=()=>{
+        if(modalMode===NEW){
+            reset({
+                name:'',
+                address:'',
+                mobile:null,
+                email:'',
+                pincode:null,
+                gst_no:'',
+                remarks:'',
+                active:''
+            })
+        }        
+        
+    }
+   
+ 
+
     return(       
         <Modal
             isOpen={openModal}
@@ -87,10 +111,11 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData}) => {
                         variant='outlined'
                         name='name'
                         label='Name'
-                        defaultValue={modalMode===NEW?'':modalData.name}
+                        defaultValue={modalMode===EDIT?modalData.name:''}
                         placeholder='Name'
                         inputRef={register}
                         style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        size='small'
                     />
                     <TextField
                         variant='outlined'
@@ -165,12 +190,17 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData}) => {
                             type='submit'
                             startIcon={<CgPushChevronUpO/>}
                         >Submit</Button>
-                        <Button
+                        {
+                            modalMode===NEW?
+                            <Button
                             variant='contained'
                             color='primary'
                             type='button'
                             startIcon={<MdClearAll/>}
-                        >Clear</Button>
+                            onClick={onReset}
+                            >Clear</Button>:null
+                        }
+                        
                         <Button
                             variant='contained'
                             color='secondary'
@@ -178,6 +208,7 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData}) => {
                             startIcon={<AiOutlineClose/>}
                             onClick={()=>{
                                 setOpenModal(false)
+                                setModalData({})
                             }}
                         >Cancel</Button>
 
