@@ -9,6 +9,7 @@ import ProtectedRoute from './ProtectedRoute'
 // ---------Reduct
 import {useDispatch} from 'react-redux'
 import {fetchVendorList} from './features/inventory/vendor/Vendor.slice'
+import {fetchCategoryList} from './features/inventory/category/Category.slice'
 
 
 
@@ -19,6 +20,7 @@ function App() {
   const isAuthenticated=true
   useEffect(()=>{
     dispatch(fetchVendorList())
+    dispatch(fetchCategoryList())
     // setIsAuthenticated(localStorage.getItem('accessToken')
     // ?true:false)
     
