@@ -17,9 +17,7 @@ const BrandText=styled.h4`
     color:white;
 `
 
-const ButtonStyled=styled(Button)`
-    backgroundColor: '#0063cc';
-`
+
 
 function NavBar() {
     return (
@@ -35,13 +33,13 @@ function NavBar() {
                 <Link
                     to='/inventory'
                     className='toggle__item'>
-                    <ButtonStyled 
+                    <Button
                         variant='contained'
                         startIcon={<BusinessIcon/>}
                         style={{backgroundColor:'white'}}
                         >
                         Inventory
-                    </ButtonStyled>
+                    </Button>
                     
                 </Link>
                 <Link 

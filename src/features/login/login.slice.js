@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {login} from '../../api/auth.api'
-import axios from "axios";
+
 
 export const createLoginToken = createAsyncThunk("Login", (payload) => {
   try {

@@ -23,8 +23,7 @@ const Login=()=>{
 
     return(
         <div>
-            <IconButton>
-                <Button
+            <Button
                     variant='contained'
                     style={{backgroundColor:'white'}}
                     startIcon={<AccountCircleIcon/>}
@@ -32,8 +31,6 @@ const Login=()=>{
                     >
                     Log off
                 </Button>
-            </IconButton>
-            
         </div>
     )
 }

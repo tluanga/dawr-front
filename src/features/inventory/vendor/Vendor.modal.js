@@ -14,14 +14,14 @@ const customStyles = {
         bottom: 0,
         backgroundColor: 'rgba(255, 255, 255, 0.75)'
       },
-      content: {
+      content: { 
         position: 'absolute',
-        width:'30vw',
-        height:'60vh',
-        top: '20pvh',
-        bottom: '20vh',
-        left: '35vw',
-        right: '35vw',        
+        width:'35vw',
+        height:'90vh',
+        top: '5pvh',
+        bottom: '5vh',
+        left: '32.5vw',
+        right: '32.5vw',        
         border: '1px solid #ccc',
         background: '#fff',
         overflow: 'auto',
@@ -34,6 +34,8 @@ const customStyles = {
 
   const Wrapper=styled.section`
     display:flex;
+    justify-content:center;
+    align-items:center;
   `
   const Form=styled.form`
     display:flex;
@@ -42,13 +44,17 @@ const customStyles = {
   const Control=styled.section`
     display:flex;
     flex-direction:row;
+    justify-content:space-around;
   `
 
-
+Modal.setAppElement('#root')
 const VendorModal = ({openModal,setOpenModal}) => {
     const {handleSubmit,register}=useForm()
 
-    const onSubmit=data=>console.log(data)
+    const onSubmit=data=>{
+        setOpenModal(false)
+        console.log(data)
+    }
     return(       
         <Modal
             isOpen={openModal}
@@ -57,20 +63,97 @@ const VendorModal = ({openModal,setOpenModal}) => {
         >
             <Wrapper>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                    <h1>EDIT/CREATE</h1>
+                    <p>CREATE</p>
                     <TextField
                         variant='outlined'
                         name='name'
                         placeholder='Name'
                         size='small'
                         inputRef={register}
+                        style={{width:'30vw',paddingBottom:'1.3vh'}}
                     />
+                    <TextField
+                        variant='outlined'
+                        name='address'
+                        placeholder='Address'
+                        multiline
+                        rows={4}
+                        inputRef={register}
+                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                    />
+                    <TextField
+                        variant='outlined'
+                        name='mobileNo'
+                        placeholder='Mobile No'
+                        size='small'
+                        type='number'
+                        inputRef={register}
+                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                    />
+                    <TextField
+                        variant='outlined'
+                        name='email'
+                        placeholder='email'
+                        type='email'
+                        size='small'
+                        inputRef={register}
+                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                    />
+                    <TextField
+                        variant='outlined'
+                        name='pincode'
+                        placeholder='Pin Code'
+                        type='number'
+                        size='small'
+                        inputRef={register}
+                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                    />
+                    <TextField
+                        variant='outlined'
+                        name='name'
+                        placeholder='Name'
+                        size='small'
+                        inputRef={register}
+                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                    />
+                    <TextField
+                        variant='outlined'
+                        name='gstNo'
+                        placeholder='Gst Number'
+                        size='small'
+                        inputRef={register}
+                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                    />
+                    <TextField
+                        variant='outlined'
+                        name='remarks'
+                        placeholder='Remarks'
+                        size='small'
+                        inputRef={register}
+                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                    />
+                    
+
                     <Control>
                         <Button
                             variant='contained'
-                            color='blue'
+                            color='primary'
                             type='submit'
                         >Submit</Button>
+                        <Button
+                            variant='contained'
+                            color='primary'
+                            type='button'
+                        >Clear</Button>
+                        <Button
+                            variant='contained'
+                            color='secondary'
+                            type='submit'
+                            onClick={()=>{
+                                setOpenModal(false)
+                            }}
+                        >Cancel</Button>
+
                     </Control>
                 </Form>                
             </Wrapper>

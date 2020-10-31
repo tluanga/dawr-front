@@ -1,9 +1,4 @@
-import React,{useEffect,useState} from 'react';
-import {useSelector,useDispatch} from 'react-redux'
-
-
-
-
+import React,{useEffect} from 'react';
 import './App.css'
 import {Route,Switch} from 'react-router-dom'
 // -----Components
@@ -16,7 +11,7 @@ import ProtectedRoute from './ProtectedRoute'
 
 
 function App() {
-  const dispatch=useDispatch()
+ 
   // const [isAuthenticated,setIsAuthenticated]=useState(localStorage.getItem('accessToken'))  
   const isAuthenticated=true
   useEffect(()=>{

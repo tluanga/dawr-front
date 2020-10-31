@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import VendorModal from './Vendor.modal'
 
+
 const Vendor = () => {
     const [openModal,setOpenModal]=useState(false)
     return (
