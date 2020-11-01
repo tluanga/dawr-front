@@ -8,7 +8,7 @@ const Transaction = () => {
          <Tabs>
              <TabList>
                 <Tab>PURCHASE PRODUCT</Tab>
-                <Tab>RE ORDER PRODUCT</Tab>
+                
              </TabList>
              <TabPanel>
                  <PurchaseProduct/>
