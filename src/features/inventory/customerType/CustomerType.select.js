@@ -14,6 +14,7 @@ const CustomerTypeSelect = ({setOpenModal,defaultValue}) => {
             defaultValue={options[defaultValue-1]}
             onChange={data=>dispatch(setSelect(data))}
             options={options}
+            label='Select Customer Type...'
             onCreateOption={()=>setOpenModal(true)}
        />
     )

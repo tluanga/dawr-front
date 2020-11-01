@@ -14,7 +14,7 @@ import {fetchCustomerTypeList} from './features/inventory/customerType/CustomerT
 import {fetchGstCodeList} from './features/inventory/gstCode/GstCode.slice'
 import {fetchUnitOfMeasurementList} from './features/inventory/unitOfMeasurement/UnitOfMeasurement.slice'
 import {fetchCustomerList} from './features/inventory/customer/Customer.slice'
-
+import {fetchWarehouseList} from './features/inventory/warehouse/Warehouse.slice'
 
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
     dispatch(fetchGstCodeList())
     dispatch(fetchUnitOfMeasurementList())
     dispatch(fetchCustomerList())
+    dispatch(fetchWarehouseList())
    
     
   },[dispatch])

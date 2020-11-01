@@ -1,11 +1,13 @@
 import React from 'react'
 import {TabList,Tabs,Tab, TabPanel} from 'react-tabs'
+import Transaction from './transaction'
 import Customer from './customer/Customer.component'
 import Vendor from './vendor/Vendor.component'
 import Category from './category/Category.component'
 import GstCode from './gstCode/GstCode.component'
 import CustomerType from './customerType/CustomerType.component'
 import UnitOfMeasurement from './unitOfMeasurement/UnitOfMeasurement.component'
+import WareHouse from './warehouse/Warehouse.component'
 
 
 
@@ -27,11 +29,12 @@ const Inventory=()=>{
                 <Tab>CATEGORY</Tab>                
                 <Tab>GST CODE</Tab>
                 <Tab>UNIT OF MEASUREMENT</Tab>
+                <Tab>WAREHOUSE</Tab>
                 <Tab>CUSTOMER TYPE</Tab>
                 
              </TabList>           
                 <TabPanel>                    
-                    <Vendor/>
+                    <Transaction/>
                 </TabPanel>
                 <TabPanel>                    
                     <Customer/>                    
@@ -50,6 +53,9 @@ const Inventory=()=>{
                 </TabPanel>
                 <TabPanel>                   
                     <UnitOfMeasurement/>                    
+                </TabPanel>
+                <TabPanel>
+                    <WareHouse/> 
                 </TabPanel>
                 <TabPanel>
                     <CustomerType/>
