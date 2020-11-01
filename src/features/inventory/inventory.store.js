@@ -6,6 +6,7 @@ import customerType from './customerType/CustomerType.slice'
 import gstCode from './gstCode/GstCode.slice'
 import unitOfMeasurement from './unitOfMeasurement/UnitOfMeasurement.slice'
 import warehouse from './warehouse/Warehouse.slice'
+import transaction from './transaction/transaction.store'
 
 
 const reducer =combineReducers({
@@ -16,6 +17,7 @@ const reducer =combineReducers({
     gstCode,
     unitOfMeasurement,
     warehouse,
+    transaction
 
 })
 export default reducer

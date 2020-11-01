@@ -1,15 +1,14 @@
 import React from 'react'
 import ReactSelect from 'react-select';
-import { setSelect } from '../../../features/inventory/vendor copy/Vendor.slice';
-
-const Select = ({options,setSelected}) => {
+const Select = ({options,setSelected,label}) => {
 
     return (
         <ReactSelect
-           isClearable
-           isSearchable
-           options={options}
-           onChange={data=>setSelected(data)}
+            isClearable
+            isSearchable
+            label={label}
+            options={options}
+            onChange={data=>setSelected(data)}
         />
 
     )
