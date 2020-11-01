@@ -26,8 +26,8 @@ const customStyles = {
       },
       content: { 
         position: 'absolute',
-        width:'35vw',
-        height:'55vh',
+        width:'450px',
+        height:'380px',
         top: '22.5vh',
         bottom: '22.5vh',
         left: '32.5vw',
@@ -127,7 +127,7 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) 
                         defaultValue={modalMode===EDIT?modalData.unit_of_measurement:''}
                         placeholder='Unit of Measurement'
                         inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                         size='small'
                     />
                     <TextField
@@ -137,7 +137,7 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) 
                         defaultValue={modalMode===NEW?'':modalData.abbreviation}
                         placeholder='Abbreviation'
                         inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                     <TextField
                         variant='outlined'
@@ -148,7 +148,7 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) 
                         size='small'
                         type='text'
                         inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                     
                     <Select

@@ -26,12 +26,12 @@ const customStyles = {
       },
       content: { 
         position: 'absolute',
-        width:'35vw',
-        height:'55vh',
+        width:'450px',
+        height:'360px',
         top: '22.5vh',
         bottom: '22.5vh',
-        left: '32.5vw',
-        right: '32.5vw',        
+        left: '35vw',
+        right: '35vw',        
         border: '1px solid #ccc',
         background: '#fff',
         overflow: 'auto',
@@ -127,7 +127,7 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) 
                         defaultValue={modalMode===EDIT?modalData.name:''}
                         placeholder='Name'
                         inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                         size='small'
                     />
                     <TextField
@@ -137,7 +137,7 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) 
                         defaultValue={modalMode===NEW?'':modalData.discount_percentage}
                         placeholder='Discount Percentage'
                         inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                     <TextField
                         variant='outlined'
@@ -148,7 +148,7 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) 
                         size='small'
                         type='text'
                         inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                     
                     <Select

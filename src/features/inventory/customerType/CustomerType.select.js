@@ -8,6 +8,7 @@ import Creatable from 'react-select/creatable';
 const CustomerTypeSelect = ({setOpenModal,defaultValue}) => {
     const dispatch=useDispatch()
     const options=useSelector(selectCustomerTypeList)
+    console.log(options)
     return (
        <Creatable
             defaultValue={options[defaultValue-1]}
