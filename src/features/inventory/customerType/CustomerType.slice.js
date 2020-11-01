@@ -68,7 +68,7 @@ const customerTypeSlice=createSlice({
     }
 })
 
-
+export const selectSelectedCustomerType=state=>state.inventory.customerType.select
 
 export const {setSelect}=customerTypeSlice.actions
 export default customerTypeSlice.reducer

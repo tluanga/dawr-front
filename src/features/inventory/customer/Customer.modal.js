@@ -5,9 +5,12 @@ import {useForm} from 'react-hook-form'
 import TextField from '@material-ui/core/TextField'
 import { Button } from '@material-ui/core';
 import Select from 'react-select'
+import CustomerTypeSelect from '../customerType/CustomerType.select'
 // -----Redux--------
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import {newCustomer,updateCustomer} from './Customer.slice'
+import {selectSelectedCustomerType} from '../customerType/CustomerType.slice'
+
 import {NEW,EDIT,MODULE_NAME} from './Customer.constants'
 import {AiOutlineClose} from 'react-icons/ai'
 import {MdClearAll} from 'react-icons/md'
@@ -27,9 +30,9 @@ const customStyles = {
       content: { 
         position: 'absolute',
         width:'35vw',
-        height:'85vh',
-        top: '7.5vh',
-        bottom: '7.5vh',
+        height:'95vh',
+        top: '1.5vh',
+        bottom: '2.5vh',
         left: '32.5vw',
         right: '32.5vw',        
         border: '1px solid #ccc',
@@ -72,11 +75,14 @@ const CustomerModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}
             value:false
         }
     ]
+    const customerType=useSelector(selectSelectedCustomerType)
     const dispatch=useDispatch()
     const {handleSubmit,register,reset}=useForm()
     
     const onSubmit=formData=>{
+        console.log('selected Customer Type',customerType)
         formData.active=status
+        formData.customer_type=customerType.id
         setOpenModal(false)
         if(modalMode===NEW){
             dispatch(newCustomer(formData))
@@ -181,8 +187,9 @@ const CustomerModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}
                         size='small'
                         inputRef={register}
                         style={{width:'30vw',paddingBottom:'1.3vh'}}
-                    />
-                    
+                    />                    
+                    <CustomerTypeSelect defaultValue={modalData.customer_type}/>
+                                       
                     <Select
                         defaultValue={modalData.active===true?statusOption[0]:statusOption[1]}
                         options={statusOption}

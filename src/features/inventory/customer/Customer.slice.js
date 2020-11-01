@@ -33,6 +33,7 @@ export const newCustomer=createAsyncThunk('customer/new',
 
 export const updateCustomer=createAsyncThunk('customer/update',
     async ({id,data})=>{
+        console.log('customer Data',data)
         const response= await update({url,id,data})
         return response
     }
