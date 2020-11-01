@@ -2,9 +2,10 @@ import React,{useState} from 'react'
 import Select from 'react-select'
 import DateFnsUtils from '@date-io/date-fns';
 // -------Redux
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
 import {selectVendorList} from '../../../vendor/Vendor.slice'
 import {selectWarehouseList} from '../../../warehouse/Warehouse.slice'
+import {setVendor,setWarehouse, setDate} from '../PurchaseProduct.slice'
 // -------Material Ui
 import {
     MuiPickersUtilsProvider,
@@ -24,9 +25,9 @@ const Wrapper=styled.div`
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    height:80vh;
+    height:76.5vh;
     width:100vw;
-    background-color:#EEEEEE;
+    background-color:#C5CAE9;
 `
 const ContainerSection=styled.section`
     display:flex;
@@ -46,8 +47,10 @@ const Form =styled.form`
     
 `
 
-const PurchaseProductPageOne = () => {
-    const [selectedVendor,setSelectedVendor]=useState()
+const PurchaseProductPageOne = ({
+    showPageOne,setShowPageOne,setShowPageTwo
+}) => {
+    const dispatch=useDispatch()
     const vendor=useSelector(selectVendorList)
     const warehouse=useSelector(selectWarehouseList)
 
@@ -57,52 +60,70 @@ const PurchaseProductPageOne = () => {
     const handleDateChange = (date) => {
         setSelectedDate(date);
   };
-
- 
+    const handleSubmit=()=>{
+        setShowPageOne(false)
+        console.log(showPageOne)
+        // setShowPageTwo(true)
+    }
+    console.log(showPageOne)
     return (
+        <>
+        {showPageOne?
         <Wrapper>
-            <Paper elevation={10}>
-                <ContainerSection>
-                    <h1>Purchase Product</h1>
-                    <Form>
-                        <Select
-                            name='vendor'
-                            options={vendor}
-                            placeholder='Select Vendor...'
-                            isClearable
-                            isSearchable
+        <Paper elevation={10}>
+            <ContainerSection>
+                <h1>Purchase Product</h1>
+                <Form>
+                    <Select
+                        name='vendor'
+                        options={vendor}
+                        placeholder='Select Vendor...'
+                        isClearable
+                        isSearchable
+                        onChange={data=>dispatch(setVendor(data))}
+                    />
+                    <Select
+                        name='warehouse'
+                        options={warehouse}
+                        placeholder='Select Warehouse...'
+                        isClearable
+                        isSearchable
+                        onChange={data=>dispatch(setWarehouse(data))}
+                    />
+                    
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <KeyboardDatePicker
+                        margin="normal"
+                        id="date-picker-dialog"
+                        label="Date picker dialog"
+                        format="MM/dd/yyyy"
+                        value={selectedDate}
+                        onChange={data=>dispatch(setDate(data))}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
                         />
-                        <Select
-                            name='warehouse'
-                            options={warehouse}
-                            placeholder='Select Warehouse...'
-                            isClearable
-                            isSearchable
-                        />
-                        
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <KeyboardDatePicker
-                            margin="normal"
-                            id="date-picker-dialog"
-                            label="Date picker dialog"
-                            format="MM/dd/yyyy"
-                            value={selectedDate}
-                            onChange={handleDateChange}
-                            KeyboardButtonProps={{
-                                'aria-label': 'change date',
-                            }}
-                            />
-                        </MuiPickersUtilsProvider>
-                        <Button
-                            variant='contained'
-                            color='primary'
-                        >Submit</Button>
+                    </MuiPickersUtilsProvider>
+                    <Button
+                        variant='contained'
+                        color='primary'
+                        onClick={()=>{
+                            setShowPageOne(false)
+                            setShowPageTwo(true)
+                        }}
+                    >Submit</Button>
 
-                    </Form>
-                
-                </ContainerSection>
-            </Paper>
-        </Wrapper>
+                </Form>
+                    
+                    </ContainerSection>
+                </Paper>
+            </Wrapper>
+
+
+        :null
+        }
+        </>
+        
     )
 }
 
