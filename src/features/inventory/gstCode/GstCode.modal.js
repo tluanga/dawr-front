@@ -26,10 +26,10 @@ const customStyles = {
       },
       content: { 
         position: 'absolute',
-        width:'35vw',
-        height:'90vh',
-        top: '5vh',
-        bottom: '5vh',
+        width:'450px',
+        height:'650px',
+        top: '15vh',
+        bottom: '15vh',
         left: '32.5vw',
         right: '32.5vw',        
         border: '1px solid #ccc',
@@ -127,7 +127,7 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         defaultValue={modalMode===EDIT?modalData.code:''}
                         placeholder='Code'
                         inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                         size='small'
                     />
                    
@@ -140,7 +140,7 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         size='small'
                         type='number'
                         inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                     <TextField
                         variant='outlined'
@@ -151,7 +151,7 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         size='small'
                         type='number'
                         inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                     <TextField
                         variant='outlined'
@@ -162,7 +162,7 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         size='small'
                         type='number'
                         inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                     <TextField
                         variant='outlined'
@@ -174,7 +174,7 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         rows={4}
                         size='small'
                         inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                     
                     <TextField
@@ -187,7 +187,7 @@ const GstCodeModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         rows={4}
                         size='small'
                         inputRef={register}
-                        style={{width:'30vw',paddingBottom:'1.3vh'}}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                     <Select
                         defaultValue={modalData.active===true?statusOption[0]:statusOption[1]}

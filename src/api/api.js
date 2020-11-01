@@ -12,8 +12,8 @@ axios.interceptors.request.use(
     }
 )
 
-export const baseUrl='http://127.0.0.1:8000/'
-// export const baseUrl='http://lalfakawma14.pythonanywhere.com/'
+// export const baseUrl='http://127.0.0.1:8000/'
+export const baseUrl='http://lalfakawma14.pythonanywhere.com/'
 
 // export const baseUrl='http://fakawma.pythonanywhere.com/'
 
