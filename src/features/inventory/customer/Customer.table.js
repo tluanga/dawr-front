@@ -1,7 +1,8 @@
 import React from 'react'
 // -------redux-------
 import {useSelector} from 'react-redux'
-import {selectCustomerList} from './Customer.slice' 
+import {selectCustomerList} from './Customer.slice'
+import {selectCustomerTypeList} from '../customerType/CustomerType.slice' 
 import {EDIT} from './Customer.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
 import Button from '@material-ui/core/Button'
@@ -42,6 +43,10 @@ const CustomerTable = ({setOpenModal,setModalMode,setModalData}) => {
         {
             Header: 'Customer Type',
             accessor: 'customer_type',
+            Cell:({cell:{value}})=>{
+                
+               return value
+            }
         },
         {
             Header: "Status",
@@ -81,6 +86,21 @@ const CustomerTable = ({setOpenModal,setModalMode,setModalData}) => {
       )
       
     const customerList=useSelector(selectCustomerList)
+    const customerTypes=useSelector(selectCustomerTypeList)
+    customerList.map(customer=>{
+        const customer_type_name=customerTypes.map(customerType=>{
+            if(customerType.id===customer.customer_type){
+                return customerType.name
+            }
+        })
+        const c={
+            
+        }
+        customer.customer_type_name=customer_type_name
+        return customer
+    })
+    console.log('customerList',customerList)
+    
     return (
         <div>
             <ReactTable columns={columns} data={customerList}/>
