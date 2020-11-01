@@ -87,18 +87,7 @@ const CustomerTable = ({setOpenModal,setModalMode,setModalData}) => {
       
     const customerList=useSelector(selectCustomerList)
     const customerTypes=useSelector(selectCustomerTypeList)
-    customerList.map(customer=>{
-        const customer_type_name=customerTypes.map(customerType=>{
-            if(customerType.id===customer.customer_type){
-                return customerType.name
-            }
-        })
-        const c={
-            
-        }
-        customer.customer_type_name=customer_type_name
-        return customer
-    })
+    
     console.log('customerList',customerList)
     
     return (

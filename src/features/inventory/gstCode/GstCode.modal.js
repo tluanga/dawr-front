@@ -27,9 +27,9 @@ const customStyles = {
       content: { 
         position: 'absolute',
         width:'450px',
-        height:'650px',
-        top: '15vh',
-        bottom: '15vh',
+        height:'580px',
+        top: '2vh',
+        bottom: '10vh',
         left: '32.5vw',
         right: '32.5vw',        
         border: '1px solid #ccc',
