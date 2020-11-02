@@ -61,6 +61,7 @@ const Control=styled.section`
 Modal.setAppElement('#root')
 
 const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) => {
+    const [category,setCategory]=useState()
     const [status,setStatus]=useState()
     const statusOption=[
         {
@@ -104,6 +105,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
         
     }
 
+    
    
   
  
@@ -113,7 +115,10 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
             isOpen={openModal}
             onRequestClose={()=>setOpenModal(false)}
             style={customStyles}
-        >
+        >   {
+            console.log('modal Data',modalData)
+           
+        }
             <Wrapper>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     {modalMode===NEW?
@@ -165,7 +170,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         variant='outlined'
                         name='hsn_code'
                         label='HSN Code'
-                        defaultValue={modalMode===NEW?'':modalData.hsn_code}
+                        defaultValue={modalMode===NEW?'':modalData.hsn_code.code}
                         placeholder='HSN Code'
                         type='number'
                         size='small'

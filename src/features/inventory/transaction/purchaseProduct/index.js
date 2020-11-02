@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 // -------Redux
-import {useSelector} from 'react-redux'
+
 
 import PurchaseProductPageOne from './pageOne'
 import PurchaseProductPageTwo from './pageTwo'

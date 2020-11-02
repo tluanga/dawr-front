@@ -86,7 +86,7 @@ const CustomerTable = ({setOpenModal,setModalMode,setModalData}) => {
       )
       
     const customerList=useSelector(selectCustomerList)
-    const customerTypes=useSelector(selectCustomerTypeList)
+    
     
     console.log('customerList',customerList)
     

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import Select from 'react-select'
 import DateFnsUtils from '@date-io/date-fns';
 // -------Redux
@@ -60,11 +60,7 @@ const PurchaseProductPageOne = ({
     const handleDateChange = (date) => {
         setSelectedDate(date);
   };
-    const handleSubmit=()=>{
-        setShowPageOne(false)
-        console.log(showPageOne)
-        // setShowPageTwo(true)
-    }
+    
     console.log(showPageOne)
     return (
         <>
