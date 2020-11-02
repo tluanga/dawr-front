@@ -5,7 +5,10 @@ const purchaseProductSlice=createSlice({
     initialState:{
         vendor:{},
         warehouse:{},
-        date:{}
+        date:{},
+        products:[
+
+        ]
     },
     reducers:{
         setVendor:(state,action)=>{
@@ -16,10 +19,16 @@ const purchaseProductSlice=createSlice({
         },
         setDate:(state,action)=>{
             state.date=action.payload
-        }
+        },
+        setProduct:(state,action)=>state.push(action.payload)
     }
 })
 
-export const {setVendor,setWarehouse,setDate}=purchaseProductSlice.actions
+export const {
+    setVendor,
+    setWarehouse,
+    setDate,
+    setProduct
+}=purchaseProductSlice.actions
 
 export default purchaseProductSlice.reducer

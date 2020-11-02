@@ -7,10 +7,12 @@ import gstCode from './gstCode/GstCode.slice'
 import unitOfMeasurement from './unitOfMeasurement/UnitOfMeasurement.slice'
 import warehouse from './warehouse/Warehouse.slice'
 import transaction from './transaction/transaction.store'
+import product from './product/Product.slice'
 
 
 const reducer =combineReducers({
     customer,
+    product,
     vendor,
     category,
     customerType,

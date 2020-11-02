@@ -8,7 +8,7 @@ import GstCode from './gstCode/GstCode.component'
 import CustomerType from './customerType/CustomerType.component'
 import UnitOfMeasurement from './unitOfMeasurement/UnitOfMeasurement.component'
 import WareHouse from './warehouse/Warehouse.component'
-
+import Product from './product/Product.component'
 
 
 
@@ -40,7 +40,7 @@ const Inventory=()=>{
                     <Customer/>                    
                 </TabPanel>                
                 <TabPanel>                    
-                    <Vendor/>                    
+                    <Product/>                    
                 </TabPanel>
                 <TabPanel>                    
                     <Vendor/>                    

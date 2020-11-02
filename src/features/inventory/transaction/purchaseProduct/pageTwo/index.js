@@ -6,6 +6,10 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 
+// -----Redux------
+import {useSelector,useDispatch} from 'react-redux'
+
+
 const Wrapper=styled.div`
     display:flex;
     flex-direction:column;    
@@ -22,6 +26,8 @@ const ProductContent=styled.section`
 `
 
 const PageTwo = ({showPageTwo}) => {
+    const dispatch=useDispatch()
+
     return (
         <>
         {
