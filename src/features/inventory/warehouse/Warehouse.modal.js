@@ -139,7 +139,8 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) 
                     />
                     
                     <Select
-                        defaultValue={modalData.active===true?statusOption[0]:statusOption[1]}
+                        defaultValue={
+                            modalData.active===true?statusOption[0]:statusOption[1]}
                         options={statusOption}
                         onChange={data=>setStatus(data.value)}
                     />

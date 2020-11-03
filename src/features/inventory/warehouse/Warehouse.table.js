@@ -49,7 +49,9 @@ const WarehouseTable = ({setOpenModal,setModalMode,setModalData}) => {
                         onClick={()=>{
                         setModalMode(EDIT)
                         setOpenModal(true)
-                        setModalData(row.original)
+                        setModalData({
+                            
+                        })
                     }}>
                         Edit</Button>
                     // <ActionButton row={row.original} />

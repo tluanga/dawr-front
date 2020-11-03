@@ -1,13 +1,16 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import styled from 'styled-components'
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form'
 import TextField from '@material-ui/core/TextField'
 import { Button } from '@material-ui/core';
-import Select from 'react-select'
+import SelectOriginal from 'react-select'
 // -----Redux--------
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import {newProduct,updateProduct} from './Product.slice'
+import {selectCategoryList} from '../category/Category.slice'
+import {fetchUnitOfMeasurementList} from '../unitOfMeasurement/UnitOfMeasurement.slice'
+
 import {NEW,EDIT,MODULE_NAME} from './Product.constants'
 import {AiOutlineClose} from 'react-icons/ai'
 import {MdClearAll} from 'react-icons/md'
@@ -27,7 +30,7 @@ const customStyles = {
       content: { 
         position: 'absolute',
         width:'450px',
-        height:'580px',
+        height:'520px',
         top: '1vh',
         bottom: '15vh',
         left: '32.5vw',
@@ -39,6 +42,7 @@ const customStyles = {
         borderRadius: '4px',
         outline: 'none',
         padding: '5px'
+        
       }
   };
 
@@ -46,10 +50,13 @@ const Wrapper=styled.section`
     display:flex;
     justify-content:center;
     align-items:center;
+   
   `
 const Form=styled.form`
+   
     display:flex;
     flex-direction:column ;
+    
   `
 const Control=styled.section`
     display:flex;
@@ -57,6 +64,10 @@ const Control=styled.section`
     justify-content:space-around;
     padding-top:5vh;
   `
+
+const Select=styled(SelectOriginal)`
+    padding-bottom:1.3vh;
+`
 
 Modal.setAppElement('#root')
 
@@ -73,7 +84,9 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
             value:false
         }
     ]
+    // -------Redux
     const dispatch=useDispatch()
+    const categoryOptions=useSelector(selectCategoryList)
     const {handleSubmit,register,reset}=useForm()
     
     const onSubmit=formData=>{
@@ -106,7 +119,10 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
     }
 
     
-   
+    useEffect(()=>{
+        if(modalData)
+            console.log(modalData)
+    },[modalData])
   
  
 
@@ -145,48 +161,30 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         inputRef={register}
                         style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
-                    <TextField
-                        variant='outlined'
-                        name='category'
-                        label='Category'
-                        defaultValue={modalMode===NEW?'':modalData.category.name}
+                    <Select
+                        isClearable
                         placeholder='Category'
-                        size='small'
-                        type='number'
-                        inputRef={register}
-                        style={{width:'400px',paddingBottom:'1.3vh'}}
+                        options={categoryOptions}
+                        defaultValue={
+                            modalData.category?
+                            categoryOptions[modalData.category.id]:''}
                     />
-                    <TextField
-                        variant='outlined'
-                        name='manufacturer'
-                        label='Manufacturer'
-                        defaultValue={modalMode===NEW?'':modalData.manufacturer}
+                    <Select
+                        isClearable
                         placeholder='Manufacturer'
-                        size='small'
-                        inputRef={register}
-                        style={{width:'400px',paddingBottom:'1.3vh'}}
+                        options={categoryOptions}
+                        defaultValue={
+                            modalData.category?
+                            categoryOptions[modalData.category.id]:''}
                     />
-                    <TextField
-                        variant='outlined'
-                        name='hsn_code'
-                        label='HSN Code'
-                        defaultValue={modalMode===NEW?'':modalData.hsn_code.code}
+                    <Select
                         placeholder='HSN Code'
-                        type='number'
-                        size='small'
-                        inputRef={register}
-                        style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
-                    <TextField
-                        variant='outlined'
-                        name='unit_of_measurement'
-                        label='Unit of Measurement'
-                        defaultValue={modalMode===NEW?'':modalData.unit_of_measurement}
+                    <Select
                         placeholder='Unit of Measurement'
-                        size='small'
-                        inputRef={register}
-                        style={{width:'400px',paddingBottom:'1.3vh'}}
+                        
                     />
+                   
                     <TextField
                         variant='outlined'
                         name='remarks'
@@ -198,7 +196,8 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                     <Select
-                        defaultValue={modalData.active===true?statusOption[0]:statusOption[1]}
+                        defaultValue={
+                            modalData.active===true?statusOption[0]:statusOption[1]}
                         options={statusOption}
                         onChange={data=>setStatus(data.value)}
                     />
