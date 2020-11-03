@@ -8,7 +8,7 @@ export const fetchGstCodeList=createAsyncThunk('gstCode/fetct',
         const response=await getList(url)
         const data=response.map(res=>{
             const data={
-                label:res.name,
+                label:res.code,
                 ...res
             }
             return data

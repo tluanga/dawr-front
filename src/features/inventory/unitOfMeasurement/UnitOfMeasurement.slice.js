@@ -8,7 +8,7 @@ export const fetchUnitOfMeasurementList=createAsyncThunk('unitOfMeasurement/fetc
         const response=await getList(url)
         const data=response.map(res=>{
             const data={
-                label:res.name,
+                label:res.unit_of_measurement,
                 ...res
             }
             return data

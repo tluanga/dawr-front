@@ -40,7 +40,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
         },
         {
             Header: 'HSN Code',
-            accessor: 'hsn_code',
+            accessor: 'gst_code',
             Cell:({cell:{value}})=>{
                 return value.code
             }

@@ -9,7 +9,9 @@ import SelectOriginal from 'react-select'
 import {useDispatch,useSelector} from 'react-redux'
 import {newProduct,updateProduct} from './Product.slice'
 import {selectCategoryList} from '../category/Category.slice'
-import {fetchUnitOfMeasurementList} from '../unitOfMeasurement/UnitOfMeasurement.slice'
+import {selectManufacturerList} from '../manufacturer/Manufacturer.slice'
+import {selectGstCodeList} from '../gstCode/GstCode.slice'
+import {selectUnitOfMeasurementList} from '../unitOfMeasurement/UnitOfMeasurement.slice'
 
 import {NEW,EDIT,MODULE_NAME} from './Product.constants'
 import {AiOutlineClose} from 'react-icons/ai'
@@ -87,6 +89,9 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
     // -------Redux
     const dispatch=useDispatch()
     const categoryOptions=useSelector(selectCategoryList)
+    const manufacturerOptions=useSelector(selectManufacturerList)
+    const gstCodeOptions=useSelector(selectGstCodeList)
+    const unitOfMeasurementOptions=useSelector(selectUnitOfMeasurementList)
     const {handleSubmit,register,reset}=useForm()
     
     const onSubmit=formData=>{
@@ -162,6 +167,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                     <Select
+                        name='category'
                         isClearable
                         placeholder='Category'
                         options={categoryOptions}
@@ -170,19 +176,36 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                             categoryOptions[modalData.category.id-1]:''}
                     />
                     <Select
+                        name='manufacturer'
                         isClearable
                         placeholder='Manufacturer'
-                        options={categoryOptions}
+                        options={manufacturerOptions}
                         defaultValue={
-                            modalData.category?
-                            categoryOptions[modalData.category.id]:''}
+                            modalData.manufacturer?
+                            manufacturerOptions[
+                                modalData.manufacturer.id-1]:''}
                     />
                     <Select
+                        name='gstCode'
+                        options={gstCodeOptions}
                         placeholder='HSN Code'
+                        defaultValue={
+                            modalData.gst_code?
+                            gstCodeOptions[
+                                modalData.gst_code.id-1]:''}
+
+
                     />
                     <Select
+                        name='unitOfMeasurement'
                         placeholder='Unit of Measurement'
-                        
+                        options={unitOfMeasurementOptions}
+                        defaultValue={
+                            modalData.unit_of_measurement?
+                            unitOfMeasurementOptions[
+                                modalData.unit_of_measurement.id-1
+                            ]:''
+                        }
                     />
                    
                     <TextField

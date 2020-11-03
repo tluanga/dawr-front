@@ -16,11 +16,11 @@ const ManufacturerTable = ({setOpenModal,setModalMode,setModalData}) => {
             accessor: 'id', // accessor is the "key" in the data
         },
         {
-            Header: 'name',
+            Header: 'Name',
             accessor: 'name', // accessor is the "key" in the data
         },
         {
-            Header: 'description',
+            Header: 'Description',
             accessor: 'description',
         },
        
