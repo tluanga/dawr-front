@@ -9,6 +9,7 @@ import CustomerType from './customerType/CustomerType.component'
 import UnitOfMeasurement from './unitOfMeasurement/UnitOfMeasurement.component'
 import WareHouse from './warehouse/Warehouse.component'
 import Product from './product/Product.component'
+import Manufacturer from './manufacturer/Manufacturer.component'
 
 
 
@@ -24,13 +25,16 @@ const Inventory=()=>{
              <TabList>
                 <Tab>TRANSACTION</Tab>
                 <Tab>CUSTOMER</Tab>
-                <Tab>PRODUCT</Tab>                
-                <Tab>VENDOR</Tab>
-                <Tab>CATEGORY</Tab>                
+                <Tab>CUSTOMER TYPE</Tab>
+                <Tab>PRODUCT</Tab> 
+                <Tab>CATEGORY</Tab>              
+                <Tab>VENDOR</Tab>                                
                 <Tab>GST CODE</Tab>
                 <Tab>UNIT OF MEASUREMENT</Tab>
                 <Tab>WAREHOUSE</Tab>
-                <Tab>CUSTOMER TYPE</Tab>
+                <Tab>MANUFACTURER</Tab>
+
+                
                 
              </TabList>           
                 <TabPanel>                    
@@ -38,16 +42,19 @@ const Inventory=()=>{
                 </TabPanel>
                 <TabPanel>                    
                     <Customer/>                    
+                </TabPanel>
+                <TabPanel>
+                    <CustomerType/>
                 </TabPanel>                
                 <TabPanel>                    
                     <Product/>                    
                 </TabPanel>
-                <TabPanel>                    
-                    <Vendor/>                    
-                </TabPanel>
                 <TabPanel>
                     <Category/>                    
                 </TabPanel>
+                <TabPanel>                    
+                    <Vendor/>                    
+                </TabPanel>                
                 <TabPanel>
                     <GstCode/>                    
                 </TabPanel>
@@ -58,8 +65,9 @@ const Inventory=()=>{
                     <WareHouse/> 
                 </TabPanel>
                 <TabPanel>
-                    <CustomerType/>
+                    <Manufacturer/>
                 </TabPanel>
+               
          </Tabs>
          
         </div>

@@ -8,6 +8,7 @@ import unitOfMeasurement from './unitOfMeasurement/UnitOfMeasurement.slice'
 import warehouse from './warehouse/Warehouse.slice'
 import transaction from './transaction/transaction.store'
 import product from './product/Product.slice'
+import manufacturer from './manufacturer/Manufacturer.slice'
 
 
 const reducer =combineReducers({
@@ -19,7 +20,8 @@ const reducer =combineReducers({
     gstCode,
     unitOfMeasurement,
     warehouse,
-    transaction
+    transaction,
+    manufacturer,
 
 })
 export default reducer

@@ -1,17 +1,14 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import styled from 'styled-components'
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form'
 import TextField from '@material-ui/core/TextField'
 import { Button } from '@material-ui/core';
-import SelectOriginal from 'react-select'
+import Select from 'react-select'
 // -----Redux--------
-import {useDispatch,useSelector} from 'react-redux'
-import {newProduct,updateProduct} from './Product.slice'
-import {selectCategoryList} from '../category/Category.slice'
-import {fetchUnitOfMeasurementList} from '../unitOfMeasurement/UnitOfMeasurement.slice'
-
-import {NEW,EDIT,MODULE_NAME} from './Product.constants'
+import {useDispatch} from 'react-redux'
+import {newManufacturer,updateManufacturer} from './Manufacturer.slice'
+import {NEW,EDIT,MODULE_NAME} from './Manufacturer.constants'
 import {AiOutlineClose} from 'react-icons/ai'
 import {MdClearAll} from 'react-icons/md'
 import {CgPushChevronUpO} from 'react-icons/cg'
@@ -30,9 +27,9 @@ const customStyles = {
       content: { 
         position: 'absolute',
         width:'450px',
-        height:'550px',
-        top: '1vh',
-        bottom: '15vh',
+        height:'330px',
+        top: '10vh',
+        bottom: '15.5vh',
         left: '32.5vw',
         right: '32.5vw',        
         border: '1px solid #ccc',
@@ -42,7 +39,6 @@ const customStyles = {
         borderRadius: '4px',
         outline: 'none',
         padding: '5px'
-        
       }
   };
 
@@ -50,13 +46,10 @@ const Wrapper=styled.section`
     display:flex;
     justify-content:center;
     align-items:center;
-   
   `
 const Form=styled.form`
-   
     display:flex;
     flex-direction:column ;
-    
   `
 const Control=styled.section`
     display:flex;
@@ -65,14 +58,9 @@ const Control=styled.section`
     padding-top:5vh;
   `
 
-const Select=styled(SelectOriginal)`
-    padding-bottom:1.3vh;
-`
-
 Modal.setAppElement('#root')
 
-const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) => {
-    const [category,setCategory]=useState()
+const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) => {
     const [status,setStatus]=useState()
     const statusOption=[
         {
@@ -84,19 +72,17 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
             value:false
         }
     ]
-    // -------Redux
     const dispatch=useDispatch()
-    const categoryOptions=useSelector(selectCategoryList)
     const {handleSubmit,register,reset}=useForm()
     
     const onSubmit=formData=>{
         formData.active=status
         setOpenModal(false)
         if(modalMode===NEW){
-            dispatch(newProduct(formData))
+            dispatch(newManufacturer(formData))
         }
         else if(modalMode===EDIT){
-            dispatch(updateProduct({id:modalData.id,data:formData}))
+            dispatch(updateManufacturer({id:modalData.id,data:formData}))
             setModalData({})
         }
         
@@ -118,11 +104,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
         
     }
 
-    
-    useEffect(()=>{
-        if(modalData)
-            console.log(modalData)
-    },[modalData])
+   
   
  
 
@@ -131,10 +113,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
             isOpen={openModal}
             onRequestClose={()=>setOpenModal(false)}
             style={customStyles}
-        >   {
-            console.log('modal Data',modalData)
-           
-        }
+        >
             <Wrapper>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     {modalMode===NEW?
@@ -153,51 +132,18 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                     />
                     <TextField
                         variant='outlined'
-                        name='model'
-                        label='Model'
-                        defaultValue={modalMode===NEW?'':modalData.model}
-                        placeholder='Model'
+                        name='description'
+                        label='Description'
+                        defaultValue={modalMode===NEW?'':modalData.description}
+                        placeholder='Description'
                         size='small'
+                        type='text'
                         inputRef={register}
                         style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
+                    
                     <Select
-                        isClearable
-                        placeholder='Category'
-                        options={categoryOptions}
-                        defaultValue={
-                            modalData.category?
-                            categoryOptions[modalData.category.id-1]:''}
-                    />
-                    <Select
-                        isClearable
-                        placeholder='Manufacturer'
-                        options={categoryOptions}
-                        defaultValue={
-                            modalData.category?
-                            categoryOptions[modalData.category.id]:''}
-                    />
-                    <Select
-                        placeholder='HSN Code'
-                    />
-                    <Select
-                        placeholder='Unit of Measurement'
-                        
-                    />
-                   
-                    <TextField
-                        variant='outlined'
-                        name='remarks'
-                        label='Remarks'
-                        defaultValue={modalMode===NEW?'':modalData.remarks}                        
-                        placeholder='Remarks'
-                        size='small'
-                        inputRef={register}
-                        style={{width:'400px',paddingBottom:'1.3vh'}}
-                    />
-                    <Select
-                        defaultValue={
-                            modalData.active===true?statusOption[0]:statusOption[1]}
+                        defaultValue={modalData.active===true?statusOption[0]:statusOption[1]}
                         options={statusOption}
                         onChange={data=>setStatus(data.value)}
                     />
@@ -239,4 +185,4 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
     )
 }
 
-export default ProductModal
+export default VendorModal
