@@ -74,7 +74,11 @@ const Select=styled(SelectOriginal)`
 Modal.setAppElement('#root')
 
 const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) => {
-    const [category,setCategory]=useState()
+    
+    const [category,setCategory]=useState(modalData.category?modalData.category:0)
+    const [manufacturer,setManufacturer]=useState(modalData.manufacturer)
+    const [gstCode,setGstCode]=useState(modalData.gst_code)
+    const [unitOfMeasurement,selectUnitOfMeasurement]=useState(modalData.unit_of_measurement)
     const [status,setStatus]=useState()
     const statusOption=[
         {
@@ -86,8 +90,18 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
             value:false
         }
     ]
+     
+    useEffect(()=>{
+        if(modalData)
+            setCategory(modalData.category)
+            setManufacturer(modalData.manufacturer)
+            setGstCode(modalData.gst_code)
+            selectUnitOfMeasurement(modalData.unit_of_measurement)
+    },[modalData])
+  
     // -------Redux
     const dispatch=useDispatch()
+    
     const categoryOptions=useSelector(selectCategoryList)
     const manufacturerOptions=useSelector(selectManufacturerList)
     const gstCodeOptions=useSelector(selectGstCodeList)
@@ -95,18 +109,31 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
     const {handleSubmit,register,reset}=useForm()
     
     const onSubmit=formData=>{
+        console.log('category-->',category.id, manufacturer.id,gstCode.id,unitOfMeasurement.id)
         formData.active=status
         setOpenModal(false)
         if(modalMode===NEW){
             dispatch(newProduct(formData))
         }
         else if(modalMode===EDIT){
-            dispatch(updateProduct({id:modalData.id,data:formData}))
-            setModalData({})
+            
+            dispatch(updateProduct({
+                name:formData.name,
+                mode:formData.model,
+                category:category,
+                manufacturer:manufacturer,
+                gst_code:gstCode,
+                unit_of_measurement:unitOfMeasurement,
+                remarks:formData.remarks,
+                active:status,
+
+            }))
+            setModalData(modalData.category)
         }
         
     }
-
+    
+    
     const onReset=()=>{
         if(modalMode===NEW){
             reset({
@@ -123,23 +150,15 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
         
     }
 
-    
-    useEffect(()=>{
-        if(modalData)
-            console.log(modalData)
-    },[modalData])
-  
+   
  
 
-    return(       
+    return(modalData?
         <Modal
             isOpen={openModal}
             onRequestClose={()=>setOpenModal(false)}
             style={customStyles}
-        >   {
-            console.log('modal Data',modalData)
-           
-        }
+        >   
             <Wrapper>
                 <Form onSubmit={handleSubmit(onSubmit)}>
                     {modalMode===NEW?
@@ -167,13 +186,13 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                     <Select
-                        name='category'
                         isClearable
                         placeholder='Category'
                         options={categoryOptions}
                         defaultValue={
                             modalData.category?
                             categoryOptions[modalData.category.id-1]:''}
+                        onChange={data=>setCategory(data)}
                     />
                     <Select
                         name='manufacturer'
@@ -184,6 +203,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                             modalData.manufacturer?
                             manufacturerOptions[
                                 modalData.manufacturer.id-1]:''}
+                        onChange={data=>setManufacturer(data)}
                     />
                     <Select
                         name='gstCode'
@@ -193,6 +213,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                             modalData.gst_code?
                             gstCodeOptions[
                                 modalData.gst_code.id-1]:''}
+                        onChange={data=>setGstCode(data)}
 
 
                     />
@@ -206,6 +227,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                                 modalData.unit_of_measurement.id-1
                             ]:''
                         }
+                        onChange={data=>selectUnitOfMeasurement(data)}
                     />
                    
                     <TextField
@@ -257,7 +279,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                 </Form>                
             </Wrapper>
             
-        </Modal>
+        </Modal>:null
         
     )
 }

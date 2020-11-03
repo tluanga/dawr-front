@@ -80,7 +80,7 @@ const CustomerModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}
     const {handleSubmit,register,reset}=useForm()
     
     const onSubmit=formData=>{
-        console.log('selected Customer Type',customerType)
+        
         formData.active=status
         formData.customer_type=customerType.id
         setOpenModal(false)

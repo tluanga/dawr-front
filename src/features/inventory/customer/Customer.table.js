@@ -2,7 +2,6 @@ import React from 'react'
 // -------redux-------
 import {useSelector} from 'react-redux'
 import {selectCustomerList} from './Customer.slice'
-import {selectCustomerTypeList} from '../customerType/CustomerType.slice' 
 import {EDIT} from './Customer.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
 import Button from '@material-ui/core/Button'
@@ -65,7 +64,7 @@ const CustomerTable = ({setOpenModal,setModalMode,setModalData}) => {
             //    id:'selection',
                Header:'Action',
                Cell:({row})=>{
-                // console.log('properties of row',row.original)
+                
                 return(
                     <Button 
                         variant='contained'
@@ -76,7 +75,7 @@ const CustomerTable = ({setOpenModal,setModalMode,setModalData}) => {
                         setModalData(row.original)
                     }}>
                         Edit</Button>
-                    // <ActionButton row={row.original} />
+                    
                 )
             }
     
@@ -88,7 +87,7 @@ const CustomerTable = ({setOpenModal,setModalMode,setModalData}) => {
     const customerList=useSelector(selectCustomerList)
     
     
-    console.log('customerList',customerList)
+
     
     return (
         <div>

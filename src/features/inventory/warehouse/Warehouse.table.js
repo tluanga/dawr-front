@@ -41,7 +41,7 @@ const WarehouseTable = ({setOpenModal,setModalMode,setModalData}) => {
             //    id:'selection',
                Header:'Action',
                Cell:({row})=>{
-                // console.log('properties of row',row.original)
+                
                 return(
                     <Button 
                         variant='contained'

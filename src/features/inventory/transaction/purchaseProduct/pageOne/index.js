@@ -61,7 +61,7 @@ const PurchaseProductPageOne = ({
         setSelectedDate(date);
   };
     
-    console.log(showPageOne)
+   
     return (
         <>
         {showPageOne?

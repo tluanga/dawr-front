@@ -45,7 +45,7 @@ export const getList=url=>{
 export const getItem=async params =>{
     
     const __url=new URL((params.url+'/'+params.id),baseUrl)
-    console.log(__url)
+    
     try{
         const response=await axios.get(__url)
             .then(data=>data.data)        
