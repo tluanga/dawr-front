@@ -97,6 +97,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
             setManufacturer(modalData.manufacturer)
             setGstCode(modalData.gst_code)
             selectUnitOfMeasurement(modalData.unit_of_measurement)
+            console.log('modal data',modalData)
     },[modalData])
   
     // -------Redux
@@ -109,15 +110,14 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
     const {handleSubmit,register,reset}=useForm()
     
     const onSubmit=formData=>{
-        console.log('category-->',category.id, manufacturer.id,gstCode.id,unitOfMeasurement.id)
         formData.active=status
         const payload={
             name:formData.name,
             mode:formData.model,
-            category:category.id,
-            manufacturer:manufacturer.id,
-            gst_code:gstCode.id,
-            unit_of_measurement:unitOfMeasurement.id,
+            category:category,
+            manufacturer:manufacturer,
+            gst_code:gstCode,
+            unit_of_measurement:unitOfMeasurement,
             remarks:formData.remarks,
             active:status,
         }
@@ -128,7 +128,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
         }
         else if(modalMode===EDIT){
             
-            dispatch(updateProduct(payload))
+            dispatch(updateProduct({id:modalData.id,data:payload}))
             setModalData(modalData.category)
         }
         

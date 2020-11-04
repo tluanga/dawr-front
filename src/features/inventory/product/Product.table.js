@@ -104,6 +104,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
       )
       
     const productList=useSelector(selectProductList)
+    
    
     return (
         <div>
