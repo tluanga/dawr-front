@@ -192,7 +192,6 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         onChange={data=>setCategory(data.id)}
                     />
                     <Select
-                        name='manufacturer'
                         isClearable
                         placeholder='Manufacturer'
                         options={manufacturerOptions}
@@ -203,7 +202,6 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         onChange={data=>setManufacturer(data.id)}
                     />
                     <Select
-                        name='gstCode'
                         options={gstCodeOptions}
                         placeholder='HSN Code'
                         defaultValue={
@@ -215,7 +213,6 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
 
                     />
                     <Select
-                        name='unitOfMeasurement'
                         placeholder='Unit of Measurement'
                         options={unitOfMeasurementOptions}
                         defaultValue={
