@@ -40,13 +40,13 @@ const Product = () => {
                 >New Product</Button>
             </Control>
             
-            <ProductModal 
+            {/* <ProductModal 
                 openModal={openModal}
                 modalMode={modalMode}
                 setOpenModal={setOpenModal}
                 modalData={modalData}
                 setModalData={setModalData}
-            />
+            /> */}
             <ProductTable 
                 setOpenModal={setOpenModal}
                 setModalMode={setModalMode}

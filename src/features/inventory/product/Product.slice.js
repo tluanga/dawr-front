@@ -11,6 +11,8 @@ export const fetchProductList=createAsyncThunk('product/fetch',
                 label:res.name,
                 ...res
             }
+            console.log('data--->',data)
+            
             return data
 
         })
@@ -24,7 +26,7 @@ export const newProduct=createAsyncThunk('product/new',
             url,
             data:data
         }
-        
+        console.log('payload of updating data',data)
         const response= await create(payload)
         return response
            

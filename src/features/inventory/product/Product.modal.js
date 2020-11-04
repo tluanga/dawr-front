@@ -111,23 +111,24 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
     const onSubmit=formData=>{
         console.log('category-->',category.id, manufacturer.id,gstCode.id,unitOfMeasurement.id)
         formData.active=status
+        const payload={
+            name:formData.name,
+            mode:formData.model,
+            category:category.id,
+            manufacturer:manufacturer.id,
+            gst_code:gstCode.id,
+            unit_of_measurement:unitOfMeasurement.id,
+            remarks:formData.remarks,
+            active:status,
+        }
         setOpenModal(false)
+        
         if(modalMode===NEW){
-            dispatch(newProduct(formData))
+            dispatch(newProduct(payload))
         }
         else if(modalMode===EDIT){
             
-            dispatch(updateProduct({
-                name:formData.name,
-                mode:formData.model,
-                category:category,
-                manufacturer:manufacturer,
-                gst_code:gstCode,
-                unit_of_measurement:unitOfMeasurement,
-                remarks:formData.remarks,
-                active:status,
-
-            }))
+            dispatch(updateProduct(payload))
             setModalData(modalData.category)
         }
         

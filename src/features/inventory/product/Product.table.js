@@ -1,10 +1,16 @@
 import React from 'react'
 // -------redux-------
 import {useSelector} from 'react-redux'
-import {selectProductList} from './Product.slice' 
+import {selectProductList} from './Product.slice'
+import {selectCategoryById} from '../category/Category.slice' 
+import {selectGstCodeById} from '../gstCode/GstCode.slice'
+import {selectManufacturerById} from '../manufacturer/Manufacturer.slice'
+import {selectUnitOfMeasurementById} from '../unitOfMeasurement/UnitOfMeasurement.slice'
+
 import {EDIT} from './Product.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
 import Button from '@material-ui/core/Button'
+
 
 
 const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
@@ -27,29 +33,34 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             Header: 'Category',
             accessor: 'category',
             Cell:({cell:{value}})=>{
-                return value.name
+                
+                const selectedCategory=useSelector(state=>selectCategoryById(state,value))  
+                return selectedCategory.name
             }
         },
         {
             Header: 'Manufacturer',
             accessor: 'manufacturer',
             Cell:({cell:{value}})=>{
-                
-                return value.name
+                const selectedManufacturer=useSelector(state=>selectManufacturerById(state,value))  
+                return selectedManufacturer.name
             }
         },
         {
             Header: 'HSN Code',
             accessor: 'gst_code',
             Cell:({cell:{value}})=>{
-                return value.code
+                const selectedGstCode=useSelector(state=>selectGstCodeById(state,value))  
+                return selectedGstCode.code
             }
         },
         {
             Header: 'Unit of Measurement',
             accessor: 'unit_of_measurement',
             Cell:({cell:{value}})=>{
-                return value.unit_of_measurement            }
+                const selectedUnitOfMeasurement=
+                    useSelector(state=>selectUnitOfMeasurementById(state,value))  
+                return selectedUnitOfMeasurement.unit_of_measurement          }
         },
         {
             Header: 'Remarks',
@@ -93,6 +104,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
       )
       
     const productList=useSelector(selectProductList)
+   
     return (
         <div>
             <ReactTable columns={columns} data={productList}/>
@@ -101,3 +113,10 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
 }
 
 export default ProductTable
+
+
+// const Component = ({ id }) => {
+//     const item = useSelector((state) =>
+//       selectUserById(state, id)
+//     );
+//   };
