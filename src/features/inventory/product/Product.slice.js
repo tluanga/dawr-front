@@ -11,8 +11,6 @@ export const fetchProductList=createAsyncThunk('product/fetch',
                 label:res.name,
                 ...res
             }
-            console.log('data--->',data)
-            
             return data
 
         })

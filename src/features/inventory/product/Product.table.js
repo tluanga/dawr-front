@@ -114,9 +114,3 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
 
 export default ProductTable
 
-
-// const Component = ({ id }) => {
-//     const item = useSelector((state) =>
-//       selectUserById(state, id)
-//     );
-//   };

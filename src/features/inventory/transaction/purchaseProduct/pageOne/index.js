@@ -57,10 +57,10 @@ const PurchaseProductPageOne = ({
     const [selectedDate, setSelectedDate] = React.useState()
             
 
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-  };
-    
+        const handleDateChange = (date) => {
+            setSelectedDate(date);
+    };
+        
    
     return (
         <>

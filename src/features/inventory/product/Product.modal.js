@@ -101,7 +101,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
   
     // -------Redux
     const dispatch=useDispatch()
-    
+   
     const categoryOptions=useSelector(selectCategoryList)
     const manufacturerOptions=useSelector(selectManufacturerList)
     const gstCodeOptions=useSelector(selectGstCodeList)
@@ -154,7 +154,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
    
  
 
-    return(modalData?
+    return(
         <Modal
             isOpen={openModal}
             onRequestClose={()=>setOpenModal(false)}
@@ -192,7 +192,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         options={categoryOptions}
                         defaultValue={
                             modalData.category?
-                            categoryOptions[modalData.category.id-1]:''}
+                            categoryOptions[modalData.category-1]:''}
                         onChange={data=>setCategory(data)}
                     />
                     <Select
@@ -203,7 +203,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         defaultValue={
                             modalData.manufacturer?
                             manufacturerOptions[
-                                modalData.manufacturer.id-1]:''}
+                                modalData.manufacturer-1]:''}
                         onChange={data=>setManufacturer(data)}
                     />
                     <Select
@@ -213,7 +213,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         defaultValue={
                             modalData.gst_code?
                             gstCodeOptions[
-                                modalData.gst_code.id-1]:''}
+                                modalData.gst_code-1]:''}
                         onChange={data=>setGstCode(data)}
 
 
@@ -225,7 +225,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         defaultValue={
                             modalData.unit_of_measurement?
                             unitOfMeasurementOptions[
-                                modalData.unit_of_measurement.id-1
+                                modalData.unit_of_measurement-1
                             ]:''
                         }
                         onChange={data=>selectUnitOfMeasurement(data)}
@@ -280,7 +280,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                 </Form>                
             </Wrapper>
             
-        </Modal>:null
+        </Modal>
         
     )
 }
