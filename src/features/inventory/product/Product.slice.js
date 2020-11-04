@@ -20,6 +20,7 @@ export const fetchProductList=createAsyncThunk('product/fetch',
 
 export const newProduct=createAsyncThunk('product/new',
     async data=>{
+               
         const payload={
             url,
             data:data

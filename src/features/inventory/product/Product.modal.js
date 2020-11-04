@@ -113,7 +113,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
         formData.active=status
         const payload={
             name:formData.name,
-            mode:formData.model,
+            model:formData.model,
             category:category,
             manufacturer:manufacturer,
             gst_code:gstCode,
@@ -150,10 +150,6 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
         }        
         
     }
-
-   
- 
-
     return(
         <Modal
             isOpen={openModal}
@@ -193,7 +189,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         defaultValue={
                             modalData.category?
                             categoryOptions[modalData.category-1]:''}
-                        onChange={data=>setCategory(data)}
+                        onChange={data=>setCategory(data.id)}
                     />
                     <Select
                         name='manufacturer'
@@ -204,7 +200,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                             modalData.manufacturer?
                             manufacturerOptions[
                                 modalData.manufacturer-1]:''}
-                        onChange={data=>setManufacturer(data)}
+                        onChange={data=>setManufacturer(data.id)}
                     />
                     <Select
                         name='gstCode'
@@ -214,7 +210,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                             modalData.gst_code?
                             gstCodeOptions[
                                 modalData.gst_code-1]:''}
-                        onChange={data=>setGstCode(data)}
+                        onChange={data=>setGstCode(data.id)}
 
 
                     />
@@ -228,7 +224,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                                 modalData.unit_of_measurement-1
                             ]:''
                         }
-                        onChange={data=>selectUnitOfMeasurement(data)}
+                        onChange={data=>selectUnitOfMeasurement(data.id)}
                     />
                    
                     <TextField
