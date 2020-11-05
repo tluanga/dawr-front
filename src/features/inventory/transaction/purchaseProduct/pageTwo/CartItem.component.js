@@ -88,12 +88,6 @@ const CartItem = () => {
                     quantity:_quantity,
                     amount:_quantity*price.per_piece_sell_price,
                     tax:_quantity*gstCode.totalGst
-                    // cost_price:duplicateState.cost_price+
-                    // payload.cost_price,
-                    // gst:duplicateState.gst+payload.gst,
-                    // discount:duplicateState.discount+
-                    // payload.discount,
-                    // total_costprice:duplicateState.total_costprice+payload.total_costprice,
                     
                 }
            
@@ -102,7 +96,7 @@ const CartItem = () => {
             }
             console.log(_changesPayload)
             dispatch(updateCartItem(_changesPayload))
-            dispatch(setTotalAmount(100))
+            dispatch(setTotalAmount(cartTotalAmount+amount))
             console.log('update the product',duplicateState.quantity)
         } 
 
