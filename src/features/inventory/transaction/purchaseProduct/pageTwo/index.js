@@ -9,7 +9,9 @@ import TextField from '@material-ui/core/TextField'
 // -----Redux------
 import {useSelector,useDispatch} from 'react-redux'
 import {selectProductList} from '../../../product/Product.slice'
+import {selectProductsCurrentPrice} from '../../../product/ProductPrice.slice'
 import {selectGstCodeList} from '../../../gstCode/GstCode.slice'
+
 
 
 const Wrapper=styled.div`
@@ -28,11 +30,22 @@ const ProductContent=styled.section`
 `
 
 const PageTwo = ({showPageTwo}) => {
+    // ---Redux
     const productsOptions=useSelector(selectProductList)
     const gstCodes=useSelector(selectGstCodeList)
-    const [selectedProduct,setSelectedProduct]=useState()
-    const [selectedGstCode,setSelectedGstCode]=useState()
+    const productsSellPrice=useSelector(selectProductsCurrentPrice)
+    const [product,setProduct]=useState()
+    const [gstCode,setGstCode]=useState()
+    const [price,setPrice]=useState()
+    const [quantityInStock,setQuantityInStock]=useState()
+    const [quantity,setQuantity]=useState() //Quantity to purchase
+    const [amount,setAmount]=useState()
     
+    const onQuantityChange=(e)=>{
+        const _quantity=e.target.value
+        setQuantity(_quantity)
+        setAmount(_quantity*price.per_piece_sell_price)
+    }
 
     return (
         <>
@@ -52,26 +65,31 @@ const PageTwo = ({showPageTwo}) => {
                             placeholder='Select Product..'
                             options={productsOptions}
                             onChange={data=>{
-                                setSelectedProduct(data)
+                                setProduct(data)
                                 console.log('data====>',data)
-                                const gstCode=gstCodes.find(gstCode=>gstCode.id===data.gst_code)
-                                setSelectedGstCode(gstCode)
+                                const _gstCode=gstCodes.find(gstCode=>gstCode.id===data.gst_code)
+                                const _price=productsSellPrice.find(price=>price.product===data.id)
+                                setGstCode(_gstCode)
+                                setPrice(_price)
                             }}
                         />
                         
-                        <section>Name:{selectedProduct?selectedProduct.name:''}</section>
-                        <section>Quantity in Stock:{selectedProduct?selectedProduct.name:''}</section>
-                        <section>Gst Rate:{selectedGstCode?selectedGstCode.totalGst:''}</section>
-                        <section>Hsn Code:{selectedGstCode?selectedGstCode.code:''}</section>
-                        <section>Rate:</section>
-                        <section>Amount:</section>
-                        <section>Quantity:</section>
+                        <section>Name:{product?product.name:''}</section>
+                        <section>Quantity in Stock:</section>
+                        <section>Gst Rate:{gstCode?gstCode.totalGst:''}</section>
+                        <section>Hsn Code:{gstCode?gstCode.code:''}</section>
+                        <section>Sell Price(Bulk):{price?price.per_bulk_sell_price:''}</section>
+                        <section>Sell Price(Piece):{price?price.per_piece_sell_price:''}</section>                        
+                        <section>Quantity:{quantity?quantity:''}</section>
+                        <section>Amount:{amount?amount:''}</section>
 
                         
                         <TextField
                             variant='outlined'
                             size='small'
                             placeholder='Quantity'
+                            disabled={!product}
+                            onChange={onQuantityChange}
                         />
                         <Button 
                             variant='contained'

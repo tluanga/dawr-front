@@ -16,6 +16,7 @@ import {fetchUnitOfMeasurementList} from './features/inventory/unitOfMeasurement
 import {fetchCustomerList} from './features/inventory/customer/Customer.slice'
 import {fetchWarehouseList} from './features/inventory/warehouse/Warehouse.slice'
 import {fetchProductList} from './features/inventory/product/Product.slice'
+import {fetchCurrentSellPrice} from './features/inventory/product/ProductPrice.slice'
 import {fetchManufacturerList} from './features/inventory/manufacturer/Manufacturer.slice'
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
     dispatch(fetchCustomerList())
     dispatch(fetchWarehouseList())
     dispatch(fetchProductList())
+    dispatch(fetchCurrentSellPrice())
     dispatch(fetchManufacturerList())
    
     

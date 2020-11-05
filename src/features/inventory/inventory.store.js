@@ -8,12 +8,14 @@ import unitOfMeasurement from './unitOfMeasurement/UnitOfMeasurement.slice'
 import warehouse from './warehouse/Warehouse.slice'
 import transaction from './transaction/transaction.store'
 import product from './product/Product.slice'
+import productPrice from './product/ProductPrice.slice'
 import manufacturer from './manufacturer/Manufacturer.slice'
 
 
 const reducer =combineReducers({
     customer,
     product,
+    productPrice,
     vendor,
     category,
     customerType,
