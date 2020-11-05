@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-
+import {Route, Link, Switch} from 'react-router-dom'
 // -------Redux
 
 // ---UI library
@@ -27,17 +27,12 @@ const Pos = () => {
 
     return (
        <Container>
-           <PosMode
-                showPosMode={showPosMode}
-                setShowPosMode={setShowPosMode}
-                setShowRetail={setShowRetail}
-                setShowWholeSale={setShowWholeSale}
-           />
-           <Retail
-                showRetail={showRetail}
-                setShowWholeSale={setShowWholeSale}
-
-           />
+           <Switch>
+               <Route path='/pos/'>
+                   <PosMode/>
+                </Route>
+           </Switch>
+           
            
        </Container>
     )

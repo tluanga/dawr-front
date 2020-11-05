@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import styled from 'styled-components'
 // -------Redux
 import Button from '@material-ui/core/Button'
@@ -21,45 +22,37 @@ const Control=styled.div`
 
 `
 
-const PurchaseProduct = ({
-    showPosMode,setShowPosMode,setShowRetail,setShowWholeSale
-}) => {
-    
+const PurchaseProduct = () => {
+    const h
     const handleRetailClick=()=>{
-        setShowRetail(true)
-        setShowPosMode(false)
+        
     }
 
     return (
-        <>
-            {
-               showPosMode?
-               <Container>
-                    <Control>
-                        <Button
-                            startIcon={<AddShoppingCartRoundedIcon 
-                            style={{height:'80px', width:'80px', color:'white'}}/>}
-                            variant='contained'
-                            color='primary'
-                            style={{width:'300px', height:'100px', color:'#e54304'}}
-                            onClick={handleRetailClick}
-                        ><h1 style={{color:'white'}}>Retail</h1>
-                        </Button>
+        <Container>
+            <Control>
+                <Button
+                    startIcon={<AddShoppingCartRoundedIcon 
+                    style={{height:'80px', width:'80px', color:'white'}}/>}
+                    variant='contained'
+                    color='primary'
+                    style={{width:'300px', height:'100px', color:'#e54304'}}
+                    onClick={handleRetailClick}
+                ><h1 style={{color:'white'}}>Retail</h1>
+                </Button>
 
-                        <Button
-                            startIcon={<FilterNoneIcon 
-                                style={{height:'80px', width:'80px', color:'white'}}/>}
-                            variant='contained'
-                            color='primary'
-                            style={{width:'300px', height:'100px', color:'#e54304'}}
+                <Button
+                    startIcon={<FilterNoneIcon 
+                    style={{height:'80px', width:'80px', color:'white'}}/>}
+                    variant='contained'
+                        color='primary'
+                        style={{width:'300px', height:'100px', color:'#e54304'}}
                             
-                        ><h1 style={{color:'white'}}>Wholesale</h1>
-                        </Button>
-                     </Control>
-                </Container>:null 
-            }
-        </>
-       
+                    ><h1 style={{color:'white'}}>Wholesale</h1>
+                    </Button>
+            </Control>
+        </Container> 
+        
     )
 }
 
