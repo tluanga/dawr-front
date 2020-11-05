@@ -17,8 +17,12 @@ const cartSlice=createSlice({
         updateCartItem:cartEntityAdapter.updateOne,
         removeCartItem:cartEntityAdapter.removeAll,
         clearCartItem:cartEntityAdapter.removeAll,
-        setTotalAmount:(state,action)=>void(state.totalAmount=action.payload),
-        setTotalTax:(state,action)=>state.totalTax=action.payload
+        setTotalAmount:(state,action)=>{
+            state.totalAmount=action.payload
+        },
+        setTotalTax:(state,action)=>{
+            state.totalTax=action.payload
+        }
     },
 
 })

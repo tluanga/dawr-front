@@ -78,7 +78,7 @@ const CartItem = () => {
         }
         if(duplicate===0){
             dispatch(addCartItem(payload))
-            dispatch(setTotalAmount(100))
+            dispatch(setTotalAmount(cartTotalAmount+amount))
         }else{
             const _quantity=parseInt(duplicateState.quantity)
             +parseInt(payload.quantity)
