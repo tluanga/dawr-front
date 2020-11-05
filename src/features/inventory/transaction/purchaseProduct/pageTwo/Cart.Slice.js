@@ -23,7 +23,8 @@ const cartSlice=createSlice({
 
 })
 
-
+export const selectCartItems=state=>
+    state.inventory.transaction.purchaseProduct.cart.entities
 
 export const {
     addCartItem,
