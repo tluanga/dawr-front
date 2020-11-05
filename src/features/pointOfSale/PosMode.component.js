@@ -23,9 +23,9 @@ const Control=styled.div`
 `
 
 const PurchaseProduct = () => {
-    const h
+    const history=useHistory()
     const handleRetailClick=()=>{
-        
+        history.push('/pos/retail')
     }
 
     return (

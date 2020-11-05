@@ -28,6 +28,9 @@ const Pos = () => {
     return (
        <Container>
            <Switch>
+               <Route path='/pos/retail'>
+                   <Retail/>
+               </Route>
                <Route path='/pos/'>
                    <PosMode/>
                 </Route>
