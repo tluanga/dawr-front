@@ -4,7 +4,7 @@ import ReactTable from '../../../../../app/components/table/ReactTable'
 const CartTable = () => {
     return (
         <div>
-            test
+            this is the table
         </div>
     )
 }
