@@ -6,6 +6,7 @@ import DashBoard from '../dashboard/DashBoard'
 import Inventory from '../../../features/inventory'
 // import PointOfSale from '../../../features/pos'
 import Report from '../../../features/report'
+import Pos from '../../../features/pointOfSale/'
 
 const RouteSection=styled.section`
 
@@ -26,7 +27,7 @@ function Main() {
                     <Route
                         exact
                         path='/pos'
-                        component={Report}
+                        component={Pos}
                     />
                     <Route                        
                         path='/report'

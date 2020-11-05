@@ -9,9 +9,10 @@ import {useForm} from 'react-hook-form'
 
 // -----Redux------
 import {useSelector,useDispatch} from 'react-redux'
-import {selectProductList} from '../../../product/Product.slice'
-import {selectProductsCurrentPrice} from '../../../product/ProductPrice.slice'
-import {selectGstCodeList} from '../../../gstCode/GstCode.slice'
+import {selectProductList} from '../../inventory/product/Product.slice'
+import {selectProductsCurrentPrice} from '../../inventory/product/ProductPrice.slice'
+import {selectGstCodeList} from '../../inventory/gstCode/GstCode.slice'
+
 import {
         addCartItem,
         selectCart,
@@ -142,18 +143,12 @@ const CartItem = () => {
                         <section>Quantity in Stock:</section>
                         <section>Gst Rate:{gstCode?gstCode.totalGst:''}</section>
                         <section>Hsn Code:{gstCode?gstCode.code:''}</section>
-                        <section>Cost Price(unit):{price?price.per_piece_sell_price:''}</section>                        
-                        <section>Mrp:</section>
+                        <section>Sell Price(Bulk):{price?price.per_bulk_sell_price:''}</section>
+                        <section>Sell Price(Piece):{price?price.per_piece_sell_price:''}</section>                        
                         <section>Quantity:{quantity?quantity:''}</section>
                         <section>Amount:{amount?amount:''}</section>
 
-                        <TextField
-                            variant='outlined'
-                            size='small'
-                            placeholder='Cost Price'
-                            type='number'
-                        />
-
+                        
                         <TextField
                             variant='outlined'
                             size='small'
