@@ -5,7 +5,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import {useSelector,useDispatch} from 'react-redux'
 import {selectVendorList} from '../../../vendor/Vendor.slice'
 import {selectWarehouseList} from '../../../warehouse/Warehouse.slice'
-import {setVendor,setWarehouse, setDate} from '../PurchaseProduct.slice'
+import {setVendor,setWarehouse, setDate} from './PurchaseProductInfo.slice'
 // -------Material Ui
 import {
     MuiPickersUtilsProvider,

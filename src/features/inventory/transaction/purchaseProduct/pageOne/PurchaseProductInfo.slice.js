@@ -1,13 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-const purchaseProductSlice=createSlice({
-    name:'purchaseProduct',
+const purchaseProductInfo=createSlice({
+    name:'purchaseInfo',
     initialState:{
         vendor:{},
         warehouse:{},
         date:{},
-        products:[
-        ]
+    
     },
     reducers:{
         setVendor:(state,action)=>{
@@ -18,13 +17,6 @@ const purchaseProductSlice=createSlice({
         },
         setDate:(state,action)=>{
             state.date=action.payload
-        },
-        setCartItem:(state,action)=>{
-            // expected payload {
-            // product:payload.product,
-            // quantity:payload.quantity
-            // }
-            state.push(action.payload)
         }
     }
 })
@@ -33,7 +25,7 @@ export const {
     setVendor,
     setWarehouse,
     setDate,
-    setCartItem
-}=purchaseProductSlice.actions
+    setProduct
+}=purchaseProductInfo.actions
 
-export default purchaseProductSlice.reducer
+export default purchaseProductInfo.reducer
