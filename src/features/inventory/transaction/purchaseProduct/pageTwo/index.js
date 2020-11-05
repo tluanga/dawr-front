@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import Select from 'react-select'
 import styled from 'styled-components'
 import Card from '@material-ui/core/Card';
@@ -7,7 +7,9 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 
 // -----Redux------
-
+import {useSelector,useDispatch} from 'react-redux'
+import {selectProductList} from '../../../product/Product.slice'
+import {selectGstCodeList} from '../../../gstCode/GstCode.slice'
 
 
 const Wrapper=styled.div`
@@ -26,6 +28,10 @@ const ProductContent=styled.section`
 `
 
 const PageTwo = ({showPageTwo}) => {
+    const productsOptions=useSelector(selectProductList)
+    const gstCodes=useSelector(selectGstCodeList)
+    const [selectedProduct,setSelectedProduct]=useState()
+    const [selectedGstCode,setSelectedGstCode]=useState()
     
 
     return (
@@ -42,15 +48,24 @@ const PageTwo = ({showPageTwo}) => {
                         height:'450px'
                     }}>
                         <Select
+                            isClearable
                             placeholder='Select Product..'
+                            options={productsOptions}
+                            onChange={data=>{
+                                setSelectedProduct(data)
+                                console.log('data====>',data)
+                                const gstCode=gstCodes.find(gstCode=>gstCode.id===data.gst_code)
+                                setSelectedGstCode(gstCode)
+                            }}
                         />
                         
-                        <section>Name:</section>
-                        <section>Quantity:</section>
-                        <section>Gst Rate:</section>
-                        <section>Hsn Code:</section>
+                        <section>Name:{selectedProduct?selectedProduct.name:''}</section>
+                        <section>Quantity in Stock:{selectedProduct?selectedProduct.name:''}</section>
+                        <section>Gst Rate:{selectedGstCode?selectedGstCode.totalGst:''}</section>
+                        <section>Hsn Code:{selectedGstCode?selectedGstCode.code:''}</section>
                         <section>Rate:</section>
                         <section>Amount:</section>
+                        <section>Quantity:</section>
 
                         
                         <TextField

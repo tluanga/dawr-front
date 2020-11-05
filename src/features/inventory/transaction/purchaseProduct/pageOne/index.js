@@ -71,7 +71,6 @@ const PurchaseProductPageOne = ({
                 <h1>Purchase Product</h1>
                 <Form>
                     <Select
-                        name='vendor'
                         options={vendor}
                         placeholder='Select Vendor...'
                         isClearable
@@ -79,7 +78,6 @@ const PurchaseProductPageOne = ({
                         onChange={data=>dispatch(setVendor(data))}
                     />
                     <Select
-                        name='warehouse'
                         options={warehouse}
                         placeholder='Select Warehouse...'
                         isClearable
