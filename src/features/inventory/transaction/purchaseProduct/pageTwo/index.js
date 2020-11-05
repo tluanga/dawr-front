@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import {useForm} from 'react-hook-form'
 
 // -----Redux------
 import {useSelector,useDispatch} from 'react-redux'
@@ -21,7 +22,7 @@ const Wrapper=styled.div`
     width:100vw;
     background-color:#C5CAE9;
 `
-const ProductContent=styled.section`
+const ProductContent=styled.form`
     width:400px;
     padding:10px;
     display:flex;
@@ -34,6 +35,8 @@ const PageTwo = ({showPageTwo}) => {
     const productsOptions=useSelector(selectProductList)
     const gstCodes=useSelector(selectGstCodeList)
     const productsSellPrice=useSelector(selectProductsCurrentPrice)
+    
+    // component state
     const [product,setProduct]=useState()
     const [gstCode,setGstCode]=useState()
     const [price,setPrice]=useState()
@@ -41,18 +44,28 @@ const PageTwo = ({showPageTwo}) => {
     const [quantity,setQuantity]=useState() //Quantity to purchase
     const [amount,setAmount]=useState()
     
+    // React hook form
+    const {register,handleSubmit} =useForm()
+    const onSubmit=data=>{
+        console.log(quantity)
+
+    }
+
+
     const onQuantityChange=(e)=>{
         const _quantity=e.target.value
         setQuantity(_quantity)
         setAmount(_quantity*price.per_piece_sell_price)
     }
 
+
+
     return (
         <>
         {
             showPageTwo?
             <Wrapper>
-            <ProductContent>
+            <ProductContent onSubmit={handleSubmit(onSubmit)}>
                 <Card style={{height:'450px'}}>
                     <CardContent style={{
                         display:'flex',
@@ -65,8 +78,7 @@ const PageTwo = ({showPageTwo}) => {
                             placeholder='Select Product..'
                             options={productsOptions}
                             onChange={data=>{
-                                setProduct(data)
-                                console.log('data====>',data)
+                                setProduct(data)                                
                                 const _gstCode=gstCodes.find(gstCode=>gstCode.id===data.gst_code)
                                 const _price=productsSellPrice.find(price=>price.product===data.id)
                                 setGstCode(_gstCode)
@@ -88,7 +100,8 @@ const PageTwo = ({showPageTwo}) => {
                             variant='outlined'
                             size='small'
                             placeholder='Quantity'
-                            disabled={!product}
+                            type='number'
+                            disabled={!product&&!quantityInStock}
                             onChange={onQuantityChange}
                         />
                         <Button 

@@ -25,7 +25,7 @@ export const newProduct=createAsyncThunk('product/new',
             url,
             data:data
         }
-        console.log('payload of new data',data)
+        
         const response= await create(payload)
         return response
            
@@ -34,7 +34,7 @@ export const newProduct=createAsyncThunk('product/new',
 
 export const updateProduct=createAsyncThunk('product/update',
     async ({id,data})=>{
-        console.log('updataing data id and data',id,data)
+        
         const response= await update({url,id,data})
         return response
     }

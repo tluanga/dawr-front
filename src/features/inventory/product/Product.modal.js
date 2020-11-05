@@ -97,7 +97,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
             setManufacturer(modalData.manufacturer)
             setGstCode(modalData.gst_code)
             selectUnitOfMeasurement(modalData.unit_of_measurement)
-            console.log('modal data',modalData)
+            
     },[modalData])
   
     // -------Redux

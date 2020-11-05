@@ -7,7 +7,6 @@ const purchaseProductSlice=createSlice({
         warehouse:{},
         date:{},
         products:[
-
         ]
     },
     reducers:{
@@ -20,7 +19,13 @@ const purchaseProductSlice=createSlice({
         setDate:(state,action)=>{
             state.date=action.payload
         },
-        setProduct:(state,action)=>state.push(action.payload)
+        setCartItem:(state,action)=>{
+            // expected payload {
+            // product:payload.product,
+            // quantity:payload.quantity
+            // }
+            state.push(action.payload)
+        }
     }
 })
 
@@ -28,7 +33,7 @@ export const {
     setVendor,
     setWarehouse,
     setDate,
-    setProduct
+    setCartItem
 }=purchaseProductSlice.actions
 
 export default purchaseProductSlice.reducer
