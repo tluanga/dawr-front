@@ -18,6 +18,7 @@ import {
         updateCartItem,
         selectCartTotalAmount,
         setTotalAmount,
+        selectCartTotalTax,
         setTotalTax
     } from './Cart.Slice'
 
@@ -39,6 +40,7 @@ const CartItem = () => {
     const productsSellPrice=useSelector(selectProductsCurrentPrice)
     const cart=useSelector(selectCart)
     const cartTotalAmount=useSelector(selectCartTotalAmount)
+    const cartTotalTax=useSelector(selectCartTotalTax)
     
     // component state
     const [product,setProduct]=useState()
@@ -79,6 +81,7 @@ const CartItem = () => {
         if(duplicate===0){
             dispatch(addCartItem(payload))
             dispatch(setTotalAmount(cartTotalAmount+amount))
+            dispatch(setTotalTax(cartTotalTax+payload.tax))
         }else{
             const _quantity=parseInt(duplicateState.quantity)
             +parseInt(payload.quantity)
@@ -97,6 +100,7 @@ const CartItem = () => {
             console.log(_changesPayload)
             dispatch(updateCartItem(_changesPayload))
             dispatch(setTotalAmount(cartTotalAmount+amount))
+            dispatch(setTotalTax(cartTotalTax+payload.tax))
             console.log('update the product',duplicateState.quantity)
         } 
 

@@ -3,7 +3,14 @@ import styled from 'styled-components'
 import {ReactTable} from '../../../../../app/components/table/ReactTable'
 // -----REDUX
 import {useSelector,useDispatch} from 'react-redux'
-import {selectCart,removeCartItem} from './Cart.Slice'
+import {
+    selectCart,
+    removeCartItem,
+    selectCartTotalAmount,
+    setTotalAmount,
+    selectCartTotalTax,
+    setTotalTax
+} from './Cart.Slice'
 
 
 import Button from '@material-ui/core/Button'
@@ -17,6 +24,8 @@ const Container=styled.div`
 
 const CartTable = () => {
     const data=useSelector(selectCart)
+    const cartTotalAmount=useSelector(selectCartTotalAmount)
+    const cartTotalTax=useSelector(selectCartTotalTax)
     const dispatch=useDispatch()
 
     const columns=React.useMemo(
@@ -64,6 +73,8 @@ const CartTable = () => {
                             color='primary'
                             onClick={()=>{
                             dispatch(removeCartItem(row.original.id))
+                            dispatch(setTotalAmount(cartTotalAmount-row.amount))
+                            dispatch(setTotalTax(cartTotalTax-row.tax))
                             // setModalData(row.original)
                         }}>
                             Remove</Button>

@@ -22,7 +22,8 @@ const cartSlice=createSlice({
         },
         setTotalTax:(state,action)=>{
             state.totalTax=action.payload
-        }
+        },
+        
     },
 
 })
