@@ -17,22 +17,25 @@ const cartSlice=createSlice({
         updateCartItem:cartEntityAdapter.updateOne,
         removeCartItem:cartEntityAdapter.removeAll,
         clearCartItem:cartEntityAdapter.removeAll,
-        updateTotalAmount:(state,action)=>state.totalAmount=action.payload,
-        updateTotalTax:(state,action)=>state.totalTax=action.payload
+        setTotalAmount:(state,action)=>state.totalAmount=action.payload,
+        setTotalTax:(state,action)=>state.totalTax=action.payload
     },
 
 })
 
-export const selectCartItems=state=>
-    state.inventory.transaction.purchaseProduct.cart.entities
+export const selectCartTotalAmount=state=>
+    state.inventory.transaction.purchaseProduct.cart.totalAmount
+
+export const selectCartTotalTax=state=>
+    state.inventory.transaction.purchaseProduct.cart.totalTax
 
 export const {
     addCartItem,
     updateCartItem,
     removeCartItem,
     clearCartItem,
-    updateTotalAmount,
-    updateTotalTax
+    setTotalAmount,
+    setTotalTax
 } =cartSlice.actions
 
 

@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import styled from 'styled-components'
 import CartItem from './CartItem.component'
 import CartTable from './CartTable.component'
+import CartSummary from './CartSummary.component'
 
 
 // -----Redux------
@@ -27,25 +28,23 @@ const Table=styled.section`
 
 
 const PageTwo = ({showPageTwo}) => {
-    
-
-
-
-    return (
+    return(
         <>
-        {
-            showPageTwo?
-            <Wrapper>
+           {
+               showPageTwo?
+               <Wrapper>
                 <CartItem/>
                 <Table>
                     <CartTable/>
+                    <CartSummary/>
                 </Table>
-                
-            </Wrapper>:null
-        }
+            </Wrapper>:''
+           } 
         </>
-        
     )
+
+
 }
 
 export default PageTwo
+

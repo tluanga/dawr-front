@@ -12,7 +12,14 @@ import {useSelector,useDispatch} from 'react-redux'
 import {selectProductList} from '../../../product/Product.slice'
 import {selectProductsCurrentPrice} from '../../../product/ProductPrice.slice'
 import {selectGstCodeList} from '../../../gstCode/GstCode.slice'
-import {addCartItem,selectCart,updateCartItem} from './Cart.Slice'
+import {
+        addCartItem,
+        selectCart,
+        updateCartItem,
+        selectCartTotalAmount,
+        setTotalAmount,
+        setTotalTax
+    } from './Cart.Slice'
 
 
 
@@ -31,6 +38,7 @@ const CartItem = () => {
     const gstCodes=useSelector(selectGstCodeList)
     const productsSellPrice=useSelector(selectProductsCurrentPrice)
     const cart=useSelector(selectCart)
+    const cartTotalAmount=useSelector(selectCartTotalAmount)
     
     // component state
     const [product,setProduct]=useState()
@@ -70,6 +78,7 @@ const CartItem = () => {
         }
         if(duplicate===0){
             dispatch(addCartItem(payload))
+            dispatch(setTotalAmount(100))
         }else{
             const _quantity=parseInt(duplicateState.quantity)
             +parseInt(payload.quantity)
@@ -87,11 +96,13 @@ const CartItem = () => {
                     // total_costprice:duplicateState.total_costprice+payload.total_costprice,
                     
                 }
+           
                 
                 
             }
             console.log(_changesPayload)
             dispatch(updateCartItem(_changesPayload))
+            dispatch(setTotalAmount(100))
             console.log('update the product',duplicateState.quantity)
         } 
 
@@ -148,6 +159,7 @@ const CartItem = () => {
                             onChange={onQuantityChange}
                         />
                         <Button 
+                            disabled={!quantity}
                             variant='contained'
                             color='primary'
                             type='submit'
