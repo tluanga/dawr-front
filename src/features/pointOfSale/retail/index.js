@@ -7,6 +7,8 @@ import styled from 'styled-components'
 // ---Component import
 import CustomerSelect from './CustomerSelect.component'
 import CartItem from './CartItem.component'
+import CartTable from './CartTable.component'
+import CartSummary from './CartSummary.component'
 
 
 const Container=styled.div`
@@ -17,12 +19,14 @@ const Container=styled.div`
 `
 const Column1=styled.section`
     display:flex;
-    flex-direction:column;
-    width:35vw;
-    height:90vh;
-    padding:10px;
+    flex-direction:column;  
 `
-
+const Column2=styled.section`
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding-top:10px;
+`
 
 const Retail = () => {
     return(
@@ -30,7 +34,12 @@ const Retail = () => {
             <Column1>
                 <CustomerSelect/>
                 <CartItem/>
-            </Column1>            
+            </Column1>
+            <Column2>
+                <CartTable/>
+                <CartSummary/>
+            </Column2>
+
         </Container>
 
     )

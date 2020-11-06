@@ -23,7 +23,10 @@ import {
         setTotalTax
     } from './Cart.Slice'
 
-
+import {
+    selectCustomer,
+    selectDiscount
+} from './CartInfo.slice'
 
 const ProductContent=styled.form`
     width:400px;
@@ -42,6 +45,8 @@ const CartItem = () => {
     const cart=useSelector(selectCart)
     const cartTotalAmount=useSelector(selectCartTotalAmount)
     const cartTotalTax=useSelector(selectCartTotalTax)
+    const customer=useSelector(selectCustomer)
+    const discount_store=useSelector(selectDiscount)
     
     // component state
     const [product,setProduct]=useState()
@@ -50,10 +55,13 @@ const CartItem = () => {
     const [quantityInStock,setQuantityInStock]=useState()
     const [quantity,setQuantity]=useState() //Quantity to purchase
     const [amount,setAmount]=useState()
+    const [discount,setDiscount]=useState()
     
-    console.log('cart',cart.entities)
-    console.log(typeof(cart.entities))
     
+
+
+
+
     // React hook form
     const {handleSubmit} =useForm()
     const onSubmit=data=>{
@@ -108,15 +116,22 @@ const CartItem = () => {
 
     }
 
+    const SetAmount=()=>{
+        const _sellingPrice=price.per_piece_sell_price
+        const _amount=quantity*_sellingPrice        
+        let _discount=0;
+        
+        if (discount_store){
+            _discount=discount_store
+        }
 
-    const onQuantityChange=(e)=>{
-        const _quantity=e.target.value
-        setQuantity(_quantity)
-        setAmount(_quantity*price.per_piece_sell_price)
-    }
+        if (discount){
+            _discount=discount
+        }
 
-
-
+        setAmount(_amount- _discount)
+        
+    }    
     return (
             <ProductContent onSubmit={handleSubmit(onSubmit)}>
                 <Card style={{height:'550px'}}>
@@ -127,6 +142,7 @@ const CartItem = () => {
                         height:'540px'
                     }}>
                         <Select
+                            isDisabled={!customer}
                             isClearable
                             placeholder='Select Product..'
                             options={productsOptions}
@@ -146,6 +162,7 @@ const CartItem = () => {
                         <section>Cost Price(unit):{price?price.per_piece_sell_price:''}</section>                        
                         <section>Mrp:</section>
                         <section>Quantity:{quantity?quantity:''}</section>
+                        <section>Discount:{discount?discount:''}</section>
                         <section>Amount:{amount?amount:''}</section>
 
                         <TextField
@@ -154,6 +171,11 @@ const CartItem = () => {
                             placeholder='Discount'
                             type='number'
                             disabled={!amount}
+                            onChange={e=>{
+                                const _discount=e.target.value
+                                setDiscount(_discount)
+                                SetAmount()
+                            }}
                         />
 
                         <TextField
@@ -162,7 +184,12 @@ const CartItem = () => {
                             placeholder='Quantity'
                             type='number'
                             disabled={!product&&!quantityInStock}
-                            onChange={onQuantityChange}
+                            onChange={(e)=>{
+                                const _quantity=e.target.value
+                                console.log(_quantity)
+                                setQuantity(_quantity)
+                                SetAmount()
+                            }}
                         />
                         <Button 
                             disabled={!quantity}

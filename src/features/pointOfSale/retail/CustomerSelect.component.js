@@ -3,7 +3,11 @@ import React,{useState} from 'react'
 // ---Redux
 import {useSelector,useDispatch} from 'react-redux'
 import {selectCustomerList} from '../../../features/inventory/customer/Customer.slice'
-import {setCustomer,selectCustomer} from './CartInfo.slice'
+import {
+    setCustomer,
+    selectCustomer,
+    setDiscount
+} from './CartInfo.slice'
 import {selectCustomerTypeList} from '../../inventory/customerType/CustomerType.slice'
 // ---Ui
 import styled from 'styled-components'
@@ -47,6 +51,7 @@ const CustomerSelect = () => {
                                 const _c=customerTypes.find(customerType=>
                                     customerType.id===data.id
                                 )
+                                dispatch(setDiscount(_c.discount_percentage))
                                 setCustomerType(_c)
                             }}
                             
