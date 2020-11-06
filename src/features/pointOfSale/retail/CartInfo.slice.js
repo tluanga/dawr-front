@@ -8,8 +8,8 @@ const purchaseProductInfo=createSlice({
     
     },
     reducers:{
-        setVendor:(state,action)=>{
-            state.vendor=action.payload
+        setCustomer:(state,action)=>{
+            state.customer=action.payload
         },
         setDate:(state,action)=>{
             state.date=action.payload
@@ -17,8 +17,12 @@ const purchaseProductInfo=createSlice({
     }
 })
 
+// -----Selectors--------
+export const selectCustomer=state=>state.pos.retail.cartInfo.customer
+
+
 export const {
-    setVendor,
+    setCustomer,
     setDate,
 
 }=purchaseProductInfo.actions

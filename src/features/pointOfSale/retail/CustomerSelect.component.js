@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 // ---Redux
 import {useSelector,useDispatch} from 'react-redux'
 import {selectCustomerList} from '../../../features/inventory/customer/Customer.slice'
-
+import {setCustomer,selectCustomer} from './CartInfo.slice'
+import {selectCustomerTypeList} from '../../inventory/customerType/CustomerType.slice'
 // ---Ui
 import styled from 'styled-components'
 import Select from 'react-select'
@@ -19,7 +20,13 @@ const Container=styled.div`
 `
 const CustomerSelect = () => {
     // -redux
+    const dispatch=useDispatch()
     const customers=useSelector(selectCustomerList)
+    const customer=useSelector(selectCustomer)
+    const customerTypes=useSelector(selectCustomerTypeList)
+
+    // ---component state
+    const [customerType,setCustomerType]=useState()
 
     return(
         <Container>
@@ -32,11 +39,27 @@ const CustomerSelect = () => {
                         height:'180px',
                         
                     }}>
-                        <Select/>
+                        <Select
+                            isClearable
+                            options={customers}
+                            onChange={data=>{
+                                dispatch(setCustomer(data))
+                                const _c=customerTypes.find(customerType=>
+                                    customerType.id===data.id
+                                )
+                                setCustomerType(_c)
+                            }}
+                            
+                        />
                         
-                        <section>Name:</section>
-                        <section>Phone:</section>
-                        <section>Discount Amount:</section>
+                        <section>Name:{customer?customer.name:''}</section>
+                        <section>Phone:{customer?customer.contact_no:''}</section>
+                        <section>
+                            Discount Amount:{
+                            customerType?customerType.discount_percentage:''
+
+                        }
+                        </section>
                     </CardContent>
                    
                 </Card>
