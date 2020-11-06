@@ -35,6 +35,7 @@ const Control=styled.div`
 
 const Summary=styled.div`
     background-color:white;
+    width:20vw;
 `
 const Text=styled.div`
     font-size:14px;

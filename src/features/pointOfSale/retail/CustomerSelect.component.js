@@ -47,12 +47,14 @@ const CustomerSelect = () => {
                             isClearable
                             options={customers}
                             onChange={data=>{
-                                dispatch(setCustomer(data))
+                                if(data){
+                                    dispatch(setCustomer(data))
                                 const _c=customerTypes.find(customerType=>
                                     customerType.id===data.id
                                 )
                                 dispatch(setDiscount(_c.discount_percentage))
                                 setCustomerType(_c)
+                                }                                
                             }}
                             
                         />
