@@ -1,6 +1,6 @@
 import React from 'react'
 // -------redux-------
-import {useSelector,useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 import {selectCustomerList} from './Customer.slice'
 import {EDIT} from './Customer.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
