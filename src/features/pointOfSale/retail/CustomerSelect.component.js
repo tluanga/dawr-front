@@ -9,17 +9,21 @@ import styled from 'styled-components'
 import Select from 'react-select'
 
 
+
+
 const Container=styled.div`
     display:flex;
-    width:35vw;
-    height:90vh;
-    background-color:orange;
+    width:30vw;
+    height:20vh;
+    background-color:blueviolet;
 `
 const SelectContainer=styled.div`
-    width:300px;
+    width:380px;
+    padding:10px;
+    
 `
 
-const ProductSelect = () => {
+const CustomerSelect = () => {
     // -redux
     const customers=useSelector(selectCustomerList)
 
@@ -37,4 +41,4 @@ const ProductSelect = () => {
     )
 }
 
-export default ProductSelect
+export default CustomerSelect

@@ -25,7 +25,6 @@ function Main() {
                         component={Inventory}
                     />
                     <Route
-                        exact
                         path='/pos'
                         component={Pos}
                     />

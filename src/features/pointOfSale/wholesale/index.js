@@ -1,6 +1,6 @@
 import React from 'react'
 
-const WholeSale = () => {
+const Wholesale = () => {
     return (
         <div>
             WholeSale
@@ -8,4 +8,4 @@ const WholeSale = () => {
     )
 }
 
-export default WholeSale
+export default Wholesale

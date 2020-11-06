@@ -24,9 +24,7 @@ const Control=styled.div`
 
 const PurchaseProduct = () => {
     const history=useHistory()
-    const handleRetailClick=()=>{
-        history.push('/pos/retail')
-    }
+   
 
     return (
         <Container>
@@ -37,7 +35,7 @@ const PurchaseProduct = () => {
                     variant='contained'
                     color='primary'
                     style={{width:'300px', height:'100px', color:'#e54304'}}
-                    onClick={handleRetailClick}
+                    onClick={()=>history.push('/pos/retail')}
                 ><h1 style={{color:'white'}}>Retail</h1>
                 </Button>
 
@@ -47,7 +45,7 @@ const PurchaseProduct = () => {
                     variant='contained'
                         color='primary'
                         style={{width:'300px', height:'100px', color:'#e54304'}}
-                            
+                    onClick={()=>history.push('pos/wholesale')}      
                     ><h1 style={{color:'white'}}>Wholesale</h1>
                     </Button>
             </Control>

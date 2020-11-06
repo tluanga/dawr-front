@@ -8,6 +8,7 @@ import styled from 'styled-components'
 //Component Import
 import PosMode from './PosMode.component'
 import Retail from './retail'
+import Wholesale from './wholesale'
 
 const Container=styled.div`
     display:flex;
@@ -28,12 +29,17 @@ const Pos = () => {
     return (
        <Container>
            <Switch>
-               <Route path='/pos/retail'>
+               
+               <Route path='/pos/retail/'>
                    <Retail/>
                </Route>
-               <Route path='/pos/'>
+               <Route path='/pos/wholesale/'>
+                   <Wholesale/>
+               </Route>
+               <Route exact path='/pos'>
                    <PosMode/>
                 </Route>
+               
            </Switch>
            
            
