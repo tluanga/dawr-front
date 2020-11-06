@@ -97,6 +97,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
             setManufacturer(modalData.manufacturer)
             setGstCode(modalData.gst_code)
             selectUnitOfMeasurement(modalData.unit_of_measurement)
+            setStatus(modalData.active)
             
     },[modalData])
   
@@ -110,9 +111,11 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
     const {handleSubmit,register,reset}=useForm()
     
     const onSubmit=formData=>{
+        console.log('formDaata',formData)
         formData.active=status
         const payload={
             name:formData.name,
+            serial_no:formData.serialNo,
             model:formData.model,
             category:category,
             manufacturer:manufacturer,
@@ -174,6 +177,16 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                     />
                     <TextField
                         variant='outlined'
+                        name='serialNo'
+                        label='Serial No'
+                        defaultValue={modalMode===EDIT?modalData.serial_no:''}
+                        placeholder='Serial No'
+                        inputRef={register}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
+                        size='small'
+                    />
+                    <TextField
+                        variant='outlined'
                         name='model'
                         label='Model'
                         defaultValue={modalMode===NEW?'':modalData.model}
@@ -189,7 +202,12 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         defaultValue={
                             modalData.category?
                             categoryOptions[modalData.category-1]:''}
-                        onChange={data=>setCategory(data.id)}
+                        onChange={data=>{
+                            if(data){
+                                setCategory(data.id)
+                            }
+                            
+                        }}
                     />
                     <Select
                         isClearable

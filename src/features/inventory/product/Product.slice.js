@@ -34,7 +34,7 @@ export const newProduct=createAsyncThunk('product/new',
 
 export const updateProduct=createAsyncThunk('product/update',
     async ({id,data})=>{
-        
+        console.log('update Prpduct',data)
         const response= await update({url,id,data})
         return response
     }

@@ -26,6 +26,10 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             accessor: 'name', // accessor is the "key" in the data
         },
         {
+            Header: 'Serial No',
+            accessor: 'serial_no', // accessor is the "key" in the data
+        },
+        {
             Header: 'Model',
             accessor: 'model', // accessor is the "key" in the data
         },
