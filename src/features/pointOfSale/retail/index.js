@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 // ---Component import
 import CustomerSelect from './CustomerSelect.component'
-import ProductSelect from './ProductSelect.component'
+import CartItem from './CartItem.component'
 
 
 const Container=styled.div`
@@ -29,7 +29,7 @@ const Retail = () => {
         <Container>
             <Column1>
                 <CustomerSelect/>
-                <ProductSelect/>
+                <CartItem/>
             </Column1>            
         </Container>
 
