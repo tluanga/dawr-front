@@ -38,8 +38,9 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             accessor: 'category',
             Cell:({cell:{value}})=>{
                 
-                const selectedCategory=useSelector(state=>selectCategoryById(state,value))             
-                return selectedCategory.name
+                const selectedCategory=useSelector(state=>selectCategoryById(state,value))
+                return selectedCategory?selectedCategory.name:'null'           
+                
             }
         },
         {
@@ -47,7 +48,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             accessor: 'manufacturer',
             Cell:({cell:{value}})=>{
                 const selectedManufacturer=useSelector(state=>selectManufacturerById(state,value))                
-                return selectedManufacturer.name
+                return selectedManufacturer?selectedManufacturer.name:'null'
             }
         },
         {
@@ -55,7 +56,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             accessor: 'gst_code',
             Cell:({cell:{value}})=>{
                 const selectedGstCode=useSelector(state=>selectGstCodeById(state,value))                  
-                return selectedGstCode.code
+                return selectedGstCode?selectedGstCode.code:'null'
             }
         },
         {
@@ -64,7 +65,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             Cell:({cell:{value}})=>{
                 const selectedUnitOfMeasurement=
                     useSelector(state=>selectUnitOfMeasurementById(state,value)) 
-                return selectedUnitOfMeasurement.unit_of_measurement
+                return selectedUnitOfMeasurement?selectedUnitOfMeasurement.unit_of_measurement:'null'
                 
              }
         },
