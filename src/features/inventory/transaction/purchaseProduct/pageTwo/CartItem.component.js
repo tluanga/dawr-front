@@ -54,6 +54,7 @@ const CartItem = () => {
     const [quantityInStock,setQuantityInStock]=useState()
     const [quantity,setQuantity]=useState() //Quantity to purchase
     const [amount,setAmount]=useState()
+    const [newCostPrice,setNewCostPrice]=useState()
     
     console.log('cart',cart.entities)
     console.log(typeof(cart.entities))
@@ -114,7 +115,7 @@ const CartItem = () => {
 
     const onCostPriceChange=event=>{
         const _data=event.target.value
-        setCostPrice(_data)
+        setNewCostPrice(_data)
     }
 
     const onQuantityChange=(e)=>{
@@ -127,12 +128,12 @@ const CartItem = () => {
 
     return (
             <ProductContent onSubmit={handleSubmit(onSubmit)}>
-                <Card style={{height:'450px'}}>
+                <Card style={{height:'500px'}}>
                     <CardContent style={{
                         display:'flex',
                         flexDirection:'column',
                         justifyContent:'space-evenly',
-                        height:'450px'
+                        height:'500px'
                     }}>
                         <Select
                             isClearable
@@ -160,6 +161,7 @@ const CartItem = () => {
                         <section>Mrp:{mrp?mrp.amount:''}</section>
                         <section>Quantity:{quantity?quantity:''}</section>
                         <section>Amount:{amount?amount:''}</section>
+                        <section>New Cost Price:{newCostPrice?newCostPrice:''}</section>
 
                         <TextField
                             variant='outlined'
