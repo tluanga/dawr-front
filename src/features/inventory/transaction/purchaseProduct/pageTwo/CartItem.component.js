@@ -56,17 +56,16 @@ const CartItem = () => {
     const [mrp,setMrp]=useState()
     const [productStock,setProductStock]=useState()
     const [quantityInStock,setQuantityInStock]=useState()
-    const [quantity,setQuantity]=useState() //Quantity to purchase
+    const [quantity,setQuantity]=useState(null) //Quantity to purchase
     const [amount,setAmount]=useState(0)
     const [newCostPrice,setNewCostPrice]=useState()
     const [discount,setDiscount]=useState()
     const [disable,setDisabled]=useState({status:false,message:''})
     
     
-    const SetCostPrice=()=>{
-                  
+    const SetCostPrice=()=>{                  
         if(newCostPrice) return newCostPrice
-        else return costPrice.per_piece_cost_price
+        else if(costPrice) return costPrice.per_piece_cost_price
     }
     
     // React hook form
@@ -106,28 +105,15 @@ const CartItem = () => {
                     quantity:_quantity,
                     amount:_quantity*costPrice.per_piece_sell_price,
                     tax:_quantity*gstCode.totalGst
-                    
                 }
-           
-                
-                
             }
-            
             dispatch(updateCartItem(_changesPayload))
             dispatch(setTotalAmount(cartTotalAmount+amount))
             dispatch(setTotalTax(cartTotalTax+payload.tax))
-            
         } 
-
-
     }
 
-    const onCostPriceChange=event=>{
-        const _data=event.target.value
-        setNewCostPrice(_data)
-        const _costPrice=SetCostPrice()
-        setAmount(quantity*_costPrice)
-    }
+   
 
     const onQuantityChange=(e)=>{
         const _quantity=e.target.value
@@ -163,7 +149,13 @@ const CartItem = () => {
                                     setCostPrice(_price)
                                     setMrp(_mrp)
                                     setProductStock(_productStock)
-                                    if(_productStock.quantity<1)setDisabled({status:true,message:'not Enought Stock'})
+                                    if(_productStock){
+                                        if(_productStock.quantity<1)setDisabled({status:true,message:'Not Enought Stock'})
+                                    }
+                                    else{
+                                        setDisabled({status:false,message:''})
+                                    }
+                                    
                                 }
                                 
                             }}
@@ -178,17 +170,21 @@ const CartItem = () => {
                         <section>Quantity:{quantity?quantity:''}</section>
                         <section>Amount:{amount?amount:''}</section>
                         <section>New Cost Price:{newCostPrice?newCostPrice:''}</section>
-                        {disable.status===true? <Alert severity="error">Not Enought Stock!</Alert>:''}
+                        {disable.status===true? <Alert severity="error">{disable.message}</Alert>:''}
                         <TextField
                             label='New Cost Price'
                             variant='outlined'
                             size='small'
                             placeholder='Cost Price'
                             type='number'
-                            onChange={onCostPriceChange}
+                            onChange={event=>{
+                                const _data=event.target.value
+                                setNewCostPrice(_data)
+                                const _costPrice=SetCostPrice()
+                                setAmount(quantity*_costPrice)
+                            }}
                             disabled={!costPrice}
                         />
-
                         <TextField
                             label='Quantity'
                             variant='outlined'
@@ -204,7 +200,7 @@ const CartItem = () => {
                             size='small'
                             placeholder='Discount'
                             type='number'
-                            disabled={!product&&!quantityInStock}
+                            disabled={!product&disable.status===true}
                             onChange={data=>setDiscount(data)}
                         />
                         <Button 
