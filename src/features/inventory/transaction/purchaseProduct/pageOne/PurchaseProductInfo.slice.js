@@ -3,10 +3,6 @@ import {createSlice} from '@reduxjs/toolkit'
 const purchaseProductInfo=createSlice({
     name:'purchaseInfo',
     initialState:{
-        vendor:{},
-        warehouse:{},
-        date:{},
-    
     },
     reducers:{
         setVendor:(state,action)=>{
@@ -20,6 +16,9 @@ const purchaseProductInfo=createSlice({
         }
     }
 })
+
+export const selectVendor=state=>state.inventory.transaction.purchaseProduct.productPurchaseInfo.vendor
+export const selectWarehouse=state=>state.inventory.transaction.purchaseProduct.productPurchaseInfo.warehouse
 
 export const {
     setVendor,

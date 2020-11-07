@@ -3,13 +3,20 @@ import Select from 'react-select'
 import DateFnsUtils from '@date-io/date-fns';
 // -------Redux
 import {useSelector,useDispatch} from 'react-redux'
-import {selectVendorList} from '../../../vendor/Vendor.slice'
-import {selectWarehouseList} from '../../../warehouse/Warehouse.slice'
-import {setVendor,setWarehouse, setDate} from './PurchaseProductInfo.slice'
-// -------Material Ui
+import {fetchVendorList,selectVendorList} from '../../../vendor/Vendor.slice'
+import {fetchWarehouseList,selectWarehouseList} from '../../../warehouse/Warehouse.slice'
+import {
+    setVendor,
+    setWarehouse,
+    setDate,
+    selectVendor,
+    selectWarehouse
+} from './PurchaseProductInfo.slice'
+
+
+     // -------Material Ui
 import {
     MuiPickersUtilsProvider,
-    
     KeyboardDatePicker,
   } from '@material-ui/pickers';
 
@@ -50,10 +57,14 @@ const Form =styled.form`
 const PurchaseProductPageOne = ({
     showPageOne,setShowPageOne,setShowPageTwo
 }) => {
+    // --------Redux-----------
     const dispatch=useDispatch()
-    const vendor=useSelector(selectVendorList)
-    const warehouse=useSelector(selectWarehouseList)
-
+    // dispatch(fetchVendorList())
+    // dispatch(fetchWarehouseList())
+    const vendors=useSelector(selectVendorList)
+    const warehouses=useSelector(selectWarehouseList)
+    const vendor=useSelector(selectVendor)
+    const warehouse=useSelector(selectWarehouse)
     const [selectedDate, setSelectedDate] = React.useState()
             
 
@@ -71,14 +82,14 @@ const PurchaseProductPageOne = ({
                 <h1>Purchase Product</h1>
                 <Form>
                     <Select
-                        options={vendor}
+                        options={vendors}
                         placeholder='Select Vendor...'
                         isClearable
                         isSearchable
                         onChange={data=>dispatch(setVendor(data))}
                     />
                     <Select
-                        options={warehouse}
+                        options={warehouses}
                         placeholder='Select Warehouse...'
                         isClearable
                         isSearchable
@@ -99,6 +110,7 @@ const PurchaseProductPageOne = ({
                         />
                     </MuiPickersUtilsProvider>
                     <Button
+                        disabled={!vendor&&!warehouse}
                         variant='contained'
                         color='primary'
                         onClick={()=>{

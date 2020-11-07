@@ -10,7 +10,10 @@ import {useForm} from 'react-hook-form'
 // -----Redux------
 import {useSelector,useDispatch} from 'react-redux'
 import {selectProductList} from '../../../product/Product.slice'
-import {selectProductsCurrentPrice} from '../../../product/ProductPrice.slice'
+import {
+    selectProductsCurrentCostPrice,
+    selectProductsCurrentMrp
+} from '../../../product/ProductPrice.slice'
 import {selectGstCodeList} from '../../../gstCode/GstCode.slice'
 import {
         addCartItem,
@@ -37,7 +40,8 @@ const CartItem = () => {
     const dispatch=useDispatch()
     const productsOptions=useSelector(selectProductList)
     const gstCodes=useSelector(selectGstCodeList)
-    const productsSellPrice=useSelector(selectProductsCurrentPrice)
+    const productsCostPrice=useSelector(selectProductsCurrentCostPrice)
+    const productsMrp=useSelector(selectProductsCurrentMrp)
     const cart=useSelector(selectCart)
     const cartTotalAmount=useSelector(selectCartTotalAmount)
     const cartTotalTax=useSelector(selectCartTotalTax)
@@ -45,7 +49,8 @@ const CartItem = () => {
     // component state
     const [product,setProduct]=useState()
     const [gstCode,setGstCode]=useState()
-    const [price,setPrice]=useState()
+    const [costPrice,setCostPrice]=useState()
+    const [mrp,setMrp]=useState()
     const [quantityInStock,setQuantityInStock]=useState()
     const [quantity,setQuantity]=useState() //Quantity to purchase
     const [amount,setAmount]=useState()
@@ -65,7 +70,7 @@ const CartItem = () => {
             id:cart.length+1,
             product:product,
             gstCode:gstCode,
-            selling_price:price.per_piece_sell_price,
+            selling_price:costPrice.per_piece_sell_price,
             quantity:quantity,
             amount:amount,
             tax:quantity*gstCode.totalGst
@@ -89,7 +94,7 @@ const CartItem = () => {
                 id:duplicateState.id,
                 changes:{
                     quantity:_quantity,
-                    amount:_quantity*price.per_piece_sell_price,
+                    amount:_quantity*costPrice.per_piece_sell_price,
                     tax:_quantity*gstCode.totalGst
                     
                 }
@@ -107,11 +112,15 @@ const CartItem = () => {
 
     }
 
+    const onCostPriceChange=event=>{
+        const _data=event.target.value
+        setCostPrice(_data)
+    }
 
     const onQuantityChange=(e)=>{
         const _quantity=e.target.value
         setQuantity(_quantity)
-        setAmount(_quantity*price.per_piece_sell_price)
+        setAmount(_quantity*costPrice.per_piece_sell_price)
     }
 
 
@@ -130,11 +139,16 @@ const CartItem = () => {
                             placeholder='Select Product..'
                             options={productsOptions}
                             onChange={data=>{
-                                setProduct(data)                                
-                                const _gstCode=gstCodes.find(gstCode=>gstCode.id===data.gst_code)
-                                const _price=productsSellPrice.find(price=>price.product===data.id)
-                                setGstCode(_gstCode)
-                                setPrice(_price)
+                                if(data){
+                                    setProduct(data)                                
+                                    const _gstCode=gstCodes.find(gstCode=>gstCode.id===data.gst_code)
+                                    const _price=productsCostPrice.find(price=>price.product===data.id)
+                                    const _mrp=productsMrp.find(price=>price.product===data.id)
+                                    setGstCode(_gstCode)
+                                    setCostPrice(_price)
+                                    setMrp(_mrp)
+                                }
+                                
                             }}
                         />
                         
@@ -142,8 +156,8 @@ const CartItem = () => {
                         <section>Quantity in Stock:</section>
                         <section>Gst Rate:{gstCode?gstCode.totalGst:''}</section>
                         <section>Hsn Code:{gstCode?gstCode.code:''}</section>
-                        <section>Cost Price(unit):{price?price.per_piece_sell_price:''}</section>                        
-                        <section>Mrp:</section>
+                        <section>Cost Price(unit):{costPrice?costPrice.per_piece_cost_price:''}</section>                        
+                        <section>Mrp:{mrp?mrp.amount:''}</section>
                         <section>Quantity:{quantity?quantity:''}</section>
                         <section>Amount:{amount?amount:''}</section>
 
@@ -152,6 +166,7 @@ const CartItem = () => {
                             size='small'
                             placeholder='Cost Price'
                             type='number'
+                            onChange={onCostPriceChange}
                         />
 
                         <TextField

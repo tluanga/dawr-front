@@ -32,7 +32,7 @@ const customStyles = {
       content: { 
         position: 'absolute',
         width:'450px',
-        height:'550px',
+        height:'650px',
         top: '1vh',
         bottom: '15vh',
         left: '32.5vw',
