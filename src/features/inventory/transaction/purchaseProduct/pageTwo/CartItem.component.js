@@ -53,25 +53,28 @@ const CartItem = () => {
     const [mrp,setMrp]=useState()
     const [quantityInStock,setQuantityInStock]=useState()
     const [quantity,setQuantity]=useState() //Quantity to purchase
-    const [amount,setAmount]=useState()
+    const [amount,setAmount]=useState(0)
     const [newCostPrice,setNewCostPrice]=useState()
     
-    console.log('cart',cart.entities)
-    console.log(typeof(cart.entities))
+    const SetCostPrice=()=>{
+        console.log('newCostPrice',newCostPrice)
+        console.log('oldCostPrice',costPrice)            
+        if(newCostPrice) return newCostPrice
+        else return costPrice.per_piece_cost_price
+    }
     
     // React hook form
     const {handleSubmit} =useForm()
+
     const onSubmit=data=>{
         // check product already existed in the cart
         let duplicate=0
         let duplicateState={}
-       
-
         const payload={
             id:cart.length+1,
             product:product,
             gstCode:gstCode,
-            selling_price:costPrice.per_piece_sell_price,
+            cost_price:SetCostPrice(),
             quantity:quantity,
             amount:amount,
             tax:quantity*gstCode.totalGst
@@ -116,12 +119,16 @@ const CartItem = () => {
     const onCostPriceChange=event=>{
         const _data=event.target.value
         setNewCostPrice(_data)
+        const _costPrice=SetCostPrice()
+        setAmount(quantity*_costPrice)
     }
 
     const onQuantityChange=(e)=>{
         const _quantity=e.target.value
+        const _costPrice=SetCostPrice()
+        console.log('cost price is',_costPrice)
         setQuantity(_quantity)
-        setAmount(_quantity*costPrice.per_piece_sell_price)
+        setAmount(_quantity*_costPrice)
     }
 
 
@@ -169,6 +176,7 @@ const CartItem = () => {
                             placeholder='Cost Price'
                             type='number'
                             onChange={onCostPriceChange}
+                            disabled={!costPrice}
                         />
 
                         <TextField
