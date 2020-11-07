@@ -1,4 +1,7 @@
 import React,{useState} from 'react'
+// ---------Redux--------
+import {useDispatch} from 'react-redux'
+import {fetchCustomerList} from './Customer.slice'
 import CustomerModal from './Customer.modal'
 import CustomerTable from './Customer.table'
 import {NEW} from './Customer.constants'
@@ -21,6 +24,10 @@ const Control=styled.section`
 `
 
 const Customer = () => {
+    // ----Redux------
+    const dispatch=useDispatch()
+    dispatch(fetchCustomerList()) 
+
     const [openModal,setOpenModal]=useState(false)
     const [modalMode,setModalMode]=useState(NEW)
     const [modalData,setModalData]=useState({})

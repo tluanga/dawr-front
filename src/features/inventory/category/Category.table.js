@@ -1,7 +1,7 @@
 import React from 'react'
 // -------redux-------
-import {useDispatch,useSelector} from 'react-redux'
-import {selectCategoryList,fetchCategoryList} from './Category.slice' 
+import {useSelector} from 'react-redux'
+import {selectCategoryList} from './Category.slice' 
 import {EDIT} from './Category.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
 import Button from '@material-ui/core/Button'
@@ -64,8 +64,7 @@ const CategoryTable = ({setOpenModal,setModalMode,setModalData}) => {
         [setModalData,setOpenModal,setModalMode]
       )
     // ----Redux-----
-    const dispatch=useDispatch()
-    dispatch(fetchCategoryList())
+    
     const categoryList=useSelector(selectCategoryList)
     return (
         <div>

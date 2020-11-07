@@ -226,7 +226,8 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                             modalData.gst_code?
                             gstCodeOptions[
                                 modalData.gst_code-1]:''}
-                        onChange={data=>setGstCode(data.id)}
+                        onChange={data=>{setGstCode(data.id)}
+                    }
 
 
                     />

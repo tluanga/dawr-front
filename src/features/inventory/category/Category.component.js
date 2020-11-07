@@ -1,4 +1,8 @@
 import React,{useState} from 'react'
+// ------Redux--------
+import {useDispatch}from 'react-redux'
+import {fetchCategoryList} from './Category.slice'
+
 import VendorModal from './Category.modal'
 import VendorTable from './Category.table'
 import {NEW} from './Category.constants'
@@ -21,6 +25,10 @@ const Control=styled.section`
 `
 
 const Category = () => {
+    // ---Redux----
+    const dispatch=useDispatch()
+    dispatch(fetchCategoryList())
+
     const [openModal,setOpenModal]=useState(false)
     const [modalMode,setModalMode]=useState(NEW)
     const [modalData,setModalData]=useState({})

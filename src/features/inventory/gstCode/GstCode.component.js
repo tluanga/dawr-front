@@ -1,4 +1,8 @@
 import React,{useState} from 'react'
+// ----------Redux---------
+import {useDispatch} from 'react-redux'
+import {fetchGstCodeList} from './GstCode.slice'
+
 import GstCodeModal from './GstCode.modal'
 import GstCodeTable from './GstCode.table'
 import {NEW} from './GstCode.constants'
@@ -21,6 +25,11 @@ const Control=styled.section`
 `
 
 const GstCode = () => {
+    // ---------Redux----------
+    const dispatch=useDispatch()
+    dispatch(fetchGstCodeList()) 
+
+
     const [openModal,setOpenModal]=useState(false)
     const [modalMode,setModalMode]=useState(NEW)
     const [modalData,setModalData]=useState({})

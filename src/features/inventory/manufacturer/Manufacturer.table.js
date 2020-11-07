@@ -1,7 +1,7 @@
 import React from 'react'
 // -------redux-------
-import {useDispatch,useSelector} from 'react-redux'
-import {fetchManufacturerList,selectManufacturerList} from './Manufacturer.slice' 
+import {useSelector} from 'react-redux'
+import {selectManufacturerList} from './Manufacturer.slice' 
 import {EDIT} from './Manufacturer.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
 import Button from '@material-ui/core/Button'
@@ -60,8 +60,7 @@ const ManufacturerTable = ({setOpenModal,setModalMode,setModalData}) => {
         [setModalData,setOpenModal,setModalMode]
       )
     // ----------Redux---------
-    const dispatch=useDispatch()
-    dispatch(fetchManufacturerList())  
+
     const manufacturerList=useSelector(selectManufacturerList)
     return (
         <div>

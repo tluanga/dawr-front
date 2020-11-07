@@ -1,6 +1,6 @@
 import React from 'react'
 // -------redux-------
-import {useDipatch,useSelector} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import {fetchVendorList,selectVendorList} from './Vendor.slice' 
 import {EDIT} from './Vendor.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
@@ -80,8 +80,7 @@ const VendorTable = ({setOpenModal,setModalMode,setModalData}) => {
         [setModalData,setOpenModal,setModalMode]
       )
     //------Redux-------
-    const dispatch=useDipatch() 
-    dispatch(fetchVendorList()) 
+   
     const vendorList=useSelector(selectVendorList)
     return (
         <div>

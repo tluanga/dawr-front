@@ -1,8 +1,8 @@
 import React from 'react'
 // -------redux-------
-import {useSelector,useDispatch} from 'react-redux'
-import {selectProductList,fetchProductList} from './Product.slice'
-import {selectCategoryById,fetchCategoryList} from '../category/Category.slice' 
+import {useSelector} from 'react-redux'
+import {selectProductList} from './Product.slice'
+import {selectCategoryById} from '../category/Category.slice' 
 import {selectGstCodeById} from '../gstCode/GstCode.slice'
 import {selectManufacturerById} from '../manufacturer/Manufacturer.slice'
 import {selectUnitOfMeasurementById} from '../unitOfMeasurement/UnitOfMeasurement.slice'
@@ -38,7 +38,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             accessor: 'category',
             Cell:({cell:{value}})=>{
                 
-                const selectedCategory=useSelector(state=>selectCategoryById(state,value))  
+                const selectedCategory=useSelector(state=>selectCategoryById(state,value))             
                 return selectedCategory.name
             }
         },
@@ -46,7 +46,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             Header: 'Manufacturer',
             accessor: 'manufacturer',
             Cell:({cell:{value}})=>{
-                const selectedManufacturer=useSelector(state=>selectManufacturerById(state,value))  
+                const selectedManufacturer=useSelector(state=>selectManufacturerById(state,value))                
                 return selectedManufacturer.name
             }
         },
@@ -54,7 +54,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             Header: 'HSN Code',
             accessor: 'gst_code',
             Cell:({cell:{value}})=>{
-                const selectedGstCode=useSelector(state=>selectGstCodeById(state,value))  
+                const selectedGstCode=useSelector(state=>selectGstCodeById(state,value))                  
                 return selectedGstCode.code
             }
         },
@@ -63,8 +63,10 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             accessor: 'unit_of_measurement',
             Cell:({cell:{value}})=>{
                 const selectedUnitOfMeasurement=
-                    useSelector(state=>selectUnitOfMeasurementById(state,value))  
-                return selectedUnitOfMeasurement.unit_of_measurement          }
+                    useSelector(state=>selectUnitOfMeasurementById(state,value)) 
+                return selectedUnitOfMeasurement.unit_of_measurement
+                
+             }
         },
         {
             Header: 'Remarks',
@@ -107,16 +109,19 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
         [setModalData,setOpenModal,setModalMode]
       )
     // ---Redux
-    const dispatch=useDispatch()
-    dispatch(fetchProductList())
-    dispatch(fetchCategoryList())
-    const productList=useSelector(selectProductList)
-    
+   
+    const productList=useSelector(selectProductList)    
    
     return (
-        <div>
-            <ReactTable columns={columns} data={productList}/>
-        </div>
+        <>
+            {
+                productList?
+                <div>
+                    <ReactTable columns={columns} data={productList}/>
+                </div>:null
+            }
+        </>
+       
     )
 }
 

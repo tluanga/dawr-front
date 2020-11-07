@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 // -------redux-------
-import {useDispatch,useSelector,} from 'react-redux'
-import {fetchCustomerList,selectCustomerList} from './Customer.slice'
+import {useSelector,} from 'react-redux'
+import {selectCustomerList} from './Customer.slice'
 import {EDIT} from './Customer.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
 import Button from '@material-ui/core/Button'
@@ -84,8 +84,7 @@ const CustomerTable = ({setOpenModal,setModalMode,setModalData}) => {
         [setModalData,setOpenModal,setModalMode]
       )
     // ---Redux-------
-    const dispatch=useDispatch()
-    dispatch(fetchCustomerList())  
+     
     const customerList=useSelector(selectCustomerList)
     
     useEffect(()=>{

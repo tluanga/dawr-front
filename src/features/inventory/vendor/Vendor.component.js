@@ -1,4 +1,8 @@
 import React,{useState} from 'react'
+//----------Redux------------
+import {useDispatch} from 'react-redux' 
+import {fetchVendorList} from './Vendor.slice'
+
 import VendorModal from './Vendor.modal'
 import VendorTable from './Vendor.table'
 import {NEW} from './Vendor.constants'
@@ -21,6 +25,10 @@ const Control=styled.section`
 `
 
 const Vendor = () => {
+    //---------------Redux--------
+    const dispatch=useDispatch() 
+    dispatch(fetchVendorList())
+
     const [openModal,setOpenModal]=useState(false)
     const [modalMode,setModalMode]=useState(NEW)
     const [modalData,setModalData]=useState({})

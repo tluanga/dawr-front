@@ -1,4 +1,8 @@
 import React,{useState} from 'react'
+// ------------Redux-----------
+import {useDispatch} from 'react-redux'
+import {fetchCustomerTypeList} from './CustomerType.slice'
+
 import VendorModal from './CustomerType.modal'
 import VendorTable from './CustomerType.table'
 import {NEW} from './CustomerType.constants'
@@ -21,6 +25,10 @@ const Control=styled.section`
 `
 
 const CustomerType = () => {
+    // -------Redux-------
+    const dispatch=useDispatch()
+    dispatch(fetchCustomerTypeList()) 
+
     const [openModal,setOpenModal]=useState(false)
     const [modalMode,setModalMode]=useState(NEW)
     const [modalData,setModalData]=useState({})

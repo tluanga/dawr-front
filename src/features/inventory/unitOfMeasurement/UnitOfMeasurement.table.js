@@ -1,7 +1,7 @@
 import React from 'react'
 // -------redux-------
-import {useDispatch,useSelector} from 'react-redux'
-import {fetchUnitOfMeasurementList,selectUnitOfMeasurementList} from './UnitOfMeasurement.slice' 
+import {useSelector} from 'react-redux'
+import {selectUnitOfMeasurementList} from './UnitOfMeasurement.slice' 
 import {EDIT} from './UnitOfMeasurement.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
 import Button from '@material-ui/core/Button'
@@ -64,8 +64,7 @@ const UnitOfMeasurementTable = ({setOpenModal,setModalMode,setModalData}) => {
         ],
         [setModalData,setOpenModal,setModalMode]
       )
-    const dispatch=useDispatch() 
-    dispatch(fetchUnitOfMeasurementList()) 
+    
     const unitOfMeasurementList=useSelector(selectUnitOfMeasurementList)
     return (
         <div>

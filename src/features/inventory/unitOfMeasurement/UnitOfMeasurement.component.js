@@ -1,4 +1,8 @@
 import React,{useState} from 'react'
+import {useDispatch} from 'react-redux'
+import {fetchUnitOfMeasurementList} from './UnitOfMeasurement.slice'
+
+
 import VendorModal from './UnitOfMeasurement.modal'
 import VendorTable from './UnitOfMeasurement.table'
 import {NEW} from './UnitOfMeasurement.constants'
@@ -21,6 +25,10 @@ const Control=styled.section`
 `
 
 const UnitOfMeasurement = () => {
+    // -----------Redux---------------
+    const dispatch=useDispatch() 
+    dispatch(fetchUnitOfMeasurementList()) 
+
     const [openModal,setOpenModal]=useState(false)
     const [modalMode,setModalMode]=useState(NEW)
     const [modalData,setModalData]=useState({})

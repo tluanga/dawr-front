@@ -1,4 +1,13 @@
 import React,{useState} from 'react'
+// ----------Redux-------------
+import {useDispatch} from 'react-redux'
+import {fetchProductList} from './Product.slice'
+import {fetchCategoryList} from '../category/Category.slice'
+import {fetchGstCodeList} from '../gstCode/GstCode.slice'
+import {fetchManufacturerList} from '../manufacturer/Manufacturer.slice'
+import {fetchUnitOfMeasurementList} from '../unitOfMeasurement/UnitOfMeasurement.slice'
+
+
 import ProductModal from './Product.modal'
 import ProductTable from './Product.table'
 import {NEW} from './Product.constants'
@@ -21,6 +30,16 @@ const Control=styled.section`
 `
 
 const Product = () => {
+    // ----------Redux ------------
+    const dispatch=useDispatch()
+    dispatch(fetchProductList())
+    dispatch(fetchCategoryList())
+    dispatch(fetchGstCodeList())
+    dispatch(fetchManufacturerList())
+    dispatch(fetchUnitOfMeasurementList())
+
+
+
     const [openModal,setOpenModal]=useState(false)
     const [modalMode,setModalMode]=useState(NEW)
     const [modalData,setModalData]=useState({})
