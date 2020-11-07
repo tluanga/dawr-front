@@ -1,7 +1,7 @@
 import React from 'react'
 // -------redux-------
-import {useSelector} from 'react-redux'
-import {selectGstCodeList} from './GstCode.slice' 
+import {useDispatch,useSelector} from 'react-redux'
+import {fetchGstCodeList,selectGstCodeList} from './GstCode.slice' 
 import {EDIT} from './GstCode.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
 import Button from '@material-ui/core/Button'
@@ -75,7 +75,9 @@ const GstCodeTable = ({setOpenModal,setModalMode,setModalData}) => {
         ],
         [setModalData,setOpenModal,setModalMode]
       )
-      
+    // --------Redux--------
+    const dispatch=useDispatch()
+    dispatch(fetchGstCodeList())  
     const gstCodeList=useSelector(selectGstCodeList)
     return (
         <div>
