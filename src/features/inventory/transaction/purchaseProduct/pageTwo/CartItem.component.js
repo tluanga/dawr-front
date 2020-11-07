@@ -25,7 +25,7 @@ import {
         selectCartTotalTax,
         setTotalTax
     } from './Cart.Slice'
-
+import Alert from '@material-ui/lab/Alert'
 
 
 const ProductContent=styled.form`
@@ -60,6 +60,8 @@ const CartItem = () => {
     const [amount,setAmount]=useState(0)
     const [newCostPrice,setNewCostPrice]=useState()
     const [discount,setDiscount]=useState()
+    const [disable,setDisabled]=useState({status:false,message:''})
+    
     
     const SetCostPrice=()=>{
                   
@@ -161,6 +163,7 @@ const CartItem = () => {
                                     setCostPrice(_price)
                                     setMrp(_mrp)
                                     setProductStock(_productStock)
+                                    if(_productStock.quantity<1)setDisabled({status:true,message:'not Enought Stock'})
                                 }
                                 
                             }}
@@ -175,7 +178,7 @@ const CartItem = () => {
                         <section>Quantity:{quantity?quantity:''}</section>
                         <section>Amount:{amount?amount:''}</section>
                         <section>New Cost Price:{newCostPrice?newCostPrice:''}</section>
-
+                        {disable.status===true? <Alert severity="error">Not Enought Stock!</Alert>:''}
                         <TextField
                             label='New Cost Price'
                             variant='outlined'
@@ -205,7 +208,7 @@ const CartItem = () => {
                             onChange={data=>setDiscount(data)}
                         />
                         <Button 
-                            disabled={!quantity}
+                            disabled={!quantity&disable.status===true}
                             variant='contained'
                             color='primary'
                             type='submit'
