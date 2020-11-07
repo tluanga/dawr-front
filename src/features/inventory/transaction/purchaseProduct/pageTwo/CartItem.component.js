@@ -55,6 +55,7 @@ const CartItem = () => {
     const [quantity,setQuantity]=useState() //Quantity to purchase
     const [amount,setAmount]=useState(0)
     const [newCostPrice,setNewCostPrice]=useState()
+    const [discount,setDiscount]=useState()
     
     const SetCostPrice=()=>{
         console.log('newCostPrice',newCostPrice)
@@ -135,12 +136,13 @@ const CartItem = () => {
 
     return (
             <ProductContent onSubmit={handleSubmit(onSubmit)}>
-                <Card style={{height:'500px'}}>
+                <Card style={{height:'550px'}}>
                     <CardContent style={{
                         display:'flex',
                         flexDirection:'column',
                         justifyContent:'space-evenly',
-                        height:'500px'
+                        height:'550px',
+                        paddingTop:'2px'
                     }}>
                         <Select
                             isClearable
@@ -171,6 +173,7 @@ const CartItem = () => {
                         <section>New Cost Price:{newCostPrice?newCostPrice:''}</section>
 
                         <TextField
+                            label='New Cost Price'
                             variant='outlined'
                             size='small'
                             placeholder='Cost Price'
@@ -180,12 +183,22 @@ const CartItem = () => {
                         />
 
                         <TextField
+                            label='Quantity'
                             variant='outlined'
                             size='small'
                             placeholder='Quantity'
                             type='number'
                             disabled={!product&&!quantityInStock}
                             onChange={onQuantityChange}
+                        />
+                        <TextField
+                            label='Discount'
+                            variant='outlined'
+                            size='small'
+                            placeholder='Discount'
+                            type='number'
+                            disabled={!product&&!quantityInStock}
+                            onChange={data=>setDiscount(data)}
                         />
                         <Button 
                             disabled={!quantity}

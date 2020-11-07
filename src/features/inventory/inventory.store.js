@@ -9,13 +9,16 @@ import warehouse from './warehouse/Warehouse.slice'
 import transaction from './transaction/transaction.store'
 import product from './product/Product.slice'
 import productPrice from './product/ProductPrice.slice'
+import productStock from './product/ProductStock.slice'
 import manufacturer from './manufacturer/Manufacturer.slice'
+
 
 
 const reducer =combineReducers({
     customer,
     product,
     productPrice,
+    productStock,
     vendor,
     category,
     customerType,
@@ -23,7 +26,7 @@ const reducer =combineReducers({
     unitOfMeasurement,
     warehouse,
     transaction,
-    manufacturer,
+    manufacturer,    
 
 })
 export default reducer
