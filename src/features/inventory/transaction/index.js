@@ -5,6 +5,7 @@ import {fetchVendorList} from '../vendor/Vendor.slice'
 import {fetchWarehouseList} from '../warehouse/Warehouse.slice'
 import {fetchProductList} from '../product/Product.slice'
 import {fetchGstCodeList} from '../gstCode/GstCode.slice'
+import {fetchCurrentStock} from '../product/ProductStock.slice'
 import {
     fetchCurrentSellPrice,
     fetchCurrentCostPrice,
@@ -27,6 +28,7 @@ const Transaction = () => {
     dispatch(fetchCurrentSellPrice())
     dispatch(fetchCurrentCostPrice())
     dispatch(fetchCurrentMrp())
+    dispatch(fetchCurrentStock())
 
     return (
         <div> 

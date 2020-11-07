@@ -14,6 +14,7 @@ import {
     selectProductsCurrentCostPrice,
     selectProductsCurrentMrp
 } from '../../../product/ProductPrice.slice'
+import {selectAllStock} from '../../../product/ProductStock.slice'
 import {selectGstCodeList} from '../../../gstCode/GstCode.slice'
 import {
         addCartItem,
@@ -45,12 +46,15 @@ const CartItem = () => {
     const cart=useSelector(selectCart)
     const cartTotalAmount=useSelector(selectCartTotalAmount)
     const cartTotalTax=useSelector(selectCartTotalTax)
+    const productStocks=useSelector(selectAllStock)
+    console.log('product stock',productStocks)
     
     // component state
     const [product,setProduct]=useState()
     const [gstCode,setGstCode]=useState()
     const [costPrice,setCostPrice]=useState()
     const [mrp,setMrp]=useState()
+    const [productStock,setProductStock]=useState()
     const [quantityInStock,setQuantityInStock]=useState()
     const [quantity,setQuantity]=useState() //Quantity to purchase
     const [amount,setAmount]=useState(0)
@@ -58,8 +62,7 @@ const CartItem = () => {
     const [discount,setDiscount]=useState()
     
     const SetCostPrice=()=>{
-        console.log('newCostPrice',newCostPrice)
-        console.log('oldCostPrice',costPrice)            
+                  
         if(newCostPrice) return newCostPrice
         else return costPrice.per_piece_cost_price
     }
@@ -107,11 +110,11 @@ const CartItem = () => {
                 
                 
             }
-            console.log(_changesPayload)
+            
             dispatch(updateCartItem(_changesPayload))
             dispatch(setTotalAmount(cartTotalAmount+amount))
             dispatch(setTotalTax(cartTotalTax+payload.tax))
-            console.log('update the product',duplicateState.quantity)
+            
         } 
 
 
@@ -127,7 +130,6 @@ const CartItem = () => {
     const onQuantityChange=(e)=>{
         const _quantity=e.target.value
         const _costPrice=SetCostPrice()
-        console.log('cost price is',_costPrice)
         setQuantity(_quantity)
         setAmount(_quantity*_costPrice)
     }
@@ -154,16 +156,18 @@ const CartItem = () => {
                                     const _gstCode=gstCodes.find(gstCode=>gstCode.id===data.gst_code)
                                     const _price=productsCostPrice.find(price=>price.product===data.id)
                                     const _mrp=productsMrp.find(price=>price.product===data.id)
+                                    const _productStock=productStocks.find(stock=>stock.product===data.id)
                                     setGstCode(_gstCode)
                                     setCostPrice(_price)
                                     setMrp(_mrp)
+                                    setProductStock(_productStock)
                                 }
                                 
                             }}
                         />
                         
                         <section>Name:{product?product.name:''}</section>
-                        <section>Quantity in Stock:</section>
+                        <section>Quantity in Stock:{productStock?productStock.quantity:''}</section>
                         <section>Gst Rate:{gstCode?gstCode.totalGst:''}</section>
                         <section>Hsn Code:{gstCode?gstCode.code:''}</section>
                         <section>Cost Price(unit):{costPrice?costPrice.per_piece_cost_price:''}</section>                        

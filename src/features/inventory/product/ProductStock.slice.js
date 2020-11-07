@@ -18,21 +18,24 @@ export const fetchCurrentStock=createAsyncThunk('ProductStock/List',
     }
 )
 
+const productStockEntityAdapter=createEntityAdapter({})
+
+export const {
+    selectAll:selectAllStock,
+    selectById:selectStockByProductId
+}=productStockEntityAdapter.getSelectors(state=>state.inventory.productStock)
 
 const productStockSlice=createSlice({
     name:'productPrice',
-    initialState:[],
+    initialState:productStockEntityAdapter.getInitialState({}),
     reducers:{},
     extraReducers:{
-        [fetchCurrentStock.fulfilled]:(state,action)=>{
-            state=action.payload
-        },
+        [fetchCurrentStock.fulfilled]:productStockEntityAdapter.setAll
         
     }
 })
 
-// selector
-export const selectProductStockPrice=state=>state.inventory.productStock
+
 
 
 export default productStockSlice.reducer
