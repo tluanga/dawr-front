@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 // -------redux-------
 import {useSelector,useDispatch} from 'react-redux'
 import {selectCustomerList} from './Customer.slice'
@@ -86,7 +86,9 @@ const CustomerTable = ({setOpenModal,setModalMode,setModalData}) => {
       
     const customerList=useSelector(selectCustomerList)
     
-    
+    useEffect(()=>{
+
+    },[customerList])
 
     
     return (

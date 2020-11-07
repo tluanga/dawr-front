@@ -76,10 +76,12 @@ const VendorModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) 
     const {handleSubmit,register,reset}=useForm()
     
     const onSubmit=formData=>{
+        formData.label=formData.name
         formData.active=status
         setOpenModal(false)
         if(modalMode===NEW){
             dispatch(newCategory(formData))
+            console.log(formData)
         }
         else if(modalMode===EDIT){
             dispatch(updateCategory({id:modalData.id,data:formData}))

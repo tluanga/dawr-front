@@ -1,8 +1,8 @@
 import React from 'react'
 // -------redux-------
-import {useSelector} from 'react-redux'
-import {selectProductList} from './Product.slice'
-import {selectCategoryById} from '../category/Category.slice' 
+import {useSelector,useDispatch} from 'react-redux'
+import {selectProductList,fetchProductList} from './Product.slice'
+import {selectCategoryById,fetchCategoryList} from '../category/Category.slice' 
 import {selectGstCodeById} from '../gstCode/GstCode.slice'
 import {selectManufacturerById} from '../manufacturer/Manufacturer.slice'
 import {selectUnitOfMeasurementById} from '../unitOfMeasurement/UnitOfMeasurement.slice'
@@ -106,7 +106,10 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
         ],
         [setModalData,setOpenModal,setModalMode]
       )
-      
+    // ---Redux
+    const dispatch=useDispatch()
+    dispatch(fetchProductList())
+    dispatch(fetchCategoryList())
     const productList=useSelector(selectProductList)
     
    
