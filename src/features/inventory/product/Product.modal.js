@@ -32,7 +32,7 @@ const customStyles = {
       content: { 
         position: 'absolute',
         width:'450px',
-        height:'650px',
+        height:'750px',
         top: '1vh',
         bottom: '15vh',
         left: '32.5vw',
@@ -241,6 +241,37 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                             ]:''
                         }
                         onChange={data=>selectUnitOfMeasurement(data.id)}
+                    />
+                    
+                    <TextField
+                        variant='outlined'
+                        name='costPrice'
+                        label='Cost Price'
+                        // defaultValue={}                        
+                        placeholder='Cost Price'
+                        size='small'
+                        inputRef={register}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
+                    />
+                    <TextField
+                        variant='outlined'
+                        name='sellingPrice'
+                        label='Selling Price'
+                        // defaultValue={}                        
+                        placeholder='Selling Price'
+                        size='small'
+                        inputRef={register}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
+                    />
+                    <TextField
+                        variant='outlined'
+                        name='mrp'
+                        label='Mrp'
+                        // defaultValue={}                        
+                        placeholder='Mrp'
+                        size='small'
+                        inputRef={register}
+                        style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
                    
                     <TextField

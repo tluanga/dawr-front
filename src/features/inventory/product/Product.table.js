@@ -6,6 +6,7 @@ import {selectCategoryById} from '../category/Category.slice'
 import {selectGstCodeById} from '../gstCode/GstCode.slice'
 import {selectManufacturerById} from '../manufacturer/Manufacturer.slice'
 import {selectUnitOfMeasurementById} from '../unitOfMeasurement/UnitOfMeasurement.slice'
+import {selectCostPrices} from './ProductCostPrice.slice'
 
 import {EDIT} from './Product.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
@@ -27,7 +28,8 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
         },
         {
             Header: 'Serial No',
-            accessor: 'serial_no', // accessor is the "key" in the data
+            accessor: 'serial_no',
+            width:'20px' // accessor is the "key" in the data
         },
         {
             Header: 'Model',
@@ -68,6 +70,47 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
                 return selectedUnitOfMeasurement?selectedUnitOfMeasurement.unit_of_measurement:'null'
                 
              }
+        },
+        {
+            Header: 'Cost Price',
+            accessor: 'costPrice',
+            Cell:({row})=>{
+                console.log('value of row is',row.original)
+                const costPrices=useSelector(selectCostPrices)
+                const costPrice=costPrices.find(c=>c.product===row.id)
+                console.log('cost prices',costPrice)
+                // const costPrices=useSelector(selectProductsCurrentCostPrice)
+                // const costPrice=costPrices.find(c=>c.product===value)                 
+                // return selectedGstCode?selectedGstCode.code:'null'
+                return 0;
+            }
+        },
+        {
+            Header: 'Selling Price',
+            accessor: 'sellingPrice',
+            Cell:({cell:{value}})=>{
+                // const selectedGstCode=useSelector(state=>selectGstCodeById(state,value))                  
+                // return selectedGstCode?selectedGstCode.code:'null'
+                return 0;
+            }
+        },
+        {
+            Header: 'Mrp',
+            accessor: 'mrp',
+            Cell:({cell:{value}})=>{
+                // const selectedGstCode=useSelector(state=>selectGstCodeById(state,value))                  
+                // return selectedGstCode?selectedGstCode.code:'null'
+                return 0;
+            }
+        },
+        {
+            Header: 'Stock',
+            accessor: 'stock',
+            Cell:({cell:{value}})=>{
+                // const selectedGstCode=useSelector(state=>selectGstCodeById(state,value))                  
+                // return selectedGstCode?selectedGstCode.code:'null'
+                return 0;
+            }
         },
         {
             Header: 'Remarks',

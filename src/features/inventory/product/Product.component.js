@@ -6,6 +6,10 @@ import {fetchCategoryList} from '../category/Category.slice'
 import {fetchGstCodeList} from '../gstCode/GstCode.slice'
 import {fetchManufacturerList} from '../manufacturer/Manufacturer.slice'
 import {fetchUnitOfMeasurementList} from '../unitOfMeasurement/UnitOfMeasurement.slice'
+import {fetchCurrentCostPrice} from './ProductCostPrice.slice'
+import {fetchCurrentSellPrice} from './ProductSellingPrice.slice'
+import {fetchCurrentMrp} from './ProductMrp.slice'
+import {fetchCurrentStock} from './ProductStock.slice'
 
 
 import ProductModal from './Product.modal'
@@ -37,6 +41,10 @@ const Product = () => {
     dispatch(fetchGstCodeList())
     dispatch(fetchManufacturerList())
     dispatch(fetchUnitOfMeasurementList())
+    dispatch(fetchCurrentCostPrice())
+    dispatch(fetchCurrentSellPrice())
+    dispatch(fetchCurrentMrp())
+    dispatch(fetchCurrentStock())
 
 
 

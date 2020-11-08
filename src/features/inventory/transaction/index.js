@@ -6,11 +6,10 @@ import {fetchWarehouseList} from '../warehouse/Warehouse.slice'
 import {fetchProductList} from '../product/Product.slice'
 import {fetchGstCodeList} from '../gstCode/GstCode.slice'
 import {fetchCurrentStock} from '../product/ProductStock.slice'
-import {
-    fetchCurrentSellPrice,
-    fetchCurrentCostPrice,
-    fetchCurrentMrp
-} from '../product/ProductPrice.slice'
+import {fetchCurrentCostPrice} from '../product/ProductCostPrice.slice'
+import {fetchCurrentSellPrice} from '../product/ProductSellingPrice.slice'
+import {fetchCurrentMrp} from '../product/ProductMrp.slice'
+
 
 
  
@@ -25,8 +24,8 @@ const Transaction = () => {
     dispatch(fetchWarehouseList())
     dispatch(fetchProductList())
     dispatch(fetchGstCodeList())
-    dispatch(fetchCurrentSellPrice())
     dispatch(fetchCurrentCostPrice())
+    dispatch(fetchCurrentSellPrice())
     dispatch(fetchCurrentMrp())
     dispatch(fetchCurrentStock())
 

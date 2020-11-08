@@ -10,10 +10,9 @@ import {useForm} from 'react-hook-form'
 // -----Redux------
 import {useSelector,useDispatch} from 'react-redux'
 import {selectProductList} from '../../../product/Product.slice'
-import {
-    selectProductsCurrentCostPrice,
-    selectProductsCurrentMrp
-} from '../../../product/ProductPrice.slice'
+import {selectCostPrices} from '../../../product/ProductCostPrice.slice'
+import {selectMrp} from '../../../product/ProductMrp.slice'
+
 import {selectAllStock} from '../../../product/ProductStock.slice'
 import {selectGstCodeList} from '../../../gstCode/GstCode.slice'
 import {
@@ -41,8 +40,8 @@ const CartItem = () => {
     const dispatch=useDispatch()
     const productsOptions=useSelector(selectProductList)
     const gstCodes=useSelector(selectGstCodeList)
-    const productsCostPrice=useSelector(selectProductsCurrentCostPrice)
-    const productsMrp=useSelector(selectProductsCurrentMrp)
+    const productsCostPrice=useSelector(selectCostPrices)
+    const productsMrp=useSelector(selectMrp)
     const cart=useSelector(selectCart)
     const cartTotalAmount=useSelector(selectCartTotalAmount)
     const cartTotalTax=useSelector(selectCartTotalTax)
