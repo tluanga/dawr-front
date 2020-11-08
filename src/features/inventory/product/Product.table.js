@@ -7,6 +7,9 @@ import {selectGstCodeById} from '../gstCode/GstCode.slice'
 import {selectManufacturerById} from '../manufacturer/Manufacturer.slice'
 import {selectUnitOfMeasurementById} from '../unitOfMeasurement/UnitOfMeasurement.slice'
 import {selectCostPrices} from './ProductCostPrice.slice'
+import {selectSellingPrices} from './ProductSellingPrice.slice'
+import {selectMrp} from './ProductMrp.slice'
+import {selectAllStock} from './ProductStock.slice'
 
 import {EDIT} from './Product.constants'
 import {ReactTable} from '../../../app/components/table/ReactTable'
@@ -64,6 +67,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
         {
             Header: 'Unit of Measurement',
             accessor: 'unit_of_measurement',
+            width:'10px',
             Cell:({cell:{value}})=>{
                 const selectedUnitOfMeasurement=
                     useSelector(state=>selectUnitOfMeasurementById(state,value)) 
@@ -92,30 +96,57 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
         {
             Header: 'Selling Price',
             accessor: 'sellingPrice',
-            Cell:({cell:{value}})=>{
-                // const selectedGstCode=useSelector(state=>selectGstCodeById(state,value))                  
-                // return selectedGstCode?selectedGstCode.code:'null'
-                return 0;
+            Cell:({row})=>{
+                console.log('value of row is',row.original)
+                const sellingPrices=useSelector(selectSellingPrices)
+                const sellingPrice=sellingPrices.find(c=>{
+                    
+                    if(c.product===row.original.id){
+                        return c
+                    }
+                    else return null
+                })
+                if(sellingPrice){
+                    return sellingPrice.per_piece_sell_price
+                }else return 0
             }
         },
         {
             Header: 'Mrp',
             accessor: 'mrp',
-            Cell:({cell:{value}})=>{
-                // const selectedGstCode=useSelector(state=>selectGstCodeById(state,value))                  
-                // return selectedGstCode?selectedGstCode.code:'null'
-                return 0;
+            Cell:({row})=>{
+                console.log('value of row is',row.original)
+                const mrps=useSelector(selectMrp)
+                const mrp=mrps.find(c=>{
+                    
+                    if(c.product===row.original.id){
+                        return c
+                    }
+                    else return null
+                })
+                if(mrp){
+                    return mrp.amount
+                }else return 0
             }
         },
         {
             Header: 'Stock',
             accessor: 'stock',
-            Cell:({cell:{value}})=>{
-                // const selectedGstCode=useSelector(state=>selectGstCodeById(state,value))                  
-                // return selectedGstCode?selectedGstCode.code:'null'
-                return 0;
+            Cell:({row})=>{
+                console.log('value of row is',row.original)
+                const stocks=useSelector(selectAllStock)
+                const stock=stocks.find(c=>{
+                    
+                    if(c.product===row.original.id){
+                        return c
+                    }
+                    else return null
+                })
+                if(stock){
+                    return stock.quantity
+                }else return 0
             }
-        },
+        },         
         {
             Header: 'Remarks',
             accessor: 'remarks',
