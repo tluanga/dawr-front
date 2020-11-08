@@ -25,9 +25,14 @@ export const newProduct=createAsyncThunk('product/new',
             url,
             data:data
         }
+        try{
+            const response= await create(payload)
+            return data
+        }
+        catch(err){
+            return err
+        }
         
-        const response= await create(payload)
-        return response
            
     }
 )
@@ -61,14 +66,15 @@ const productSlice=createSlice({
     },
     extraReducers:{
         [fetchProductList.fulfilled]:productEntityAdapter.setAll,
-        [newProduct.fulfilled]:(state,action)=>{
-            const payload={
-                label:action.payload.name,
-                ...action.payload
-            }
-            console.log('payload----->',payload)
-            productEntityAdapter.addOne(payload.data)
-        },        
+        [newProduct.fulfilled]:productEntityAdapter.addOne,
+        // [newProduct.fulfilled]:(state,action)=>{
+        //     const payload={
+        //         label:action.payload.name,
+        //         ...action.payload
+        //     }
+        //     console.log('payload----->',payload)
+        //     productEntityAdapter.addOne(state,payload.data)
+        // },        
         [updateProduct.fulfilled]:(state,action)=>{
             const {id,...changes}=action.payload
             productEntityAdapter.updateOne(state,{id,changes})

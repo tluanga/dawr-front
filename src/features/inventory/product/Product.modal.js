@@ -150,8 +150,6 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
         }
         
     }
-    
-    
     const onReset=()=>{
         if(modalMode===NEW){
             reset({
@@ -258,7 +256,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         onChange={data=>selectUnitOfMeasurement(data.id)}
                     />
                     
-                    <TextField
+                    {/* <TextField
                         variant='outlined'
                         name='costPrice'
                         label='Cost Price'
@@ -287,7 +285,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
                         size='small'
                         inputRef={register}
                         style={{width:'400px',paddingBottom:'1.3vh'}}
-                    />
+                    /> */}
                    
                     <TextField
                         variant='outlined'

@@ -81,7 +81,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             Header: 'Cost Price',
             accessor: 'costPrice',
             Cell:({row})=>{
-                console.log('value of row is',row.original)
+                
                 const costPrices=useSelector(selectCostPrices)
                 const costPrice=costPrices.find(c=>{
                     
@@ -99,7 +99,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             Header: 'Selling Price',
             accessor: 'sellingPrice',
             Cell:({row})=>{
-                console.log('value of row is',row.original)
+               
                 const sellingPrices=useSelector(selectSellingPrices)
                 const sellingPrice=sellingPrices.find(c=>{
                     
@@ -117,7 +117,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             Header: 'Mrp',
             accessor: 'mrp',
             Cell:({row})=>{
-                console.log('value of row is',row.original)
+                
                 const mrps=useSelector(selectMrp)
                 const mrp=mrps.find(c=>{
                     
@@ -136,7 +136,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             Header: 'Stock',
             accessor: 'stock',
             Cell:({row})=>{
-                console.log('value of row is',row.original)
+                
                 const stocks=useSelector(selectAllStock)
                 const stock=stocks.find(c=>{
                     
@@ -171,7 +171,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             //    id:'selection',
                Header:'Action',
                Cell:({row})=>{
-                   console.log('mrp--table',mrp)
+                   
                 const payload={
                     ...row.original,
                     mrp
