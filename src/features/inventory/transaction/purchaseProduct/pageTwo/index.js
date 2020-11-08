@@ -31,16 +31,22 @@ const NEW='New'
 const PageTwo = ({showPageTwo}) => {
     const [openModal,setOpenModal]=useState(false)
     const [modalMode,setModalMode]=useState(NEW)
+    const [modalData,setModalData]=useState({})
     return(
         <>
            {
                showPageTwo?
                <Wrapper>
-                <CartItem setOpenModal={setOpenModal}/>
+                <CartItem 
+                    setOpenModal={setOpenModal}
+                    setModalMode={setModalMode}
+                />
                 <ProductModal 
-                openModal={openModal}
-                modalMode={modalMode}
-                setOpenModal={setOpenModal}                
+                    openModal={openModal}
+                    modalMode={modalMode}
+                    setOpenModal={setOpenModal}
+                    modalData={modalData}
+                    setModalData={setModalData}
                 />
                 <Table>
                     <CartTable/>

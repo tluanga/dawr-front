@@ -22,7 +22,7 @@ const Transaction = () => {
     const dispatch=useDispatch()
     dispatch(fetchVendorList())
     dispatch(fetchWarehouseList())
-    dispatch(fetchProductList())
+    // dispatch(fetchProductList())
     dispatch(fetchGstCodeList())
     dispatch(fetchCurrentCostPrice())
     dispatch(fetchCurrentSellPrice())

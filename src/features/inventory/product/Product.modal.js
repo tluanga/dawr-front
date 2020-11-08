@@ -8,10 +8,10 @@ import SelectOriginal from 'react-select'
 // -----Redux--------
 import {useDispatch,useSelector} from 'react-redux'
 import {newProduct,updateProduct} from './Product.slice'
-import {selectCategoryList} from '../category/Category.slice'
-import {selectManufacturerList} from '../manufacturer/Manufacturer.slice'
-import {selectGstCodeList} from '../gstCode/GstCode.slice'
-import {selectUnitOfMeasurementList} from '../unitOfMeasurement/UnitOfMeasurement.slice'
+import {selectCategoryList,fetchCategoryList} from '../category/Category.slice'
+import {selectManufacturerList,fetchManufacturerList} from '../manufacturer/Manufacturer.slice'
+import {selectGstCodeList,fetchGstCodeList} from '../gstCode/GstCode.slice'
+import {selectUnitOfMeasurementList,fetchUnitOfMeasurementList} from '../unitOfMeasurement/UnitOfMeasurement.slice'
 import {selectCostPrices} from './ProductCostPrice.slice'
 import {selectSellingPrices} from './ProductSellingPrice.slice'
 import {selectMrp} from './ProductMrp.slice'
@@ -98,6 +98,11 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
     ]
      
     useEffect(()=>{
+        console.log('modal State',modalMode)
+        dispatch(fetchCategoryList())
+        dispatch(fetchManufacturerList())
+        dispatch(fetchGstCodeList())
+        dispatch(fetchUnitOfMeasurementList())
         if(modalData)
             setCategory(modalData.category)
             setManufacturer(modalData.manufacturer)
@@ -121,6 +126,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
         console.log('formDaata',formData)
         formData.active=status
         const payload={
+            label:formData.name,
             name:formData.name,
             serial_no:formData.serialNo,
             model:formData.model,
@@ -132,8 +138,9 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
             active:status,
         }
         setOpenModal(false)
-        
+        console.log('modal Mode',modalMode)
         if(modalMode===NEW){
+            console.log('payload is',payload)
             dispatch(newProduct(payload))
         }
         else if(modalMode===EDIT){

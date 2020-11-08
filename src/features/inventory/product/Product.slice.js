@@ -61,7 +61,13 @@ const productSlice=createSlice({
     },
     extraReducers:{
         [fetchProductList.fulfilled]:productEntityAdapter.setAll,
-        [newProduct.fulfilled]:productEntityAdapter.addOne,
+        [newProduct.fulfilled]:(state,action)=>{
+            const payload={
+                label:action.payload.name,
+                ...action.payload
+            }
+            productEntityAdapter.addOne(payload.data)
+        },        
         [updateProduct.fulfilled]:(state,action)=>{
             const {id,...changes}=action.payload
             productEntityAdapter.updateOne(state,{id,changes})

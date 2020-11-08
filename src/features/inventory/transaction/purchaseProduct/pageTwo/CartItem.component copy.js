@@ -45,7 +45,7 @@ const ProductContent=styled.form`
 const CartItem = ({setOpenModal,setModalMode}) => {
     // ---Redux
     const dispatch=useDispatch()
-    const productsOptions=useSelector(selectProductList)
+    const productsOptions=useSelector(selectProductList)    
     const gstCodes=useSelector(selectGstCodeList)
     const productsCostPrice=useSelector(selectCostPrices)
     const productsMrp=useSelector(selectMrp)
@@ -53,7 +53,8 @@ const CartItem = ({setOpenModal,setModalMode}) => {
     const cartTotalAmount=useSelector(selectCartTotalAmount)
     const cartTotalTax=useSelector(selectCartTotalTax)
     const productStocks=useSelector(selectAllStock)
-    console.log('product options',productsOptions)
+    console.log('product options---------->',productsOptions)
+    
     
     // component state
     const [product,setProduct]=useState()
