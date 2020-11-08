@@ -77,12 +77,16 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             Cell:({row})=>{
                 console.log('value of row is',row.original)
                 const costPrices=useSelector(selectCostPrices)
-                const costPrice=costPrices.find(c=>c.product===row.id)
-                console.log('cost prices',costPrice)
-                // const costPrices=useSelector(selectProductsCurrentCostPrice)
-                // const costPrice=costPrices.find(c=>c.product===value)                 
-                // return selectedGstCode?selectedGstCode.code:'null'
-                return 0;
+                const costPrice=costPrices.find(c=>{
+                    
+                    if(c.product===row.original.id){
+                        return c
+                    }
+                    else return null
+                })
+                if(costPrice){
+                    return costPrice.per_piece_cost_price
+                }else return 0
             }
         },
         {

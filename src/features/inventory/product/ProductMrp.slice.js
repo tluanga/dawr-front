@@ -1,7 +1,7 @@
 import {createAsyncThunk,createSlice,createEntityAdapter} from '@reduxjs/toolkit'
 import {searchItem} from '../../../api/api'
 
-const mrpPriceUrl='product_mrp_price'
+const mrpPriceUrl='mrp'
 export const fetchCurrentMrp=createAsyncThunk('ProductPriceMrp/List',
     async (id)=>{
         const params={
