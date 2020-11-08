@@ -171,6 +171,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
         <Modal
             isOpen={openModal}
             onRequestClose={()=>setOpenModal(false)}
+            shouldCloseOnOverlayClick={false}
             style={customStyles}
         >   
             <Wrapper>

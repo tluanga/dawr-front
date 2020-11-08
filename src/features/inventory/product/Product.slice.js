@@ -66,6 +66,7 @@ const productSlice=createSlice({
                 label:action.payload.name,
                 ...action.payload
             }
+            console.log('payload----->',payload)
             productEntityAdapter.addOne(payload.data)
         },        
         [updateProduct.fulfilled]:(state,action)=>{
