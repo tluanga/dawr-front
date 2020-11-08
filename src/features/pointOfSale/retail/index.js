@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {ComponentToPrint} from './invoice.component'
 // ---Redux
 import {useSelector,useDispatch} from 'react-redux'
 import styled from 'styled-components'
@@ -30,6 +30,10 @@ const Column2=styled.section`
 
 const Retail = () => {
     return(
+        // <div>
+        //     <ComponentToPrint/>
+        // </div>
+
         <Container>
             <Column1>
                 <CustomerSelect/>

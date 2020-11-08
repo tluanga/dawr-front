@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
-
+import React,{useState,useRef} from 'react'
+import { useReactToPrint } from 'react-to-print';
+import {ComponentToPrint} from './invoice.component'
 // ---Redux
 import {useSelector,useDispatch} from 'react-redux'
 import {selectCustomerList} from '../../../features/inventory/customer/Customer.slice'
@@ -51,6 +52,14 @@ const CustomerSelect = () => {
     const customer=useSelector(selectCustomer)
     const customerTypes=useSelector(selectCustomerTypeList)
 
+    //print invoice
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+    });
+
+
+
     // ---component state
     const [customerType,setCustomerType]=useState()
 
@@ -66,13 +75,16 @@ const CustomerSelect = () => {
                         height:'100px',
                         paddingTop:'2px',
                         
-                    }}>
+                    }}> 
+                        <div style={{ display: "none" }}>
+                            <ComponentToPrint ref={componentRef} />
+                        </div>
                         <Control>
                             <Button
                                 color='primary'
                                 variant='contained'
                                 style={{width:'180px'}}
-                                onClick={()=>window.print()}
+                                onClick={handlePrint}
                             >
                                 Print Invoice
                             </Button>
