@@ -45,7 +45,7 @@ const productEntityAdapter=createEntityAdapter({})
 export const {
     selectAll:selectProductList,
     selectById:selectProductById
-}=productEntityAdapter.getSelectors(state=>state.inventory.product)
+}=productEntityAdapter.getSelectors(state=>state.inventory.product.product)
 
 
 
