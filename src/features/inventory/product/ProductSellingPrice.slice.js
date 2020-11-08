@@ -1,5 +1,5 @@
 import {createAsyncThunk,createSlice,createEntityAdapter} from '@reduxjs/toolkit'
-import {searchItem} from '../../../api/api'
+import {searchItem,create} from '../../../api/api'
 
 const sellingPriceUrl='product_sell_price'
 export const fetchCurrentSellPrice=createAsyncThunk('ProductPriceSell/List',
@@ -18,6 +18,20 @@ export const fetchCurrentSellPrice=createAsyncThunk('ProductPriceSell/List',
     }
 )
 
+export const newSellingPrice=createAsyncThunk('sellingPrice/new',
+    async data=>{
+               
+        const payload={
+            sellingPriceUrl,
+            data:data
+        }
+        
+        const response= await create(payload)
+        return response
+           
+    }
+)
+
 const sellingPriceEntityAdapter=createEntityAdapter({})
 
 const sellingPriceSlice=createSlice({
@@ -25,7 +39,8 @@ const sellingPriceSlice=createSlice({
     initialState:sellingPriceEntityAdapter.getInitialState([]),
     reducers:{},
     extraReducers:{
-        [fetchCurrentSellPrice.fulfilled]:sellingPriceEntityAdapter.setAll
+        [fetchCurrentSellPrice.fulfilled]:sellingPriceEntityAdapter.setAll,
+        [newSellingPrice.fulfilled]:sellingPriceEntityAdapter.addOne
     }
 })
 

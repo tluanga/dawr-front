@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import Select from 'react-select'
+import Creatable from 'react-select/creatable';
 import styled from 'styled-components'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -7,10 +8,15 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import {useForm} from 'react-hook-form'
 
+// ------Creat new Product Modal
+import ProductModal from '../'
+
+
 // -----Redux------
 import {useSelector,useDispatch} from 'react-redux'
 import {selectProductList} from '../../../product/Product.slice'
 import {selectCostPrices} from '../../../product/ProductCostPrice.slice'
+import {selectSellingPrices} from '../../../product/ProductSellingPrice.slice'
 import {selectMrp} from '../../../product/ProductMrp.slice'
 
 import {selectAllStock} from '../../../product/ProductStock.slice'
@@ -35,7 +41,7 @@ const ProductContent=styled.form`
     
 `
 
-const CartItem = () => {
+const CartItem = ({setOpenModal}) => {
     // ---Redux
     const dispatch=useDispatch()
     const productsOptions=useSelector(selectProductList)
@@ -58,12 +64,19 @@ const CartItem = () => {
     const [quantity,setQuantity]=useState(null) //Quantity to purchase
     const [amount,setAmount]=useState(0)
     const [newCostPrice,setNewCostPrice]=useState()
+    const [newSellingPrice,setNewSellingPrice]=useState()
+    const [newMrp,setNewMrp]=useState()
     const [discount,setDiscount]=useState()
     const [disable,setDisabled]=useState({status:false,message:''})
     
     
     const SetCostPrice=()=>{                  
         if(newCostPrice) return newCostPrice
+        else if(costPrice) return costPrice.per_piece_cost_price
+    }
+
+    const SetSellPrice=()=>{                  
+        if(newSellingPrice) return newSellingPrice
         else if(costPrice) return costPrice.per_piece_cost_price
     }
     
@@ -79,6 +92,7 @@ const CartItem = () => {
             product:product,
             gstCode:gstCode,
             cost_price:SetCostPrice(),
+
             quantity:quantity,
             amount:amount,
             tax:quantity*gstCode.totalGst
@@ -125,25 +139,30 @@ const CartItem = () => {
 
     return (
             <ProductContent onSubmit={handleSubmit(onSubmit)}>
-                <Card style={{height:'550px'}}>
+                <Card style={{height:'700px'}}>
                     <CardContent style={{
                         display:'flex',
                         flexDirection:'column',
                         justifyContent:'space-evenly',
-                        height:'550px',
+                        height:'700px',
                         paddingTop:'2px'
                     }}>
-                        <Select
+                        <Creatable
                             isClearable
                             placeholder='Select Product..'
                             options={productsOptions}
+                            onCreateOption={()=>setOpenModal(true)}
                             onChange={data=>{
                                 if(data){
                                     setProduct(data)                                
-                                    const _gstCode=gstCodes.find(gstCode=>gstCode.id===data.gst_code)
-                                    const _price=productsCostPrice.find(price=>price.product===data.id)
-                                    const _mrp=productsMrp.find(price=>price.product===data.id)
-                                    const _productStock=productStocks.find(stock=>stock.product===data.id)
+                                    const _gstCode=gstCodes.find(
+                                        gstCode=>gstCode.id===data.gst_code)
+                                    const _price=productsCostPrice.find(
+                                        price=>price.product===data.id)
+                                    const _mrp=productsMrp.find(
+                                        price=>price.product===data.id)
+                                    const _productStock=productStocks.find(
+                                        stock=>stock.product===data.id)
                                     setGstCode(_gstCode)
                                     setCostPrice(_price)
                                     setMrp(_mrp)
@@ -182,7 +201,25 @@ const CartItem = () => {
                                 const _costPrice=SetCostPrice()
                                 setAmount(quantity*_costPrice)
                             }}
-                            disabled={!costPrice}
+                            disabled={!product}
+                        />
+                        <TextField
+                            label='New Selling Price'
+                            variant='outlined'
+                            size='small'
+                            placeholder='New Selling Price'
+                            type='number'
+                            onChange={event=>setNewSellingPrice(event.target.value)}
+                            disabled={!product}
+                        />
+                        <TextField
+                            label='New Mrp'
+                            variant='outlined'
+                            size='small'
+                            placeholder='New Mrp'
+                            type='number'
+                            onChange={event=>setNewMrp(event.target.value)}
+                            disabled={!product}
                         />
                         <TextField
                             label='Quantity'

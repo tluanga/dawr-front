@@ -5,8 +5,9 @@ import CartTable from './CartTable.component'
 import CartSummary from './CartSummary.component'
 
 
-// -----Redux------
 
+// -----Redux------
+import ProductModal from '../../../product/Product.modal'
 
 
 
@@ -25,19 +26,27 @@ const Table=styled.section`
     height:76.5vh;
     width:77vw;
 `
-
+const NEW='New'
 
 const PageTwo = ({showPageTwo}) => {
+    const [openModal,setOpenModal]=useState(false)
+    const [modalMode,setModalMode]=useState(NEW)
     return(
         <>
            {
                showPageTwo?
                <Wrapper>
-                <CartItem/>
+                <CartItem setOpenModal={setOpenModal}/>
+                <ProductModal 
+                openModal={openModal}
+                modalMode={modalMode}
+                setOpenModal={setOpenModal}                
+                />
                 <Table>
                     <CartTable/>
                     <CartSummary/>
                 </Table>
+            
             </Wrapper>:''
            } 
         </>

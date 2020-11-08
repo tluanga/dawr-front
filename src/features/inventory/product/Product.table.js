@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 // -------redux-------
 import {useSelector} from 'react-redux'
 import {selectProductList} from './Product.slice'
@@ -18,6 +18,8 @@ import Button from '@material-ui/core/Button'
 
 
 const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
+    const [mrp,setMrp]=useState(0)
+
     
     const columns = React.useMemo(
         () => [
@@ -125,6 +127,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
                     else return null
                 })
                 if(mrp){
+                    setMrp(mrp.amount)
                     return mrp.amount
                 }else return 0
             }
@@ -168,7 +171,11 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
             //    id:'selection',
                Header:'Action',
                Cell:({row})=>{
-                
+                   console.log('mrp--table',mrp)
+                const payload={
+                    ...row.original,
+                    mrp
+                }
                 return(
                     <Button 
                         variant='contained'
@@ -176,7 +183,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
                         onClick={()=>{
                         setModalMode(EDIT)
                         setOpenModal(true)
-                        setModalData(row.original)
+                        setModalData(payload)
                     }}>
                         Edit</Button>
                     // <ActionButton row={row.original} />

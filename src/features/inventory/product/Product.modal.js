@@ -12,6 +12,9 @@ import {selectCategoryList} from '../category/Category.slice'
 import {selectManufacturerList} from '../manufacturer/Manufacturer.slice'
 import {selectGstCodeList} from '../gstCode/GstCode.slice'
 import {selectUnitOfMeasurementList} from '../unitOfMeasurement/UnitOfMeasurement.slice'
+import {selectCostPrices} from './ProductCostPrice.slice'
+import {selectSellingPrices} from './ProductSellingPrice.slice'
+import {selectMrp} from './ProductMrp.slice'
 
 import {NEW,EDIT,MODULE_NAME} from './Product.constants'
 import {AiOutlineClose} from 'react-icons/ai'
@@ -74,6 +77,9 @@ const Select=styled(SelectOriginal)`
 Modal.setAppElement('#root')
 
 const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData}) => {
+    //------Redux---------
+    
+    console.log('modal Data',modalData)
     
     const [category,setCategory]=useState(modalData.category?modalData.category:0)
     const [manufacturer,setManufacturer]=useState(modalData.manufacturer)
@@ -110,6 +116,7 @@ const ProductModal = ({openModal,setOpenModal,modalMode,modalData,setModalData})
     const unitOfMeasurementOptions=useSelector(selectUnitOfMeasurementList)
     const {handleSubmit,register,reset}=useForm()
     
+    //------------Form-----------
     const onSubmit=formData=>{
         console.log('formDaata',formData)
         formData.active=status
