@@ -10,7 +10,8 @@ const cartSlice=createSlice({
     name:'cart',
     initialState:cartEntityAdapter.getInitialState({
         totalAmount:0,
-        totalTax:0
+        totalTax:0,
+        totalDiscount:0
     }),
     reducers:{
         addCartItem:cartEntityAdapter.addOne,
@@ -28,11 +29,16 @@ const cartSlice=createSlice({
 
 })
 
-export const selectCartTotalAmount=state=>
+// -------Selector
+export const selectTotalAmount=state=>
     state.inventory.transaction.purchaseProduct.cart.totalAmount
 
-export const selectCartTotalTax=state=>
+export const selectTotalTax=state=>
     state.inventory.transaction.purchaseProduct.cart.totalTax
+
+export const selectTotalDiscount=state=>
+    state.inventory.transaction.purchaseProduct.cart.totalDiscount
+
 
 export const {
     addCartItem,

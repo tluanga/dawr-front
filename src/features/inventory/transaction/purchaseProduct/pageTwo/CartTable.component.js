@@ -6,9 +6,9 @@ import {useSelector,useDispatch} from 'react-redux'
 import {
     selectCart,
     removeCartItem,
-    selectCartTotalAmount,
+    selectTotalAmount,
     setTotalAmount,
-    selectCartTotalTax,
+    selectTotalTax,
     setTotalTax
 } from './Cart.Slice'
 
@@ -24,8 +24,8 @@ const Container=styled.div`
 
 const CartTable = () => {
     const data=useSelector(selectCart)
-    const cartTotalAmount=useSelector(selectCartTotalAmount)
-    const cartTotalTax=useSelector(selectCartTotalTax)
+    const cartTotalAmount=useSelector(selectTotalAmount)
+    const cartTotalTax=useSelector(selectTotalTax)
     const dispatch=useDispatch()
 
     const columns=React.useMemo(

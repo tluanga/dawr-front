@@ -25,9 +25,9 @@ import {
         addCartItem,
         selectCart,
         updateCartItem,
-        selectCartTotalAmount,
+        selectTotalAmount,
         setTotalAmount,
-        selectCartTotalTax,
+        selectTotalTax,
         setTotalTax
     } from './Cart.Slice'
 
@@ -56,8 +56,8 @@ const CartItem = ({setOpenModal,setModalMode}) => {
     const productsCostPrice=useSelector(selectCostPrices)
     const productsMrp=useSelector(selectMrp)
     const cart=useSelector(selectCart)
-    const cartTotalAmount=useSelector(selectCartTotalAmount)
-    const cartTotalTax=useSelector(selectCartTotalTax)
+    const cartTotalAmount=useSelector(selectTotalAmount)
+    const cartTotalTax=useSelector(selectTotalTax)
     const productStocks=useSelector(selectAllStock)
     console.log('product options',productsOptions)
     
@@ -96,6 +96,22 @@ const CartItem = ({setOpenModal,setModalMode}) => {
 
     const onSubmit=data=>{
         // check product already existed in the cart
+
+        
+    // purchase_order_item": [
+    //     {
+    //         "product": 1,
+    //         "cost_price": 100.0,
+    //         "cost_price_bulk": 90.0,
+    //         "sell_price": 200.0,
+    //         "sell_price_bulk": 200.0,
+    //         "mrp": 350.0,
+    //         "discount": 10,
+    //         "quantity": 100,
+    //         "active": true,
+    //         "created_at": "2020-10-28T15:06:41.439869Z",
+    //         "updated_at": "2020-10-28T15:06:41.439869Z"
+    //     }
         let duplicate=0
         let duplicateState={}
         const payload={
@@ -103,7 +119,7 @@ const CartItem = ({setOpenModal,setModalMode}) => {
             product:product,
             gstCode:gstCode,
             cost_price:SetCostPrice(),
-
+            discount:discount,
             quantity:quantity,
             amount:amount,
             tax:quantity*gstCode.totalGst
@@ -204,8 +220,6 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                         <section>Gst Rate:{mrp?mrp.amount:''}</section>                    
                         <section>Quantity:{quantity?quantity:''}</section>
                         <section>Amount:{amount?amount:''}</section>
-                        
-                        {disable.status===true? <Alert severity="error">{disable.message}</Alert>:''}
                         
                         <TextField
                             label='Quantity'
