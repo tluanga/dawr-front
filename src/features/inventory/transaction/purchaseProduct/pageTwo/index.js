@@ -37,10 +37,10 @@ const PageTwo = ({showPageTwo}) => {
            {
                showPageTwo?
                <Wrapper>
-                {/* <CartItem 
+                <CartItem 
                     setOpenModal={setOpenModal}
                     setModalMode={setModalMode}
-                /> */}
+                />
                 <ProductModal 
                     openModal={openModal}
                     modalMode={modalMode}

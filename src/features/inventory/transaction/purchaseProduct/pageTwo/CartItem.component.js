@@ -144,13 +144,14 @@ const CartItem = ({setOpenModal,setModalMode}) => {
     const NEW='New'
     return (
             <ProductContent onSubmit={handleSubmit(onSubmit)}>
-                <Card style={{height:'550px'}}>
+                <Card style={{height:'450px'}}>
                     <CardContent style={{
                         display:'flex',
                         flexDirection:'column',
-                        justifyContent:'space-evenly',
-                        height:'550px',
-                        paddingTop:'2px'
+                        justifyContent:'space-between',                        
+                        height:'425px',
+                        paddingTop:'10px',
+                        
                     }}>
                         <Creatable
                             isClearable
@@ -191,45 +192,15 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                         <section>Name:{product?product.name:''}</section>
                         <section>Quantity in Stock:{productStock?productStock.quantity:''}</section>                                               
                         <section>
-                            Cost Price(unit):{costPrice?costPrice.per_piece_cost_price:''}
-                            Mrp:{mrp?mrp.amount:''}
-                        </section>                    
+                            Cost Price(unit):{costPrice?costPrice.per_piece_cost_price:''}                            
+                        </section>
+                        <section>Mrp:{mrp?mrp.amount:''}</section>
+                        <section>Gst Rate:{mrp?mrp.amount:''}</section>                    
                         <section>Quantity:{quantity?quantity:''}</section>
                         <section>Amount:{amount?amount:''}</section>
-                        <section>New Cost Price:{newCostPrice?newCostPrice:''}</section>
+                        
                         {disable.status===true? <Alert severity="error">{disable.message}</Alert>:''}
-                        <TextField
-                            label='New Cost Price'
-                            variant='outlined'
-                            size='small'
-                            placeholder='Cost Price'
-                            type='number'
-                            onChange={event=>{
-                                const _data=event.target.value
-                                setNewCostPrice(_data)
-                                const _costPrice=SetCostPrice()
-                                setAmount(quantity*_costPrice)
-                            }}
-                            disabled={!product}
-                        />
-                        <TextField
-                            label='New Selling Price'
-                            variant='outlined'
-                            size='small'
-                            placeholder='New Selling Price'
-                            type='number'
-                            onChange={event=>setNewSellingPrice(event.target.value)}
-                            disabled={!product}
-                        />
-                        <TextField
-                            label='New Mrp'
-                            variant='outlined'
-                            size='small'
-                            placeholder='New Mrp'
-                            type='number'
-                            onChange={event=>setNewMrp(event.target.value)}
-                            disabled={!product}
-                        />
+                        
                         <TextField
                             label='Quantity'
                             variant='outlined'
@@ -254,6 +225,12 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                             color='primary'
                             type='submit'
                         >Add to Cart</Button>
+                        <Button 
+                            disabled={!quantity&disable.status===true}
+                            variant='contained'
+                            color='primary'
+                            type='submit'
+                        >Edit Price</Button>
                     </CardContent>
                    
                 </Card>
