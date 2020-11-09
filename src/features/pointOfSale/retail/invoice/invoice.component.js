@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Table,Tr,Td,Th} from './Invoice.style'
+import './table.style.css'
 
 const Container=styled.div`
     display:flex;
@@ -103,14 +104,14 @@ export class ComponentToPrint extends React.PureComponent {
             />
             
             <Body>
-                <Table style={{width:'100%'}}>
-                    <Tr>
-                        <Th>Sl.no</Th>
-                        <Th>Particulars</Th>
-                        <Th>HSN Code</Th>
-                        <Th>Quantity</Th>
-                        <Th>Discount</Th>
-                        <Th>Amount</Th>
+                <Table style={{width:'100%'}} id='t01'>
+                    <Tr id='ivoiceTr'>
+                        <Th id='invoiceTh'>Sl.no</Th>
+                        <Th id='invoiceTh'>Particulars</Th>
+                        <Th id='invoiceTh'>HSN Code</Th>
+                        <Th id='invoiceTh'>Quantity</Th>
+                        <Th id='invoiceTh'>Discount</Th>
+                        <Th id='invoiceTh'>Amount</Th>
                     </Tr>
                     <Tr>
                         <Td>Jill</Td>
@@ -123,6 +124,28 @@ export class ComponentToPrint extends React.PureComponent {
                         <Td>94</Td>
                     </Tr>
                 </Table>
+                <table id="t01">
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th> 
+                        <th>Age</th>
+                    </tr>
+                    <tr>
+                        <td>Jill</td>
+                        <td>Smith</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>Eve</td>
+                        <td>Jackson</td>
+                        <td>94</td>
+                    </tr>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>80</td>
+                    </tr>
+                    </table>
             </Body> 
             <Footer>
                 This is The footer
