@@ -67,7 +67,7 @@ const CartItem = ({setOpenModal,setModalMode}) => {
     const [productStock,setProductStock]=useState()    
     const [quantity,setQuantity]=useState(null) //Quantity to purchase
     const [amount,setAmount]=useState(0)    
-    const [discount,setDiscount]=useState()
+    const [discount,setDiscount]=useState(0)
     
     
     useEffect(()=>{
@@ -126,14 +126,20 @@ const CartItem = ({setOpenModal,setModalMode}) => {
 
     const onQuantityChange=(e)=>{
         const _quantity=e.target.value
-        console.log('quantity',_quantity)
-        console.log('costPrice',costPrice)
         setQuantity(_quantity)
         setAmount(_quantity*costPrice.cost_price)
     }
 
-    console.log('amount',amount)
+    const handleDiscountChange=(e)=>{
+        const _discount=e.target.value
+        const _amount=quantity*costPrice.cost_price
+     
+        setDiscount(_discount)
 
+        setAmount(_amount-(discount*10))
+        if(_discount==='')setAmount(_amount)
+    }
+    
     const NEW='New'
     return (
             <ProductContent onSubmit={handleSubmit(onSubmit)}>
@@ -171,6 +177,7 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                                     setCostPrice(_price)
                                     setMrp(_mrp)
                                     setProductStock(_stock)
+                                    setAmount(0)
                                 }
                                 
                             }}
@@ -202,7 +209,7 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                             placeholder='Discount'
                             type='number'
                             disabled={!product}
-                            onChange={data=>setDiscount(data)}
+                            onChange={handleDiscountChange}
                         />
                         <Button 
                             disabled={!quantity}
