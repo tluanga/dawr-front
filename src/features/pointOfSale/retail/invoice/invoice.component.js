@@ -61,8 +61,8 @@ export class ComponentToPrint extends React.PureComponent {
             <Header>
                 <CompanyInfo>                    
                     <SubHeadText>{customer.name}</SubHeadText>
-                    <SubHeadText>Ramhlun NorTh</SubHeadText>
-                    <SubHeadText>Aizawl, Mizoram</SubHeadText>
+                    <SubHeadText>{customer.address}</SubHeadText>
+                    <SubHeadText>{customer.city}, Mizoram</SubHeadText>
                 </CompanyInfo>
                 <BillInfo>
                     
