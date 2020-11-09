@@ -1,5 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
+// --------Redux--------
+
+
+// --------Styled Component
 import {
     Container,
     Header,
@@ -33,6 +36,8 @@ export const billInfo={
 
 export class ComponentToPrint extends React.PureComponent {
     render() {
+        const customer=this.props.customer
+        console.log('inside invoice customer',customer)
       return (
         <Container>
             <Header>                
@@ -55,7 +60,7 @@ export class ComponentToPrint extends React.PureComponent {
             <Header><Title style={{fontSize:20}}>Bill to:</Title></Header>
             <Header>
                 <CompanyInfo>                    
-                    <SubHeadText>Laljohna</SubHeadText>
+                    <SubHeadText>{customer.name}</SubHeadText>
                     <SubHeadText>Ramhlun NorTh</SubHeadText>
                     <SubHeadText>Aizawl, Mizoram</SubHeadText>
                 </CompanyInfo>

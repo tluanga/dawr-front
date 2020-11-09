@@ -18,6 +18,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button'
 
 
+
+
+
 const Container=styled.div`
     padding:10px;
     display:flex;
@@ -51,7 +54,7 @@ const CustomerSelect = () => {
     const customers=useSelector(selectCustomerList)
     const customer=useSelector(selectCustomer)
     const customerTypes=useSelector(selectCustomerTypeList)
-
+    console.log('inside cart summary', customer)
     //print invoice
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
@@ -77,7 +80,10 @@ const CustomerSelect = () => {
                         
                     }}> 
                         <div style={{ display: "none" }}>
-                            <ComponentToPrint ref={componentRef} />
+                            <ComponentToPrint 
+                                ref={componentRef}
+                                customer={customer} 
+                            />
                         </div>
                         <Control>
                             <Button

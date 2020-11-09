@@ -1,14 +1,17 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 
 // ---Redux
 import {useSelector,useDispatch} from 'react-redux'
-import {selectCustomerList} from '../../../features/inventory/customer/Customer.slice'
+import {fetchCustomerList,
+    selectCustomerList} from '../../../features/inventory/customer/Customer.slice'
 import {
     setCustomer,
     selectCustomer,
     setDiscount
 } from './CartInfo.slice'
-import {selectCustomerTypeList} from '../../inventory/customerType/CustomerType.slice'
+import {
+    fetchCustomerTypeList,
+    selectCustomerTypeList} from '../../inventory/customerType/CustomerType.slice'
 // ---Ui
 import styled from 'styled-components'
 import Select from 'react-select'
@@ -31,6 +34,11 @@ const CustomerSelect = () => {
 
     // ---component state
     const [customerType,setCustomerType]=useState()
+
+    useEffect(()=>{
+        dispatch(fetchCustomerList())
+        dispatch(fetchCustomerTypeList())
+    },[])
 
     return(
         <Container>
