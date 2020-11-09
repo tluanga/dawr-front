@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect} from 'react'
 import styled from 'styled-components'
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form'
@@ -6,7 +6,9 @@ import TextField from '@material-ui/core/TextField'
 import { Button } from '@material-ui/core';
 // -----Redux--------
 import {useSelector,useDispatch} from 'react-redux'
-import {updateProduct} from '../../../product/Product.slice'
+import {
+    updateProduct
+} from '../../../product/Product.slice'
 import {
     selectCostPrices,
     fetchCurrentCostPrice
@@ -79,7 +81,6 @@ const Control=styled.section`
   `
 
 Modal.setAppElement('#root')
-
 const EditPriceModal = () => {
     // ------Redux
     const dispatch=useDispatch()
@@ -87,34 +88,25 @@ const EditPriceModal = () => {
     const priceEditModalData=useSelector(
         selectPriceEditModalData
     )
-    
+    const costPrices=useSelector(selectCostPrices)
+    const sellingPrices=useSelector(selectSellingPrices)
+    const mrps=useSelector(selectMrp)
+    console.log('cost prices',costPrices)
+    useEffect(()=>{
+        dispatch(fetchCurrentCostPrice)
+        dispatch(fetchCurrentSellPrice)
+        dispatch(fetchCurrentMrp)
+    },[])
 
-
-    console.log('price edit modal data-->>',priceEditModalData)
-    const [status,setStatus]=useState()
-    const statusOption=[
-        {
-            label:'Active',
-            value:true
-        },
-        {
-            label:'In Active',
-            value:false
-        }
-    ]
-    
-    const {handleSubmit,register,reset}=useForm()
-    
-    const onSubmit=formData=>{
-        formData.active=status
-        setOpenPriceEditModal(false)
-       
-        
+    // ----React hook form
+    const {handleSubmit,register,reset}=useForm()    
+    const onSubmit=formData=>{  
+        console.log('formdata',formData)
+            
+        dispatch(setOpenPriceEditModal(false))
     }
 
-    const onReset=()=>{
-        
-    }
+    
     return(       
         <Modal
             isOpen={openPriceEditModal}
@@ -123,20 +115,19 @@ const EditPriceModal = () => {
         >
             <Wrapper>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                    <h3>EDIT PRICE</h3>
-                    <section><h3>Cooler</h3></section>
+                    <h3>Edit-{priceEditModalData.name}-Prices</h3>                    
                     <TextField
                         variant='outlined'
-                        name='costprice'
+                        name='costPrice'
                         label='New Cost Price'                            
-                        placeholder='New Cost Price'
+                        placeholder='New Cost Price'                        
                         inputRef={register}
                         style={{width:'200px',paddingBottom:'1.3vh'}}
                         size='small'
                     />
                     <TextField
                         variant='outlined'
-                        name='sellingprice'
+                        name='sellingPrice'
                         label='New Selling Price'                            
                         placeholder='New Selling Price'
                         inputRef={register}
@@ -176,8 +167,7 @@ const EditPriceModal = () => {
                             variant='contained'
                             color='primary'
                             type='button'
-                            startIcon={<MdClearAll/>}
-                            onClick={onReset}
+                            startIcon={<MdClearAll/>}                            
                             >Clear
                         </Button>
                        

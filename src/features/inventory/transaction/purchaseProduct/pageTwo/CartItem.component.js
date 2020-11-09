@@ -213,7 +213,7 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                             size='small'
                             placeholder='Quantity'
                             type='number'
-                            disabled={!product&&!quantityInStock}
+                            disabled={!product}
                             onChange={onQuantityChange}
                         />
                         <TextField
@@ -238,7 +238,7 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                             onClick={()=>{
                                 if(product){
                                     dispatch(setOpenPriceEditModal(true))
-                                    dispatch(setPriceEditModalData(product.id))    
+                                    dispatch(setPriceEditModalData(product))    
                                 }
                                
                                 }
