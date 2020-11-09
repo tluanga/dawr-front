@@ -57,7 +57,6 @@ const CartItem = ({setOpenModal,setModalMode}) => {
     const cartTotalAmount=useSelector(selectTotalAmount)
     const cartTotalTax=useSelector(selectTotalTax)
     const productStocks=useSelector(selectAllStock)
-    console.log('product options',productsOptions)
     
     // component state
     const [product,setProduct]=useState()
@@ -138,6 +137,7 @@ const CartItem = ({setOpenModal,setModalMode}) => {
 
         setAmount(_amount-(discount*10))
         if(_discount==='')setAmount(_amount)
+        if(_discount>=_amount)setAmount(_amount)
     }
     
     const NEW='New'
