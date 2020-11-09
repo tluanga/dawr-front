@@ -1,6 +1,6 @@
 import React,{useState,useRef} from 'react'
 import { useReactToPrint } from 'react-to-print';
-import {ComponentToPrint} from './invoice.component'
+import {ComponentToPrint} from './invoice/invoice.component'
 // ---Redux
 import {useSelector,useDispatch} from 'react-redux'
 import {selectCustomerList} from '../../../features/inventory/customer/Customer.slice'

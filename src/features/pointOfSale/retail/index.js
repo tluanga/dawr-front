@@ -1,5 +1,5 @@
 import React from 'react'
-import {ComponentToPrint} from './invoice.component'
+import {ComponentToPrint} from './invoice/invoice.component'
 // ---Redux
 import {useSelector,useDispatch} from 'react-redux'
 import styled from 'styled-components'
@@ -10,6 +10,12 @@ import CartItem from './CartItem.component'
 import CartTable from './CartTable.component'
 import CartSummary from './CartSummary.component'
 
+// const Container=styled.div`
+//     display:flex;
+//     width:100vw;
+//     height:90vh;
+//     /* background-color:teal; */
+// `
 
 const Container=styled.div`
     display:flex;
@@ -30,9 +36,9 @@ const Column2=styled.section`
 
 const Retail = () => {
     return(
-        // <div>
+        // <Container>
         //     <ComponentToPrint/>
-        // </div>
+        // </Container>
 
         <Container>
             <Column1>
