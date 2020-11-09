@@ -111,10 +111,11 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                 id:duplicateState.id,
                 changes:{
                     quantity:_quantity,
-                    amount:_quantity*costPrice.per_piece_sell_price,
+                    amount:_quantity*costPrice.cost_price,
                     tax:_quantity*gstCode.totalGst
                 }
             }
+            console.log('changes payload',_changesPayload)
             dispatch(updateCartItem(_changesPayload))
             dispatch(setTotalAmount(cartTotalAmount+amount))
             dispatch(setTotalTax(cartTotalTax+payload.tax))

@@ -34,6 +34,7 @@ const Transaction = () => {
          <Tabs>
              <TabList>
                 <Tab>PURCHASE PRODUCT</Tab>
+                <Tab>SETTLE PURCHASE ORDER</Tab>
                 
              </TabList>
              <TabPanel>
