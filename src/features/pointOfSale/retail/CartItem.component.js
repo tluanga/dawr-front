@@ -9,10 +9,10 @@ import {useForm} from 'react-hook-form'
 
 // -----Redux------
 import {useSelector,useDispatch} from 'react-redux'
-import {selectProductList} from '../../inventory/product/Product.slice'
-import {selectSellingPrices} from '../../inventory/product/ProductSellingPrice.slice'
+import {selectProductList,fetchProductList} from '../../inventory/product/Product.slice'
+import {selectSellingPrices,fetchCurrentSellPrice} from '../../inventory/product/ProductSellingPrice.slice'
 
-import {selectGstCodeList} from '../../inventory/gstCode/GstCode.slice'
+import {selectGstCodeList,fetchGstCodeList} from '../../inventory/gstCode/GstCode.slice'
 
 import {
         addCartItem,
@@ -58,10 +58,11 @@ const CartItem = () => {
     const [amount,setAmount]=useState()
     const [discount,setDiscount]=useState()
     
-    
-
-
-
+    useEffect(()=>{
+        dispatch(fetchProductList())
+        dispatch(fetchGstCodeList())
+        dispatch(fetchCurrentSellPrice())
+    },[])
 
     // React hook form
     const {handleSubmit} =useForm()
@@ -135,12 +136,13 @@ const CartItem = () => {
     }    
     return (
             <ProductContent onSubmit={handleSubmit(onSubmit)}>
-                <Card style={{height:'550px'}}>
+                <Card style={{height:'410px'}}>
                     <CardContent style={{
                         display:'flex',
                         flexDirection:'column',
                         justifyContent:'space-evenly',
-                        height:'540px'
+                        height:'410px',
+                        paddingTop:'1px'
                     }}>
                         <Select
                             isDisabled={!customer}
@@ -158,14 +160,12 @@ const CartItem = () => {
                         
                         <section>Name:{product?product.name:''}</section>
                         <section>Quantity in Stock:</section>
-                        <section>Gst Rate:{gstCode?gstCode.totalGst:''}</section>
-                        <section>Hsn Code:{gstCode?gstCode.code:''}</section>
+                        <section>Gst Rate:{gstCode?gstCode.totalGst:''}</section>                        
                         <section>Cost Price(unit):{price?price.per_piece_sell_price:''}</section>                        
                         <section>Mrp:</section>
                         <section>Quantity:{quantity?quantity:''}</section>
                         <section>Discount:{discount?discount:''}</section>
                         <section>Amount:{amount?amount:''}</section>
-
                         <TextField
                             variant='outlined'
                             size='small'

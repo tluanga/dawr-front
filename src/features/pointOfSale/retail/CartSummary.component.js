@@ -24,13 +24,14 @@ import Button from '@material-ui/core/Button'
 const Container=styled.div`
     padding:10px;
     display:flex;
+    width:66vw;
     flex-direction:row;  
     justify-content:center;  
        
 `
 
 const Control=styled.div`
-    width:30vw;
+    width:40vw;
     height:35px;
     display:flex;
     justify-content:space-between ;
@@ -89,7 +90,7 @@ const CustomerSelect = () => {
                             <Button
                                 color='primary'
                                 variant='contained'
-                                style={{width:'180px'}}
+                                style={{width:'150px'}}
                                 onClick={handlePrint}
                             >
                                 Print Invoice
@@ -97,13 +98,13 @@ const CustomerSelect = () => {
                             <Button
                                 color='primary'
                                 variant='contained'
-                                style={{width:'180px'}}
+                                style={{width:'150px'}}
                             >
                                 Submit
                             </Button><Button
                                 color='secondary'
                                 variant='contained'
-                                style={{width:'180px'}}
+                                style={{width:'150px'}}
                             >
                                 Clear
                             </Button>

@@ -43,12 +43,13 @@ const CustomerSelect = () => {
     return(
         <Container>
                 <Card style={{
-                    height:'180px',width:'400px'}}>
+                    height:'100px',width:'400px', paddingTop:'1px'}}>
                     <CardContent style={{
                         display:'flex',
                         flexDirection:'column',
                         justifyContent:'space-evenly',
-                        height:'180px',
+                        height:'100px',
+                        paddingTop:'1px'
                         
                     }}>
                         <Select
@@ -67,8 +68,7 @@ const CustomerSelect = () => {
                             
                         />
                         
-                        <section>Name:{customer?customer.name:''}</section>
-                        <section>Phone:{customer?customer.contact_no:''}</section>
+                        <section>Name:{customer?customer.name:''}</section>                        
                         <section>
                             Discount Amount:{
                             customerType?customerType.discount_percentage:''

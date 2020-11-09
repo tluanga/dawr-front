@@ -23,7 +23,7 @@ const Table=styled.section`
     display:flex;
     flex-direction:column;
     padding:10px ;
-    height:76.5vh;
+    height:73vh;
     width:77vw;
 `
 const NEW='New'
@@ -37,10 +37,10 @@ const PageTwo = ({showPageTwo}) => {
            {
                showPageTwo?
                <Wrapper>
-                <CartItem 
+                {/* <CartItem 
                     setOpenModal={setOpenModal}
                     setModalMode={setModalMode}
-                />
+                /> */}
                 <ProductModal 
                     openModal={openModal}
                     modalMode={modalMode}
@@ -49,8 +49,8 @@ const PageTwo = ({showPageTwo}) => {
                     setModalData={setModalData}
                 />
                 <Table>
-                    <CartTable/>
-                    <CartSummary/>
+                    {/* <CartTable/> */}
+                    {/* <CartSummary/> */}
                 </Table>
             
             </Wrapper>:''

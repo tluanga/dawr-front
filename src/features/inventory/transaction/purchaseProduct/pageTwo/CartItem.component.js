@@ -144,12 +144,12 @@ const CartItem = ({setOpenModal,setModalMode}) => {
     const NEW='New'
     return (
             <ProductContent onSubmit={handleSubmit(onSubmit)}>
-                <Card style={{height:'700px'}}>
+                <Card style={{height:'550px'}}>
                     <CardContent style={{
                         display:'flex',
                         flexDirection:'column',
                         justifyContent:'space-evenly',
-                        height:'700px',
+                        height:'550px',
                         paddingTop:'2px'
                     }}>
                         <Creatable
@@ -189,11 +189,11 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                         />
                         
                         <section>Name:{product?product.name:''}</section>
-                        <section>Quantity in Stock:{productStock?productStock.quantity:''}</section>
-                        <section>Gst Rate:{gstCode?gstCode.totalGst:''}</section>
-                        <section>Hsn Code:{gstCode?gstCode.code:''}</section>
-                        <section>Cost Price(unit):{costPrice?costPrice.per_piece_cost_price:''}</section>                        
-                        <section>Mrp:{mrp?mrp.amount:''}</section>
+                        <section>Quantity in Stock:{productStock?productStock.quantity:''}</section>                                               
+                        <section>
+                            Cost Price(unit):{costPrice?costPrice.per_piece_cost_price:''}
+                            Mrp:{mrp?mrp.amount:''}
+                        </section>                    
                         <section>Quantity:{quantity?quantity:''}</section>
                         <section>Amount:{amount?amount:''}</section>
                         <section>New Cost Price:{newCostPrice?newCostPrice:''}</section>

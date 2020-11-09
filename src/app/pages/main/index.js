@@ -8,6 +8,10 @@ import Inventory from '../../../features/inventory'
 import Report from '../../../features/report'
 import Pos from '../../../features/pointOfSale/'
 
+const Container=styled.div`
+    width:100vw;
+`
+
 const RouteSection=styled.section`
 
 `
@@ -15,7 +19,7 @@ const RouteSection=styled.section`
 function Main() {
     
     return (
-        <div>
+        <Container>
             <Navbar/>
             <RouteSection>
                 <Switch>
@@ -42,7 +46,7 @@ function Main() {
                 
             </RouteSection>
            
-        </div>
+        </Container>
     )
 }
 

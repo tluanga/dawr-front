@@ -18,7 +18,7 @@ import Button from '@material-ui/core/Button'
 const Container=styled.div`
     flex-direction:column;
     display:flex;
-    width:75vw;    
+    width:68vw;    
     background-color:white;
 `
 
