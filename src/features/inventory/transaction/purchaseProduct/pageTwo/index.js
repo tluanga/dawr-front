@@ -8,7 +8,7 @@ import CartSummary from './CartSummary.component'
 
 // -----Redux------
 import ProductModal from '../../../product/Product.modal'
-
+import EditPriceModal from './EditPrice.modal'
 
 
 const Wrapper=styled.div`
@@ -32,6 +32,9 @@ const PageTwo = ({showPageTwo}) => {
     const [openModal,setOpenModal]=useState(false)
     const [modalMode,setModalMode]=useState(NEW)
     const [modalData,setModalData]=useState({})
+    
+   
+
     return(
         <>
            {
@@ -49,10 +52,10 @@ const PageTwo = ({showPageTwo}) => {
                     setModalData={setModalData}
                 />
                 <Table>
-                    {/* <CartTable/> */}
-                    {/* <CartSummary/> */}
+                    <CartTable/>
+                    <CartSummary/>
                 </Table>
-            
+                <EditPriceModal/>
             </Wrapper>:''
            } 
         </>

@@ -30,6 +30,12 @@ import {
         selectCartTotalTax,
         setTotalTax
     } from './Cart.Slice'
+
+import {
+        setOpenPriceEditModal,
+        setPriceEditModalData
+    } from './CartUi.slice'   
+
 import Alert from '@material-ui/lab/Alert'
 
 
@@ -229,7 +235,14 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                             disabled={!quantity&disable.status===true}
                             variant='contained'
                             color='primary'
-                            type='submit'
+                            onClick={()=>{
+                                if(product){
+                                    dispatch(setOpenPriceEditModal(true))
+                                    dispatch(setPriceEditModalData(product.id))    
+                                }
+                               
+                                }
+                            }
                         >Edit Price</Button>
                     </CardContent>
                    
