@@ -1,21 +1,9 @@
 import {createAsyncThunk,createSlice,createEntityAdapter} from '@reduxjs/toolkit'
-import {searchItem} from '../../../api/api'
+import {getList} from '../../../api/api'
 
-const costPriceUrl='product_cost_price'
+const url='product_latest_cost_price'
 export const fetchCurrentCostPrice=createAsyncThunk('ProductPriceCost/List',
-    async (id)=>{
-        const params={
-            url:costPriceUrl,
-            searchParam:[                
-                {
-                    key:'current',
-                    value:true,
-                }
-            ]
-        }
-        const response= await searchItem(params)
-        return response
-    }
+    async (id)=>await getList(url)
 )
 
 const costPriceEntityAdapter=createEntityAdapter({})

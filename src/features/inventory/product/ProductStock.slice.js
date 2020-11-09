@@ -1,21 +1,9 @@
 import {createAsyncThunk,createSlice,createEntityAdapter} from '@reduxjs/toolkit'
-import {searchItem} from '../../../api/api'
+import {getList} from '../../../api/api'
 
-const url='stock'
+const url='latest_stock'
 export const fetchCurrentStock=createAsyncThunk('ProductStock/List',
-    async (id)=>{
-        const params={
-            url:url,
-            searchParam:[                
-                {
-                    key:'current',
-                    value:true,
-                }
-            ]
-        }
-        const response= await searchItem(params)
-        return response
-    }
+    async ()=>await getList(url)
 )
 
 const productStockEntityAdapter=createEntityAdapter({})

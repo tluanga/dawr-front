@@ -8,8 +8,6 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import {useForm} from 'react-hook-form'
 
-// ------Creat new Product Modal
-import ProductModal from '../'
 
 
 // -----Redux------
@@ -53,8 +51,8 @@ const CartItem = ({setOpenModal,setModalMode}) => {
     const dispatch=useDispatch()
     const productsOptions=useSelector(selectProductList)
     const gstCodes=useSelector(selectGstCodeList)
-    const productsCostPrice=useSelector(selectCostPrices)
-    const productsMrp=useSelector(selectMrp)
+    const costPrices=useSelector(selectCostPrices)
+    const mrps=useSelector(selectMrp)
     const cart=useSelector(selectCart)
     const cartTotalAmount=useSelector(selectTotalAmount)
     const cartTotalTax=useSelector(selectTotalTax)
@@ -66,59 +64,30 @@ const CartItem = ({setOpenModal,setModalMode}) => {
     const [gstCode,setGstCode]=useState()
     const [costPrice,setCostPrice]=useState()
     const [mrp,setMrp]=useState()
-    const [productStock,setProductStock]=useState()
-    const [quantityInStock,setQuantityInStock]=useState()
+    const [productStock,setProductStock]=useState()    
     const [quantity,setQuantity]=useState(null) //Quantity to purchase
-    const [amount,setAmount]=useState(0)
-    const [newCostPrice,setNewCostPrice]=useState()
-    const [newSellingPrice,setNewSellingPrice]=useState()
-    const [newMrp,setNewMrp]=useState()
+    const [amount,setAmount]=useState(0)    
     const [discount,setDiscount]=useState()
-    const [disable,setDisabled]=useState({status:false,message:''})
+    
     
     useEffect(()=>{
         dispatch(fetchProductList())
     },[dispatch])
 
     
-    const SetCostPrice=()=>{                  
-        if(newCostPrice) return newCostPrice
-        else if(costPrice) return costPrice.per_piece_cost_price
-    }
 
-    const SetSellPrice=()=>{                  
-        if(newSellingPrice) return newSellingPrice
-        else if(costPrice) return costPrice.per_piece_cost_price
-    }
-    
     // React hook form
     const {handleSubmit} =useForm()
 
     const onSubmit=data=>{
-        // check product already existed in the cart
 
-        
-    // purchase_order_item": [
-    //     {
-    //         "product": 1,
-    //         "cost_price": 100.0,
-    //         "cost_price_bulk": 90.0,
-    //         "sell_price": 200.0,
-    //         "sell_price_bulk": 200.0,
-    //         "mrp": 350.0,
-    //         "discount": 10,
-    //         "quantity": 100,
-    //         "active": true,
-    //         "created_at": "2020-10-28T15:06:41.439869Z",
-    //         "updated_at": "2020-10-28T15:06:41.439869Z"
-    //     }
         let duplicate=0
         let duplicateState={}
         const payload={
             id:cart.length+1,
             product:product,
             gstCode:gstCode,
-            cost_price:SetCostPrice(),
+            cost_price:costPrice,
             discount:discount,
             quantity:quantity,
             amount:amount,
@@ -157,11 +126,13 @@ const CartItem = ({setOpenModal,setModalMode}) => {
 
     const onQuantityChange=(e)=>{
         const _quantity=e.target.value
-        const _costPrice=SetCostPrice()
+        console.log('quantity',_quantity)
+        console.log('costPrice',costPrice)
         setQuantity(_quantity)
-        setAmount(_quantity*_costPrice)
+        setAmount(_quantity*costPrice.cost_price)
     }
 
+    console.log('amount',amount)
 
     const NEW='New'
     return (
@@ -189,23 +160,17 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                                     setProduct(data)                                
                                     const _gstCode=gstCodes.find(
                                         gstCode=>gstCode.id===data.gst_code)
-                                    const _price=productsCostPrice.find(
+                                    const _price=costPrices.find(
                                         price=>price.product===data.id)
-                                    const _mrp=productsMrp.find(
+                                    const _mrp=mrps.find(
                                         price=>price.product===data.id)
-                                    const _productStock=productStocks.find(
+                                    const _stock=productStocks.find(
                                         stock=>stock.product===data.id)
+                                    console.log('stock------->',_stock)
                                     setGstCode(_gstCode)
                                     setCostPrice(_price)
                                     setMrp(_mrp)
-                                    setProductStock(_productStock)
-                                    if(_productStock){
-                                        if(_productStock.quantity<1)setDisabled({status:true,message:'Not Enought Stock'})
-                                    }
-                                    else{
-                                        setDisabled({status:false,message:''})
-                                    }
-                                    
+                                    setProductStock(_stock)
                                 }
                                 
                             }}
@@ -214,7 +179,7 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                         <section>Name:{product?product.name:''}</section>
                         <section>Quantity in Stock:{productStock?productStock.quantity:''}</section>                                               
                         <section>
-                            Cost Price(unit):{costPrice?costPrice.per_piece_cost_price:''}                            
+                            Cost Price(unit):{costPrice?costPrice.cost_price:''}                            
                         </section>
                         <section>Mrp:{mrp?mrp.amount:''}</section>
                         <section>Gst Rate:{mrp?mrp.amount:''}</section>                    
@@ -236,17 +201,17 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                             size='small'
                             placeholder='Discount'
                             type='number'
-                            disabled={!product&disable.status===true}
+                            disabled={!product}
                             onChange={data=>setDiscount(data)}
                         />
                         <Button 
-                            disabled={!quantity&disable.status===true}
+                            disabled={!quantity}
                             variant='contained'
                             color='primary'
                             type='submit'
                         >Add to Cart</Button>
                         <Button 
-                            disabled={!quantity&disable.status===true}
+                            disabled={!quantity}
                             variant='contained'
                             color='primary'
                             onClick={()=>{
