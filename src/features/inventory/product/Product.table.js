@@ -91,7 +91,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
                     else return null
                 })
                 if(costPrice){
-                    return costPrice.per_piece_cost_price
+                    return costPrice.cost_price
                 }else return 0
             }
         },
