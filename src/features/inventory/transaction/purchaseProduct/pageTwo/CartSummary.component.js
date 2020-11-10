@@ -39,7 +39,10 @@ const CartSummary= () => {
 
 
     const handleSubmit=()=>{
-        
+        const orderItem=cart.map(c=>{
+            product:product.id,
+            
+        })
 
         const payload={
             total_tax:totalTax,
