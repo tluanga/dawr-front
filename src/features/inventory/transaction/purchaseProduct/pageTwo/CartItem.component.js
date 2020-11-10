@@ -90,6 +90,7 @@ const CartItem = ({setOpenModal,setModalMode}) => {
             cost_price:costPrice,
             discount:discount,
             quantity:quantity,
+            taxAmount:tax,
             amount:amount,
             tax:quantity*gstCode.totalGst
         }
@@ -130,6 +131,8 @@ const CartItem = ({setOpenModal,setModalMode}) => {
         const _quantity=e.target.value
         setQuantity(_quantity)
         setAmount(_quantity*costPrice.cost_price)
+
+        setTax(((_quantity*costPrice.cost_price)/100)*gstCode.totalGst)
     }
 
     const handleDiscountChange=(e)=>{
@@ -202,7 +205,8 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                             Cost Price(unit):{costPrice?costPrice.cost_price:''}                            
                         </section>
                         <section>Mrp:{mrp?mrp.amount:''}</section>
-                        <section>Gst Rate:{gstCode?gstCode.totalGst:''}</section>                    
+                        <section>Gst Rate:{gstCode?gstCode.totalGst:''}</section> 
+                        <section>Tax Amount:{tax?tax:''}</section>                   
                         <section>Quantity:{quantity?quantity:''}</section>
                         <section>Amount:{amount?amount:''}</section>
                         
