@@ -95,13 +95,14 @@ const CartItem = ({setOpenModal,setModalMode}) => {
         }
         if(cart.length!==0){
             cart.map(c=>{
-                if(c.name===payload.name){
+                if(c.product.id===payload.product.id){
                     duplicate=1
                     duplicateState=c
                 }
             })
         }
         if(duplicate===0){
+            console.log('add new',payload)
             dispatch(addCartItem(payload))
             dispatch(setTotalAmount(cartTotalAmount+amount))
             dispatch(setTotalTax(cartTotalTax+payload.tax))
@@ -156,6 +157,7 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                     }}>
                         <Creatable
                             isClearable
+                            o
                             placeholder='Select Product..'
                             options={productsOptions}
                             onCreateOption={()=>{
@@ -180,7 +182,16 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                                     setMrp(_mrp)
                                     setProductStock(_stock)
                                     setAmount(0)
+                                } else{
+                                    setProduct()
+                                    setCostPrice()
+                                    setGstCode()
+                                    setMrp()
+                                    setProductStock()
+                                    setAmount()
+                                    setQuantity()
                                 }
+                                
                                 
                             }}
                         />
@@ -199,7 +210,9 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                             label='Quantity'
                             variant='outlined'
                             size='small'
+                            defaultValue={quantity}
                             placeholder='Quantity'
+                           
                             type='number'
                             disabled={!product}
                             onChange={onQuantityChange}

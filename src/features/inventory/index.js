@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {TabList,Tabs,Tab, TabPanel} from 'react-tabs'
 import Transaction from './transaction'
 import Customer from './customer/Customer.component'
@@ -11,6 +11,9 @@ import WareHouse from './warehouse/Warehouse.component'
 import Product from './product/Product.component'
 import Manufacturer from './manufacturer/Manufacturer.component'
 
+// ------Redux-----------
+import {useDispatch} from 'react-redux'
+
 
 
 import 'react-tabs/style/react-tabs.css';
@@ -19,6 +22,16 @@ import 'react-tabs/style/react-tabs.css';
 
 
 const Inventory=()=>{
+    const dispatch=useDispatch()
+
+    useEffect(()=>{
+       
+
+
+
+
+    },[])
+
     return(
         <div>
          <Tabs>
