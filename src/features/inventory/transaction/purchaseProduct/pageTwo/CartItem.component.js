@@ -90,9 +90,8 @@ const CartItem = ({setOpenModal,setModalMode}) => {
             cost_price:costPrice,
             discount:discount,
             quantity:quantity,
-            taxAmount:tax,
             amount:amount,
-            tax:quantity*gstCode.totalGst
+            tax:tax
         }
         if(cart.length!==0){
             cart.map(c=>{

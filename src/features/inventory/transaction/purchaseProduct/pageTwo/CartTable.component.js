@@ -51,7 +51,7 @@ const CartTable = () => {
                
             }, 
             {
-                Header:'Tax Amount',
+                Header:'Tax',
                 accessor:'tax',                
             },
             {
