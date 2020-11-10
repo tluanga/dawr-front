@@ -67,6 +67,7 @@ const CartItem = ({setOpenModal,setModalMode}) => {
     const [quantity,setQuantity]=useState(null) //Quantity to purchase
     const [amount,setAmount]=useState(0)    
     const [discount,setDiscount]=useState(0)
+    const [tax,setTax]=useState(0)
     
     
     useEffect(()=>{
@@ -190,7 +191,7 @@ const CartItem = ({setOpenModal,setModalMode}) => {
                             Cost Price(unit):{costPrice?costPrice.cost_price:''}                            
                         </section>
                         <section>Mrp:{mrp?mrp.amount:''}</section>
-                        <section>Gst Rate:{mrp?mrp.amount:''}</section>                    
+                        <section>Gst Rate:{gstCode?gstCode.totalGst:''}</section>                    
                         <section>Quantity:{quantity?quantity:''}</section>
                         <section>Amount:{amount?amount:''}</section>
                         

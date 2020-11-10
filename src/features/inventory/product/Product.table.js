@@ -132,6 +132,7 @@ const ProductTable = ({setOpenModal,setModalMode,setModalData}) => {
                 }else return 0
             }
         },
+        
         {
             Header: 'Stock',
             accessor: 'stock',
