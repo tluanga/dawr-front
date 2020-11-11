@@ -1,9 +1,19 @@
 import {createAsyncThunk,createSlice,createEntityAdapter} from '@reduxjs/toolkit'
-import {getList} from '../../../api/api'
+import {getList,create} from '../../../api/api'
 
 const url='product_latest_cost_price'
-export const fetchCurrentCostPrice=createAsyncThunk('ProductPriceCost/List',
-    async (id)=>await getList(url)
+export const fetchCurrentCostPrice=createAsyncThunk(
+    'costPrice/List',
+    async ()=>await getList(url)
+)
+export const setCurrentCostPrice=createAsyncThunk(
+    'costPrice/New',
+    async(payload)=>{
+        console.log('new cost price pay load',payload)
+        const response=await create({url:url,data:payload})
+        return response
+    }
+
 )
 
 const costPriceEntityAdapter=createEntityAdapter({})
@@ -13,7 +23,8 @@ const costPriceSlice=createSlice({
     initialState:costPriceEntityAdapter.getInitialState([]),
     reducers:{},
     extraReducers:{
-        [fetchCurrentCostPrice.fulfilled]:costPriceEntityAdapter.setAll
+        [fetchCurrentCostPrice.fulfilled]:costPriceEntityAdapter.setAll,
+        [setCurrentCostPrice.fulfilled]:costPriceEntityAdapter.addOne
     }
 })
 

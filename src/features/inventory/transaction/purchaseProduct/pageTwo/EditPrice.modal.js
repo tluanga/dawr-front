@@ -11,7 +11,8 @@ import {
 } from '../../../product/Product.slice'
 import {
     selectCostPrices,
-    fetchCurrentCostPrice
+    fetchCurrentCostPrice,
+    setCurrentCostPrice
 } from '../../../product/ProductCostPrice.slice'
 import {
     selectSellingPrices,
@@ -25,7 +26,8 @@ import {
 import {
     selectOpenPriceEditModal,
     selectPriceEditModalData,
-    setOpenPriceEditModal
+    setOpenPriceEditModal,
+    selectModalData
 } from './CartUi.slice' 
 
 import {AiOutlineClose} from 'react-icons/ai'
@@ -88,12 +90,14 @@ const EditPriceModal = () => {
     const priceEditModalData=useSelector(
         selectPriceEditModalData
     )
-    const costPrices=useSelector(selectCostPrices)
+    // const costPrices=useSelector(selectCostPrices)
     const sellingPrices=useSelector(selectSellingPrices)
     const mrps=useSelector(selectMrp)
-    console.log('cost prices',costPrices)
+    const modalData=useSelector(selectModalData)
+
+
     useEffect(()=>{
-        dispatch(fetchCurrentCostPrice)
+        // dispatch(fetchCurrentCostPrice)
         dispatch(fetchCurrentSellPrice)
         dispatch(fetchCurrentMrp)
     },[])
@@ -102,7 +106,10 @@ const EditPriceModal = () => {
     const {handleSubmit,register,reset}=useForm()    
     const onSubmit=formData=>{  
         console.log('formdata',formData)
-            
+        dispatch(setCurrentCostPrice({
+            cost_price:formData.costPrice,
+            product:modalData.product.id
+            }))
         dispatch(setOpenPriceEditModal(false))
     }
 
@@ -119,8 +126,9 @@ const EditPriceModal = () => {
                     <TextField
                         variant='outlined'
                         name='costPrice'
-                        label='New Cost Price'                            
-                        placeholder='New Cost Price'                        
+                        label='Cost Price'                            
+                        placeholder='Cost Price'
+                        defaultValue={modalData.cost_price}
                         inputRef={register}
                         style={{width:'200px',paddingBottom:'1.3vh'}}
                         size='small'
@@ -128,8 +136,8 @@ const EditPriceModal = () => {
                     <TextField
                         variant='outlined'
                         name='sellingPrice'
-                        label='New Selling Price'                            
-                        placeholder='New Selling Price'
+                        label='Selling Price'                            
+                        placeholder='Selling Price'
                         inputRef={register}
                         style={{width:'200px',paddingBottom:'1.3vh'}}
                         size='small'
@@ -137,8 +145,8 @@ const EditPriceModal = () => {
                     <TextField
                         variant='outlined'
                         name='sellingPriceBulk'
-                        label='New Selling Price Bulk'                            
-                        placeholder='New Selling Price(Bulk)'
+                        label='Selling Price Bulk'                            
+                        placeholder='Selling Price(Bulk)'
                         inputRef={register}
                         style={{width:'200px',paddingBottom:'1.3vh'}}
                         size='small'
@@ -146,8 +154,8 @@ const EditPriceModal = () => {
                     <TextField
                         variant='outlined'
                         name='mrp'
-                        label='New Mrp'                            
-                        placeholder='New Mrp'
+                        label='Mrp'                            
+                        placeholder='Mrp'
                         inputRef={register}
                         style={{width:'200px',paddingBottom:'1.3vh'}}
                         size='small'
