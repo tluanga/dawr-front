@@ -39,10 +39,14 @@ const CartSummary= () => {
 
 
     const handleSubmit=()=>{
-        const orderItem=cart.map(c=>{
-            product:product.id,
+        // const orderItems=cart.map(c=>{
+        //     const orderItem={
+        //         product:c.product.id,
+        //         cost_price:c.costPrice,
+        //     }
             
-        })
+            
+        // })
 
         const payload={
             total_tax:totalTax,

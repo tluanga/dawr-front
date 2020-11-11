@@ -87,7 +87,6 @@ const CartItem = ({setOpenModal,setModalMode}) => {
             id:cart.length+1,
             product:product,
             gstCode:gstCode,
-            cost_price:costPrice,
             discount:discount,
             quantity:quantity,
             amount:amount,
