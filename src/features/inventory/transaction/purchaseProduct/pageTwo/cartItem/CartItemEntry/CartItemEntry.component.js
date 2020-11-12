@@ -5,17 +5,27 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 import {
+    selectCartItemCostPrice,
     selectCartItemQuantity,
     setCartItemQuantity,
     selectCartItemDiscount,
-    setCartItemDiscount
+    setCartItemDiscount,
+    selectCartItemAmount,
+    setCartItemAmount
 } from '../cartItem.slice'
-const Container=styled.div``
+const Container=styled.div`
+    height:180px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+`
 
 const CartItemEntry = () => {
     const dispatch=useDispatch()
+    const costPrice=useSelector(selectCartItemCostPrice)
     const quantity=useSelector(selectCartItemQuantity)
     const discount=useSelector(selectCartItemDiscount)
+    const amount=useSelector(selectCartItemAmount)
     return (
         <Container>
             <TextField
@@ -24,18 +34,34 @@ const CartItemEntry = () => {
                 type='number'
                 placeholder='Quantity'
                 defaultValue={quantity}
-                onChange={data=>{
-                    dispatch(setCartItemQuantity(data))
-                }}
+                onChange={event=>{
+                    dispatch(
+                        setCartItemQuantity(
+                        event.target.value
+                        ))
+                    dispatch(
+                        setCartItemAmount(
+                            event.target.value*costPrice
+                        )
+                    )                        
+                    }
+                }
             />
             <TextField
                 variant='outlined'
                 size='small'
                 type='number'
+                disabled={amount<=0}
                 placeholder='Discount'
                 defaultValue={discount}
-                onChange={data=>{
-                    dispatch(setCartItemDiscount(data))
+                onChange={event=>{
+                        dispatch(setCartItemDiscount(
+                            event.target.value
+                        ))
+
+                        dispatch(setCartItemAmount(
+                            (quantity*costPrice)-event.target.value
+                        ))
                 }}
             />
             <Button
@@ -49,7 +75,7 @@ const CartItemEntry = () => {
                 variant='contained'
                 color='primary'
             >
-                Edit Price
+              Edit Price
             </Button>            
         </Container>
     )
