@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import {useSelector} from 'react-redux'
 import {
     selectCartItemProduct,
@@ -12,6 +13,12 @@ import {
     selectCartItemAmount,
 } from '../cartItem.slice'
 
+const Container=styled.div`
+    height:190px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between ;
+`
 
 const CartItemInfo = () => {
     const product=useSelector(selectCartItemProduct)
@@ -24,7 +31,7 @@ const CartItemInfo = () => {
     const discount=useSelector(selectCartItemDiscount)
     const amount=useSelector(selectCartItemAmount)
     return (
-        <div>
+        <Container>
             <section>
                 Name:{product?product.name:''}
             </section>
@@ -37,9 +44,9 @@ const CartItemInfo = () => {
             <section>
                 Mrp:{mrp?mrp:''}
             </section>
-            <section>
+            {/* <section>
                 HSN Code:{gstCode?gstCode:''}
-            </section> 
+            </section>  */}
             <section>
                 Tax Amount:{taxRate?taxRate:''}
             </section>                   
@@ -52,7 +59,7 @@ const CartItemInfo = () => {
             <section>
                 Amount:{amount?amount:''}
             </section>
-        </div>
+        </Container>
     )
 }
 
