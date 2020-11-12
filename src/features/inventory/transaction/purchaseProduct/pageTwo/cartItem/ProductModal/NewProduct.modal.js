@@ -1,4 +1,4 @@
-aimport React,{useState} from 'react'
+import React,{useState} from 'react'
 import styled from 'styled-components'
 import Modal from 'react-modal';
 import {useForm} from 'react-hook-form'

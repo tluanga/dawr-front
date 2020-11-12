@@ -4,16 +4,21 @@ const cartItemSlice=createSlice({
     name:'cartItem',
     initialState:{
         product:{},
+        stock:0,
         costPrice:0,
         mrp:0,
         gstCode:'',
-        tax:0,
+        taxRate:0,
+        quantity:0,
         discount:0,
         amount:0        
     },
     reducers:{
         setCartItemProduct:(state,action)=>{
             state.product=action.payload
+        },
+        setCartItemStock:(state,action)=>{
+            state.stock=action.payload
         },
         setCartItemCostPrice:(state,action)=>{
             state.costPrice=action.payload
@@ -24,8 +29,11 @@ const cartItemSlice=createSlice({
         setCartItemGstCode:(state,action)=>{
             state.gstCode=action.payload
         },
-        setCartItemTax:(state,action)=>{
-            state.tax=action.payload
+        setCartItemTaxRate:(state,action)=>{
+            state.taxRate=action.payload
+        },
+        setCartItemQuantity:(state,action)=>{
+            state.quantity=action.payload
         },
         setCartItemDiscount:(state,action)=>{
             state.discount=action.payload
@@ -40,10 +48,12 @@ const cartItemSlice=createSlice({
 // -------export Actions
 export const {
     setCartItemProduct,
+    setCartItemStock,
     setCartItemCostPrice,
     setCartItemMrp,
     setCartItemGstCode,
-    setCartItemTax,
+    setCartItemTaxRate,
+    setCartItemQuantity,
     setCartItemDiscount,
     setCartItemAmount
 }=cartItemSlice.actions
@@ -52,6 +62,11 @@ export const {
 export const selectCartItemProduct=state=>
     state.inventory.transaction.purchaseProduct.
     cartItem.product
+
+export const selectCartItemStock=state=>
+    state.inventory.transaction.purchaseProduct.
+    cartItem.stock
+
 
 export const selectCartItemCostPrice=state=>
     state.inventory.transaction.purchaseProduct.
@@ -65,9 +80,13 @@ export const selectCartItemGstCode=state=>
     state.inventory.transaction.purchaseProduct.
     cartItem.gstCode
 
-export const selectCartItemTax=state=>
+export const selectCartItemTaxRate=state=>
     state.inventory.transaction.purchaseProduct.
-    cartItem.tax
+    cartItem.taxRate
+
+export const selectCartItemQuantity=state=>
+    state.inventory.transaction.purchaseProduct.
+    cartItem.quantity
 
 export const selectCartItemDiscount=state=>
     state.inventory.transaction.purchaseProduct.

@@ -1,11 +1,8 @@
 // import React,{useState,useEffect} from 'react'
-
+// import Select from 'react-select'
+// import Creatable from 'react-select/creatable';
 // import styled from 'styled-components'
-// import Card from '@material-ui/core/Card';
-// import CardContent from '@material-ui/core/CardContent';
-// import Button from '@material-ui/core/Button'
-// import TextField from '@material-ui/core/TextField'
-// import {useForm} from 'react-hook-form'
+
 
 
 
@@ -197,16 +194,7 @@
 //                             }}
 //                         />
                         
-//                         <section>Name:{product?product.name:''}</section>
-//                         <section>Quantity in Stock:{productStock?productStock.quantity:''}</section>                                               
-//                         <section>
-//                             Cost Price(unit):{costPrice?costPrice.cost_price:''}                            
-//                         </section>
-//                         <section>Mrp:{mrp?mrp.amount:''}</section>
-//                         <section>Gst Rate:{gstCode?gstCode.totalGst:''}</section> 
-//                         <section>Tax Amount:{tax?tax:''}</section>                   
-//                         <section>Quantity:{quantity?quantity:''}</section>
-//                         <section>Amount:{amount?amount:''}</section>
+                        
                         
 //                         <TextField
 //                             label='Quantity'

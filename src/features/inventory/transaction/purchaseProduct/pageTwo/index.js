@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import styled from 'styled-components'
+import CartItem from './cartItem/CartItem.component'
 // import CartItem from './CartItem.component'
 // import CartTable from './CartTable.component'
 // import CartSummary from './CartSummary.component'
@@ -28,20 +29,13 @@ const Table=styled.section`
 
 
 const PageTwo = ({showPageTwo}) => {
-    
-   
-
     return(
         <>
            {
                showPageTwo?
-               <Wrapper>
-                   <h1>Page Two</h1>
-                {/* <CartItem 
-                    setOpenModal={setOpenModal}
-                    setModalMode={setModalMode}
-                />
-                <ProductModal 
+               <Wrapper>       
+                <CartItem/>
+                {/* <ProductModal 
                     openModal={openModal}
                     modalMode={modalMode}
                     setOpenModal={setOpenModal}
