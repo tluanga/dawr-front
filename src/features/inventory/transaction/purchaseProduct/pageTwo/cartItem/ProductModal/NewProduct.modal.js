@@ -18,6 +18,7 @@ import {selectGstCodeList} from
 import {selectUnitOfMeasurementList} from 
     '../../../../../unitOfMeasurement/UnitOfMeasurement.slice'
 
+
 import {
     OPEN, CLOSE,
     selectProductModalData,
@@ -46,7 +47,7 @@ const customStyles = {
       content: { 
         position: 'absolute',
         width:'450px',
-        height:'750px',
+        height:'600px',
         top: '1vh',
         bottom: '15vh',
         left: '32.5vw',
@@ -77,7 +78,7 @@ const Control=styled.section`
     display:flex;
     flex-direction:row;
     justify-content:space-around;
-    padding-top:5vh;
+    padding-top:1vh;
   `
 const Select=styled(SelectOriginal)`
     padding-bottom:1.3vh;
@@ -98,17 +99,7 @@ const ProductModal = () => {
     const [manufacturer,setManufacturer]=useState()
     const [gstCode,setGstCode]=useState()
     const [unitOfMeasurement,selectUnitOfMeasurement]=useState()
-    const [status,setStatus]=useState()
-    const statusOption=[
-        {
-            label:'Active',
-            value:true
-        },
-        {
-            label:'In Active',
-            value:false
-        }
-    ]
+    
     
     //------------React Hook Form-----------
     const {register,handleSubmit} =useForm()
@@ -150,6 +141,7 @@ const ProductModal = () => {
         >   
             <Wrapper>
                 <Form onSubmit={handleSubmit(onSubmit)}>
+                    <h2>NEW PRODUCT DIALOG</h2>
                     <TextField
                         variant='outlined'
                         name='name'
@@ -235,21 +227,7 @@ const ProductModal = () => {
                         inputRef={register}
                         style={{width:'400px',paddingBottom:'1.3vh'}}
                     />
-                   
-                    <TextField
-                        variant='outlined'
-                        name='remarks'
-                        label='Remarks'                                              
-                        placeholder='Remarks'
-                        size='small'
-                        inputRef={register}
-                        style={{width:'400px',paddingBottom:'1.3vh'}}
-                    />
-                    <Select
-                        defaultValue={statusOption[0]}
-                        options={statusOption}
-                        onChange={data=>setStatus(data.value)}
-                    />
+                    
                     <Control>
                         <Button
                             variant='contained'
@@ -272,8 +250,8 @@ const ProductModal = () => {
                             type='button'
                             startIcon={<AiOutlineClose/>}
                             onClick={()=>{
-                                setProductModalOpen(CLOSE)
-                                setProductModalData({})
+                                dispatch(setProductModalOpen(CLOSE))
+                                dispatch(setProductModalData({}))
                             }}
                         >Cancel</Button>
 

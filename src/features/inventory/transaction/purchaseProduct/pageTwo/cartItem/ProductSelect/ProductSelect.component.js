@@ -31,7 +31,8 @@ import {
     setCartItemCostPrice,
     setCartItemMrp,
     setCartItemGstCode,
-    setCartItemTaxRate 
+    setCartItemTaxRate,
+    setCartItemClear 
 } from '../cartItem.slice.js'
 
 const ProductSelect= () => {
@@ -51,6 +52,9 @@ const ProductSelect= () => {
                 }
             }
             onChange={data=>{
+                if(!data){
+                    dispatch(setCartItemClear())
+                }
                 if(data){
                 dispatch(setCartItemProduct(data))
                 if(stocks.length>0){

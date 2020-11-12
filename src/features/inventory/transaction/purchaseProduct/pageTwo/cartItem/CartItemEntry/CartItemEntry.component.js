@@ -33,7 +33,7 @@ const CartItemEntry = () => {
                 size='small'
                 type='number'
                 placeholder='Quantity'
-                defaultValue={quantity}
+                value={quantity}
                 onChange={event=>{
                     dispatch(
                         setCartItemQuantity(
@@ -53,7 +53,7 @@ const CartItemEntry = () => {
                 type='number'
                 disabled={amount<=0}
                 placeholder='Discount'
-                defaultValue={discount}
+                value={discount}
                 onChange={event=>{
                         dispatch(setCartItemDiscount(
                             event.target.value

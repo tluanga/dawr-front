@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-export const OPEN='true'
-export const CLOSE='false'
+export const OPEN=true
+export const CLOSE=false
 
 const productModalSlice=createSlice({
     name:'productModal',

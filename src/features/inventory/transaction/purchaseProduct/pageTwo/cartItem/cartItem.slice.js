@@ -41,6 +41,17 @@ const cartItemSlice=createSlice({
         setCartItemAmount:(state,action)=>{
             state.amount=action.payload
         },
+        setCartItemClear:(state)=>{
+            state.product=0
+            state.stock=0
+            state.costPrice=0
+            state.mrp=0
+            state.gstCode=0
+            state.taxRate=0
+            state.quantity=0
+            state.discount=0
+            state.amount=0
+        }
         
     },
 })
@@ -55,7 +66,8 @@ export const {
     setCartItemTaxRate,
     setCartItemQuantity,
     setCartItemDiscount,
-    setCartItemAmount
+    setCartItemAmount,
+    setCartItemClear
 }=cartItemSlice.actions
 
 // ---------Selector
