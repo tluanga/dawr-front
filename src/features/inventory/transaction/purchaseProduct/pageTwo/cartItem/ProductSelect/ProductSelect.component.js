@@ -87,8 +87,7 @@ const ProductSelect= () => {
                         price=>price.product===data.id)
                     dispatch(setCartItemCostPrice(
                         costPrice.cost_price
-                    ))
-                    
+                    ))                    
                 }
                 if(mrps.length>0){
                     const mrp= mrps.find(

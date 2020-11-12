@@ -7,7 +7,8 @@ import { Button } from '@material-ui/core';
 import SelectOriginal from 'react-select'
 // -----Redux--------
 import {useDispatch,useSelector} from 'react-redux'
-import {newProduct} from './Product.slice'
+import {newProduct} from 
+    '../../../../../product/Product.slice.js'
 import {selectCategoryList} from 
     '../../../../../category/Category.slice'
 import {selectManufacturerList} from 
