@@ -1,45 +1,42 @@
+import { NewReleases } from '@material-ui/icons'
 import {createSlice} from '@reduxjs/toolkit'
 
-const cartUISlice=createSlice({
+const priceEditModalSlice=createSlice({
     name:'cartui',
     initialState:{
-        openPriceEditModal:false,
-        modalData:{
+        open:false,
+        data:{
             product:{},
             costPrice:0,
             sellingPrice:0,
             sellingPrice_Bulk:0,
             mrp:0
         },
-        priceEditModalData:{},
     },
     reducers:{
-        setOpenPriceEditModal:(state,action)=>{
+        setOpen:(state,action)=>{
             state.openPriceEditModal=action.payload
         },
-        setPriceEditModalData:(state,action)=>{
+        setData:(state,action)=>{
             state.priceEditModalData=action.payload
         },
-        setModalData:(state,action)=>{
-            state.modalData=action.payload
-        }
     }
 })
 // select
-export const selectOpenPriceEditModal=state=>
+export const selectOpen=state=>
     state.inventory.transaction.purchaseProduct.cartUi.openPriceEditModal
 
 export const selectPriceEditModalData=state=>
 state.inventory.transaction.purchaseProduct.cartUi.priceEditModalData
 
-export const selectModalData=state=>
-state.inventory.transaction.purchaseProduct.cartUi.modalData
+export const selectProductModal=state=>
+state.inventory.transaction.purchaseProduct.cartUi.productModal
 
 //export action
 export const {
     setOpenPriceEditModal,
     setPriceEditModalData,
-    setModalData
-}=cartUISlice.actions
+    
+}=priceEditModalSlice.actions
 
-export default cartUISlice.reducer
+export default priceEditModalSlice.reducer

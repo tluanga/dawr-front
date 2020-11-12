@@ -1,14 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import styled from 'styled-components'
-import CartItem from './CartItem.component'
-import CartTable from './CartTable.component'
-import CartSummary from './CartSummary.component'
+// import CartItem from './CartItem.component'
+// import CartTable from './CartTable.component'
+// import CartSummary from './CartSummary.component'
 
 
 
 // -----Redux------
-import ProductModal from '../../../product/Product.modal'
-import EditPriceModal from './EditPrice.modal'
+// import EditPriceModal from './EditPrice.modal'
 
 
 const Wrapper=styled.div`
@@ -26,12 +25,9 @@ const Table=styled.section`
     height:73vh;
     width:77vw;
 `
-const NEW='New'
+
 
 const PageTwo = ({showPageTwo}) => {
-    const [openModal,setOpenModal]=useState(false)
-    const [modalMode,setModalMode]=useState(NEW)
-    const [modalData,setModalData]=useState({})
     
    
 
@@ -40,7 +36,8 @@ const PageTwo = ({showPageTwo}) => {
            {
                showPageTwo?
                <Wrapper>
-                <CartItem 
+                   <h1>Page Two</h1>
+                {/* <CartItem 
                     setOpenModal={setOpenModal}
                     setModalMode={setModalMode}
                 />
@@ -55,7 +52,7 @@ const PageTwo = ({showPageTwo}) => {
                     <CartTable/>
                     <CartSummary/>
                 </Table>
-                <EditPriceModal/>
+                <EditPriceModal/> */}
             </Wrapper>:''
            } 
         </>

@@ -8,27 +8,27 @@ import { Button } from '@material-ui/core';
 import {useSelector,useDispatch} from 'react-redux'
 import {
     updateProduct
-} from '../../../product/Product.slice'
+} from '../../../../../product/Product.slice'
 import {
     selectCostPrices,
     fetchCurrentCostPrice,
     setCurrentCostPrice
-} from '../../../product/ProductCostPrice.slice'
+} from '../../../../../product/ProductCostPrice.slice'
 import {
     selectSellingPrices,
     fetchCurrentSellPrice
-} from '../../../product/ProductSellingPrice.slice'
+} from '../../../../../product/ProductSellingPrice.slice'
 import {
     selectMrp,
     fetchCurrentMrp
-} from '../../../product/ProductMrp.slice'
+} from '../../../../../product/ProductMrp.slice'
 
 import {
     selectOpenPriceEditModal,
     selectPriceEditModalData,
     setOpenPriceEditModal,
     selectModalData
-} from './CartUi.slice' 
+} from './EditPrice.slice' 
 
 import {AiOutlineClose} from 'react-icons/ai'
 import {MdClearAll} from 'react-icons/md'
