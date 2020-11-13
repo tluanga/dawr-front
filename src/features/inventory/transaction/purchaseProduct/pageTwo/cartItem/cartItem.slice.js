@@ -9,8 +9,8 @@ const cartItemSlice=createSlice({
         mrp:0,
         gstCode:'',
         taxRate:0,
-        quantity:0,
-        discount:0,
+        quantity:'',
+        discount:'',
         amount:0        
     },
     reducers:{
@@ -48,8 +48,8 @@ const cartItemSlice=createSlice({
             state.mrp=0
             state.gstCode=0
             state.taxRate=0
-            state.quantity=0
-            state.discount=0
+            state.quantity=''
+            state.discount=''
             state.amount=0
         }
         

@@ -13,6 +13,13 @@ import {
     selectCartItemAmount,
     setCartItemAmount
 } from '../cartItem.slice'
+
+import {
+    OPEN,
+    setEditPriceModalOpen
+} from '../EditPriceModal/EditPrice.slice'
+
+
 const Container=styled.div`
     height:180px;
     display:flex;
@@ -72,8 +79,12 @@ const CartItemEntry = () => {
                 Add to Cart
             </Button>
             <Button
+                disabled={!quantity}
                 variant='contained'
                 color='primary'
+                onClick={()=>{
+                    dispatch(setEditPriceModalOpen(OPEN))
+                }}
             >
               Edit Price
             </Button>            

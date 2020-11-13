@@ -17,6 +17,9 @@ import CartItemEntry from
     './CartItemEntry/CartItemEntry.component'
 import ProductModal from
     './ProductModal/NewProduct.modal'
+import EditPriceModal from
+    './EditPriceModal/EditPrice.modal'
+
 
 const ProductContent=styled.form`
     width:400px;
@@ -40,6 +43,7 @@ const CartItem = () => {
                     <CartItemInfo/>
                     <CartItemEntry/>
                     <ProductModal/>
+                    <EditPriceModal/>
                 </CardContent>
             </Card>
            

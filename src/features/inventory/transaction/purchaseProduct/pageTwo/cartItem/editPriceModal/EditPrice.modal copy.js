@@ -67,14 +67,14 @@ const EditPriceModal = () => {
 
     return(       
         <Modal
-            isOpen={modalOpen}
+            isOpen={true}
             onRequestClose={()=>dispatch(setEditPriceModalOpen(CLOSE))}
             style={customStyles}
         >
             <Wrapper>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                    <h3>Edit-{product.name}-Prices</h3>                    
-                   <TextField
+                    {/* <h3>Edit-{product.name}-Prices</h3>                     */}
+                    {/* {/* <TextField
                         variant='outlined'
                         name='costPrice'
                         label='Cost Price'                            
@@ -90,8 +90,8 @@ const EditPriceModal = () => {
                         inputRef={register}
                         style={{width:'200px',paddingBottom:'1.3vh'}}
                         size='small'
-                    />
-                    <TextField
+                    /> */}
+                    {/* <TextField
                         variant='outlined'
                         name='sellingPrice'
                         label='Selling Price'                            
@@ -108,8 +108,8 @@ const EditPriceModal = () => {
                         inputRef={register}
                         style={{width:'200px',paddingBottom:'1.3vh'}}
                         size='small'
-                    /> 
-                    <TextField
+                    />  */}
+                    {/* <TextField
                         variant='outlined'
                         name='mrp'
                         label='Mrp'                            
@@ -117,7 +117,7 @@ const EditPriceModal = () => {
                         inputRef={register}
                         style={{width:'200px',paddingBottom:'1.3vh'}}
                         size='small'
-                    />                    
+                    />                     */}
                     
                     
                     <Control>
@@ -138,14 +138,14 @@ const EditPriceModal = () => {
                         </Button>
                        
                         
-                        <Button
+                        {/* <Button
                             variant='contained'
                             color='secondary'
                             type='button'
                             startIcon={<AiOutlineClose/>}
                             onClick={()=>dispatch(setEditPriceModalOpen(CLOSE))}
                             >
-                            Cancel</Button>
+                            Cancel</Button> */}
 
                     </Control>
                 </Form>                

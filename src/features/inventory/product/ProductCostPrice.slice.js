@@ -6,7 +6,7 @@ export const fetchCurrentCostPrice=createAsyncThunk(
     'costPrice/List',
     async ()=>await getList(url)
 )
-export const setCurrentCostPrice=createAsyncThunk(
+export const newCostPrice=createAsyncThunk(
     'costPrice/New',
     async(payload)=>{
         console.log('new cost price pay load',payload)
@@ -24,7 +24,7 @@ const costPriceSlice=createSlice({
     reducers:{},
     extraReducers:{
         [fetchCurrentCostPrice.fulfilled]:costPriceEntityAdapter.setAll,
-        [setCurrentCostPrice.fulfilled]:costPriceEntityAdapter.addOne
+        [newCostPrice.fulfilled]:costPriceEntityAdapter.addOne
     }
 })
 
